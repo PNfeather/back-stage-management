@@ -1,5 +1,6 @@
 <template>
   <div name='service'>
+    <head-top></head-top>
   </div>
 </template>
 

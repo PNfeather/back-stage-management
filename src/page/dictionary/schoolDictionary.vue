@@ -1,5 +1,6 @@
 <template>
   <div name='schoolDictionary'>
+    <head-top></head-top>
   </div>
 </template>
 

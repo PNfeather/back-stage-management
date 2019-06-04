@@ -1,5 +1,6 @@
 <template>
   <div name='teachers'>
+    <head-top></head-top>
   </div>
 </template>
 

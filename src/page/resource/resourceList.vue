@@ -1,5 +1,6 @@
 <template>
   <div name='resourceList'>
+    <head-top></head-top>
   </div>
 </template>
 

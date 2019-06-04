@@ -1,5 +1,6 @@
 <template>
   <div name='classList'>
+    <head-top></head-top>
   </div>
 </template>
 

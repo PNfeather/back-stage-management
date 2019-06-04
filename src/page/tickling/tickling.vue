@@ -1,5 +1,6 @@
 <template>
   <div name='tickling'>
+    <head-top></head-top>
   </div>
 </template>
 

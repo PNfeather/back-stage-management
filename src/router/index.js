@@ -11,7 +11,6 @@ const patriarch = r => require.ensure([], () => r(require('@/page/account/patria
 const students = r => require.ensure([], () => r(require('@/page/account/students')), 'students');
 const service = r => require.ensure([], () => r(require('@/page/account/service')), 'service');
 const classList = r => require.ensure([], () => r(require('@/page/schoolClass/classList')), 'classList');
-const taskList = r => require.ensure([], () => r(require('@/page/task/taskList')), 'taskList');
 const resourceList = r => require.ensure([], () => r(require('@/page/resource/resourceList')), 'resourceList');
 const schoolDictionary = r => require.ensure([], () => r(require('@/page/dictionary/schoolDictionary')), 'schoolDictionary');
 const tickling = r => require.ensure([], () => r(require('@/page/tickling/tickling')), 'tickling');
@@ -50,10 +49,6 @@ const routes = [
         path: '/classList',
         component: classList,
         meta: ['班级管理', '班级列表']
-      }, {
-        path: '/taskList',
-        component: taskList,
-        meta: ['作业管理', '作业列表']
       }, {
         path: '/resourceList',
         component: resourceList,

@@ -1,5 +1,6 @@
 <template>
   <div name='patriarch'>
+    <head-top></head-top>
   </div>
 </template>
 

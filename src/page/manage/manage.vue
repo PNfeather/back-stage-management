@@ -16,18 +16,14 @@
             <el-menu-item index="classList">班级列表</el-menu-item>
           </el-submenu>
           <el-submenu index="4">
-            <template slot="title"><i class="iconfont iconTask"></i>作业管理</template>
-            <el-menu-item index="taskList">作业列表</el-menu-item>
-          </el-submenu>
-          <el-submenu index="5">
             <template slot="title"><i class="iconfont iconResourceManagement"></i>资源管理</template>
              <el-menu-item index="resourceList">查看资源</el-menu-item>
           </el-submenu>
-          <el-submenu index="6">
+          <el-submenu index="5">
             <template slot="title"><i class="iconfont iconSchoolDictionary"></i>字典管理</template>
             <el-menu-item index="schoolDictionary">学校字典</el-menu-item>
           </el-submenu>
-          <el-submenu index="7">
+          <el-submenu index="6">
             <template slot="title"><i class="iconfont iconTickling"></i>反馈信息</template>
             <el-menu-item index="tickling">反馈信息详情</el-menu-item>
           </el-submenu>
