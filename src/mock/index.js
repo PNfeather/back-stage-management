@@ -1,4 +1,4 @@
-require('@/mock/scrollTest');
+require('@/mock/example');
 require('@/mock/login');
 
 const Mock = require('mockjs');

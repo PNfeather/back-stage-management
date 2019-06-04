@@ -16,7 +16,7 @@ for (let i = 0; i < dataNum; i++) { // 可自定义生成的个数
   data.push(template);
 }
 
-Mock.mock(beseUrl + '/scrollTest', 'get', (options) => {
+Mock.mock(beseUrl + '/example', 'get', (options) => {
   let params = JSON.parse(options.body);
   let pageSize = params.pageSize;
   let pageNum = params.pageNum;
