@@ -6,6 +6,7 @@ import router from './router';
 import http from '@/plugins/http';
 import store from './store/';
 import ElementUI from 'element-ui';
+import HeadTop from '@C/headTop';
 import 'element-ui/lib/theme-default/index.css';
 
 process.env.MOCK && require('@/mock');
@@ -13,6 +14,8 @@ process.env.MOCK && require('@/mock');
 Vue.use(http.install);
 
 Vue.use(ElementUI);
+
+Vue.component(HeadTop.name, HeadTop);
 
 Vue.config.productionTip = false;
 

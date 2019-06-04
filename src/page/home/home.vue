@@ -1,11 +1,14 @@
 <template>
-  <div name='home'>
+  <div name='home' class="fillcontain">
     <head-top></head-top>
+    <section class="welcome fillcontain">
+      <p style="margin-top: -100px">欢迎来到</p>
+      <p>闪批作业后台管理系统</p>
+    </section>
   </div>
 </template>
 
 <script type='text/babel'>
-  import headTop from '@C/headTop.vue';
   export default {
     name: 'home',
     data () {
@@ -18,10 +21,19 @@
     watch: {},
     methods: {},
     components: {
-      headTop
     }
   };
 </script>
 <style scoped lang="less">
-  [name = 'home']{}
+  [name = 'home']{
+    .welcome{
+      background-color: #F9FAFC;
+      color: #666;
+      font-size: 34px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+  }
 </style>
