@@ -16,9 +16,6 @@
             <el-button type="primary" @click="submitForm('loginForm')" class="submit_btn">登陆</el-button>
           </el-form-item>
         </el-form>
-        <p class="tip">温馨提示：</p>
-        <p class="tip">未登录过的新用户，自动注册</p>
-        <p class="tip">注册过的用户可凭账号密码登录</p>
       </section>
     </transition>
   </div>
@@ -47,14 +44,37 @@
     },
     mounted () {
       this.showLogin = true;
-      login().then((res) => {
-        console.log(res);
-      });
     },
-    computed: {},
-    watch: {},
-    methods: {},
-    components: {}
+    methods: {
+      submitForm (formName) {
+        this.$refs[formName].validate((valid) => {
+          if (valid) {
+            login({user_name: this.loginForm.username, password: this.loginForm.password}).then((res) => {
+              let data = res.data;
+              if (data.resultData === '1') {
+                this.$message({
+                  type: 'success',
+                  message: '登录成功'
+                });
+                // this.$router.push('manage')
+              } else {
+                this.$message({
+                  type: 'error',
+                  message: res.message
+                });
+              }
+            });
+          } else {
+            this.$notify.error({
+              title: '错误',
+              message: '请输入正确的用户名密码',
+              offset: 100
+            });
+            return false;
+          }
+        });
+      }
+    }
   };
 </script>
 <style scoped lang="less">
@@ -73,8 +93,8 @@
     }
   }
   .form_contianer{
-    .wh(320px, 210px);
-    .ctp(320px, 210px);
+    .wh(320px, 180px);
+    .ctp(320px, 180px);
     padding: 25px;
     border-radius: 5px;
     text-align: center;
