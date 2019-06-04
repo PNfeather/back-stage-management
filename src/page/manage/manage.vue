@@ -6,35 +6,30 @@
           <el-menu-item index="manage"><i class="el-icon-menu"></i>管理后台</el-menu-item>
           <el-submenu index="2">
             <template slot="title"><i class="iconfont iconAccountManagement"></i>账号管理</template>
-            <!--<el-menu-item index="userList">用户列表</el-menu-item>-->
-            <!--<el-menu-item index="shopList">商家列表</el-menu-item>-->
-            <!--<el-menu-item index="foodList">食品列表</el-menu-item>-->
-            <!--<el-menu-item index="orderList">订单列表</el-menu-item>-->
-            <!--<el-menu-item index="adminList">管理员列表</el-menu-item>-->
+            <el-menu-item index="teachers">教师用户</el-menu-item>
+            <el-menu-item index="patriarch">家长用户</el-menu-item>
+            <el-menu-item index="students">学生用户</el-menu-item>
+            <el-menu-item index="service">客户用户</el-menu-item>
           </el-submenu>
           <el-submenu index="3">
             <template slot="title"><i class="iconfont iconClassManagement"></i>班级管理</template>
-            <!--<el-menu-item index="addShop">添加商铺</el-menu-item>-->
-            <!--<el-menu-item index="addGoods">添加商品</el-menu-item>-->
+            <el-menu-item index="classList">班级列表</el-menu-item>
           </el-submenu>
           <el-submenu index="4">
             <template slot="title"><i class="iconfont iconTask"></i>作业管理</template>
-            <!--<el-menu-item index="visitor">用户分布</el-menu-item>-->
-            <!-- <el-menu-item index="newMember">用户数据</el-menu-item> -->
+            <el-menu-item index="taskList">作业列表</el-menu-item>
           </el-submenu>
           <el-submenu index="5">
             <template slot="title"><i class="iconfont iconResourceManagement"></i>资源管理</template>
-            <!-- <el-menu-item index="uploadImg">上传图片</el-menu-item> -->
-            <!--<el-menu-item index="vueEdit">文本编辑</el-menu-item>-->
+             <el-menu-item index="resourceList">查看资源</el-menu-item>
           </el-submenu>
           <el-submenu index="6">
             <template slot="title"><i class="iconfont iconSchoolDictionary"></i>字典管理</template>
-            <!--<el-menu-item index="adminSet">管理员设置</el-menu-item>-->
-            <!-- <el-menu-item index="sendMessage">发送通知</el-menu-item> -->
+            <el-menu-item index="schoolDictionary">学校字典</el-menu-item>
           </el-submenu>
           <el-submenu index="7">
             <template slot="title"><i class="iconfont iconTickling"></i>反馈信息</template>
-            <!--<el-menu-item index="explain">说明</el-menu-item>-->
+            <el-menu-item index="tickling">反馈信息详情</el-menu-item>
           </el-submenu>
         </el-menu>
       </el-col>
