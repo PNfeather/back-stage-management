@@ -57,3 +57,7 @@ export default {
     Vue.http = axios;
   }
 };
+
+let Http = axios;
+
+export {Http};
