@@ -1,17 +1,13 @@
 <template>
   <div name='home'>
+    <head-top></head-top>
   </div>
 </template>
 
 <script type='text/babel'>
+  import headTop from '@C/headTop.vue';
   export default {
     name: 'home',
-    props: {
-      key: {
-        type: String,
-        default: ''
-      }
-    },
     data () {
       return {
       };
@@ -21,7 +17,9 @@
     computed: {},
     watch: {},
     methods: {},
-    components: {}
+    components: {
+      headTop
+    }
   };
 </script>
 <style scoped lang="less">

@@ -1,7 +1,7 @@
 <template>
   <div name='manage' class="fillcontain">
     <el-row style="height: 100%;">
-      <el-col :span="4"  style="min-height: 100%; background-color: #324057;">
+      <el-col :span="4"  style="min-height: 100%; background-color: #324057;overflow: hidden">
         <el-menu :default-active="defaultActive" style="min-height: 100%;" theme="dark" router>
           <el-menu-item index="manage"><i class="el-icon-menu"></i>管理后台</el-menu-item>
           <el-submenu index="2">

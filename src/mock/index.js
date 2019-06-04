@@ -1,5 +1,6 @@
 require('@/mock/example');
 require('@/mock/login');
+require('@/mock/logout');
 
 const Mock = require('mockjs');
 
