@@ -7,12 +7,6 @@
 <script type='text/babel'>
   export default {
     name: 'patriarch',
-    props: {
-      key: {
-        type: String,
-        default: ''
-      }
-    },
     data () {
       return {
       };

@@ -2,9 +2,23 @@
   <div name='teachers'>
     <head-top></head-top>
     <div class="table_container">
+      <el-form :model="searchForm" :inline="true" class="search">
+        <el-form-item label="学校" label-width="60px">
+          <el-input v-model="selectTable.schoolName" auto-complete="off"></el-input>
+        </el-form-item>
+        <el-form-item label="姓名" label-width="60px">
+          <el-input v-model="selectTable.name" auto-complete="off"></el-input>
+        </el-form-item>
+        <el-form-item label="手机号" label-width="60px">
+          <el-input v-model="selectTable.mobile" auto-complete="off"></el-input>
+        </el-form-item>
+        <el-button
+          size="medium"
+          @click="search">查询</el-button>
+      </el-form>
       <el-table
         :data="tableData"
-        style="width: 100%">
+        style="width: 100%; flex: 1">
         <el-table-column
           label="账号"
           prop="account">
@@ -52,7 +66,7 @@
             <el-input v-model="selectTable.name" auto-complete="off"></el-input>
           </el-form-item>
           <el-form-item label="手机号" label-width="100px">
-            <el-input v-model="selectTable.mobile"></el-input>
+            <el-input v-model="selectTable.mobile" auto-complete="off"></el-input>
           </el-form-item>
         </el-form>
         <div slot="footer" class="dialog-footer">
@@ -70,14 +84,16 @@
     name: 'teachers',
     data () {
       return {
+        searchForm: {
+          schoolName: '',
+          name: '',
+          mobile: ''
+        },
         tableData: [],
         currentPage: 1,
         skip: 0,
         limit: 20,
         count: 0,
-        schoolName: '',
-        name: '',
-        mobile: '',
         selectTable: {},
         selectIndex: 0,
         dialogFormVisible: false
@@ -97,13 +113,16 @@
     },
     watch: {},
     methods: {
+      search () {
+        this.getData();
+      },
       getData () {
         getTeachersList({
           skip: this.skip,
           limit: this.limit,
-          schoolName: this.schoolName,
-          name: this.name,
-          mobile: this.mobile
+          schoolName: this.searchForm.schoolName,
+          name: this.searchForm.name,
+          mobile: this.searchForm.mobile
         }).then((res) => {
           let data = res.data;
           if (data.code == 0) {
@@ -216,6 +235,18 @@
   @import '~@/style/mixin';
   .table_container{
     padding: 20px;
+    display: flex;
+    flex-direction: column;
+    .search{
+      display: flex;
+      align-items: center;
+      padding-bottom: 22px;
+      .el-form-item{
+        margin-bottom: 0!important;
+        flex: 260px 0 0;
+        display: flex;
+      }
+    }
   }
   .Pagination{
     display: flex;
