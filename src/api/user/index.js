@@ -1,7 +1,7 @@
 import {Http} from '@/plugins/http';
 
-export const login = data => Http.post('/login', data);
-export const logout = () => Http.get('/logout');
+export const login = data => Http.post('/user/login', data);
+export const logout = () => Http.get('/user/logout');
 export const getTeachersList = data => Http.post('/user/teacher-list', data);
 export const getGuardianList = data => Http.post('/user/guardian-list', data);
 export const getStudengList = data => Http.post('/user/student-list', data);
