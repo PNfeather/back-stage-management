@@ -17,7 +17,7 @@
           </el-submenu>
           <el-submenu index="4">
             <template slot="title"><i class="iconfont iconResourceManagement"></i>资源管理</template>
-             <el-menu-item index="resourceList">查看资源</el-menu-item>
+             <el-menu-item index="resourceList">资源列表</el-menu-item>
           </el-submenu>
           <el-submenu index="5">
             <template slot="title"><i class="iconfont iconSchoolDictionary"></i>字典管理</template>

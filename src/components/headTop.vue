@@ -15,7 +15,7 @@
 </template>
 
 <script type='text/babel'>
-  import {logout} from '@/api';
+  import {logout} from '@/api/user';
   export default {
     name: 'headTop',
     data () {

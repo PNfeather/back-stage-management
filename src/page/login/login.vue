@@ -22,7 +22,7 @@
 </template>
 
 <script type='text/babel'>
-  import {login} from '@/api';
+  import {login} from '@/api/user';
   export default {
     name: 'login',
     data () {

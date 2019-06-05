@@ -1,13 +1,13 @@
 // require('@/mock/example');
-require('@/mock/login');
-require('@/mock/logout');
-require('@/mock/customer-service-list');
-require('@/mock/guardian-list');
-require('@/mock/student-list');
-require('@/mock/teacher-list');
-require('@/mock/delete');
-require('@/mock/disable');
-require('@/mock/update');
+require('./user/login');
+require('./user/logout');
+require('./user/customer-service-list');
+require('./user/guardian-list');
+require('./user/student-list');
+require('./user/teacher-list');
+require('./user/delete');
+require('./user/disable');
+require('./user/update');
 
 const Mock = require('mockjs');
 

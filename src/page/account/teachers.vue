@@ -79,7 +79,7 @@
 </template>
 
 <script type='text/babel'>
-  import {getTeachersList} from '@/api';
+  import {getTeachersList} from '@/api/user';
   import {mixins} from './js/mixins';
   export default {
     name: 'teachers',

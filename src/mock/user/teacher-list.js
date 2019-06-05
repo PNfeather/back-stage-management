@@ -21,7 +21,7 @@ for (let i = 0; i < total; i++) { // 可自定义生成的个数
   list.push(template);
 }
 
-Mock.mock(baseUrl + '/teacher-list', 'post', (options) => {
+Mock.mock(baseUrl + '/user/teacher-list', 'post', (options) => {
   let params = JSON.parse(options.body);
   let skip = params.skip;
   let limit = params.limit;

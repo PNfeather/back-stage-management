@@ -92,7 +92,7 @@
 </template>
 
 <script type='text/babel'>
-  import {getServiceList} from '@/api';
+  import {getServiceList} from '@/api/user';
   import {mixins} from './js/mixins';
   export default {
     name: 'service',

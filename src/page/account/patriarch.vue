@@ -72,7 +72,7 @@
 </template>
 
 <script type='text/babel'>
-  import {getGuardianList} from '@/api';
+  import {getGuardianList} from '@/api/user';
   import {mixins} from './js/mixins';
   export default {
     name: 'patriarch',

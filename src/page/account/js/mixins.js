@@ -1,4 +1,4 @@
-import {deleteAccount, disableAccount, updateAccount} from '@/api';
+import {deleteAccount, disableAccount, updateAccount} from '@/api/user';
 const mixins = {
   data () {
     return {

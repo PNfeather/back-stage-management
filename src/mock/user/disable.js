@@ -2,7 +2,7 @@ import Mock from 'mockjs'; // 引入mockjs
 
 let baseUrl = window.location.origin + '/apis';
 
-Mock.mock(baseUrl + '/disable', 'patch', (options) => {
+Mock.mock(baseUrl + '/user/disable', 'patch', (options) => {
   let params = JSON.parse(options.body);
   let id = params.id;
   return {

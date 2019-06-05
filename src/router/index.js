@@ -52,7 +52,7 @@ const routes = [
       }, {
         path: '/resourceList',
         component: resourceList,
-        meta: ['资源管理', '查看资源']
+        meta: ['资源管理', '资源列表']
       }, {
         path: '/schoolDictionary',
         component: schoolDictionary,

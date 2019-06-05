@@ -2,12 +2,10 @@ import Mock from 'mockjs'; // 引入mockjs
 
 let baseUrl = window.location.origin + '/apis';
 
-Mock.mock(baseUrl + '/delete', 'delete', (options) => {
-  let params = JSON.parse(options.body);
-  let id = params.id;
+Mock.mock(baseUrl + '/user/logout', 'get', () => {
   return {
     'code': 0,
-    'data': id,
+    'data': '1',
     'message': 'success'
   };
 }); // 根据数据模板生成模拟数据

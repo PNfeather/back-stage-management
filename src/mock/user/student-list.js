@@ -5,19 +5,23 @@ let baseUrl = window.location.origin + '/apis';
 const Random = Mock.Random;
 
 let list = []; // 用于接受生成数据的数组
-let total = 222;
+let total = 111;
 for (let i = 0; i < total; i++) { // 可自定义生成的个数
   let template = {
     'id': Random.integer(10000, 99999),
     'account': Random.integer(10000, 99999),
-    'nickName': Random.name(true),
+    'name': Random.name(true),
     'mobile': '138' + Random.integer(10000000, 99999999),
+    'classes': [
+      {'schoolName': '百花小学', 'gradeName': '五年级1班'},
+      {'schoolName': '百花小学', 'gradeName': '历史1班'}
+    ], // 班级信息
     'status': 0 // 0正常1禁用2删除
   };
   list.push(template);
 }
 
-Mock.mock(baseUrl + '/guardian-list', 'post', (options) => {
+Mock.mock(baseUrl + '/user/student-list', 'post', (options) => {
   let params = JSON.parse(options.body);
   let skip = params.skip;
   let limit = params.limit;
