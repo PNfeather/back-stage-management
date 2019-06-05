@@ -12,7 +12,7 @@ module.exports = {
     assetsPublicPath: '/',
     proxyTable: {
       '/apis': {
-        // 测试环境
+        // 开发环境
         target: 'http://www.test.cn/',  // 接口域名
         changeOrigin: true,  //  是否跨域
         pathRewrite: {
