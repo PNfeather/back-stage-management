@@ -15,6 +15,7 @@ const resourceList = r => require.ensure([], () => r(require('@/page/resource/re
 const resourceDetail = r => require.ensure([], () => r(require('@/page/resource/resourceDetail')), 'resourceDetail');
 const schoolDictionary = r => require.ensure([], () => r(require('@/page/dictionary/schoolDictionary')), 'schoolDictionary');
 const tickling = r => require.ensure([], () => r(require('@/page/tickling/tickling')), 'tickling');
+const ticklingDetail = r => require.ensure([], () => r(require('@/page/tickling/ticklingDetail')), 'ticklingDetail');
 
 const routes = [
   {
@@ -65,7 +66,11 @@ const routes = [
       }, {
         path: '/tickling',
         component: tickling,
-        meta: ['反馈信息', '反馈信息详情']
+        meta: ['反馈信息', '反馈列表']
+      }, {
+        path: '/ticklingDetail',
+        component: ticklingDetail,
+        meta: ['反馈信息', '反馈列表', '反馈详情']
       }
     ]
   }

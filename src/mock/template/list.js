@@ -11,9 +11,10 @@ for (let i = 0; i < total; i++) { // 可自定义生成的个数
     'createdAt': '2019-06-05T11:37:37.911Z',
     'creatorId': Random.integer(10000, 99999),
     'creatorMobile': '138' + Random.integer(10000000, 99999999),
-    'creatorName': Random.name(true),
+    'creatorName': Random.name(true) + Random.name(true) + Random.name(true) + Random.name(true) + Random.name(true),
     'id': Random.integer(10000, 99999),
     'name': Random.name(true),
+    'pageNum': Random.integer(10, 99),
     'status': 0,
     'templates': [
       {

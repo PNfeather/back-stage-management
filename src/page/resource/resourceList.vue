@@ -22,7 +22,7 @@
         </el-table-column>
         <el-table-column
           label="总页数"
-          prop="">
+          prop="pageNum">
         </el-table-column>
         <el-table-column
           label="创建客服"

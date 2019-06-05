@@ -1,30 +1,191 @@
 <template>
   <div name='schoolDictionary'>
     <head-top></head-top>
+    <div class="table_container">
+      <el-form :model="searchForm" :inline="true" class="search">
+        <el-form-item label="区域查询" label-width="90px">
+          <el-input v-model="searchForm.creator" auto-complete="off"></el-input>
+        </el-form-item>
+        <el-button
+          size="medium"
+          @click="search">查询</el-button>
+      </el-form>
+      <el-table
+        :data="tableData"
+        style="width: 100%; flex: 1">
+        <el-table-column
+          label="学校名称"
+          prop="name">
+        </el-table-column>
+        <el-table-column
+          label="简称"
+          prop="pageNum">
+        </el-table-column>
+        <el-table-column
+          label="省份"
+          prop="creatorName">
+        </el-table-column>
+        <el-table-column
+          label="市"
+          prop="createdAt">
+        </el-table-column>
+        <el-table-column
+          label="县/区/乡镇"
+          prop="updatedAt">
+        </el-table-column>
+        <el-table-column label="操作">
+          <template slot-scope="scope">
+            <el-button
+              size="mini"
+              @click="handleEdit(scope.$index, scope.row)">修改</el-button>
+            <el-button
+              size="mini"
+              type="danger"
+              @click="handleDelete(scope.$index, scope.row)">删除</el-button>
+          </template>
+        </el-table-column>
+      </el-table>
+      <div class="Pagination">
+        <el-pagination
+          @current-change="handleCurrentChange"
+          :current-page="currentPage"
+          :page-size="limit"
+          layout="total, prev, pager, next"
+          :total="count">
+        </el-pagination>
+      </div>
+      <el-dialog title="信息修改" v-model="dialogFormVisible">
+        <el-form :model="selectTable">
+          <el-form-item label="学校名称" label-width="100px">
+            <el-input v-model="selectTable.name" auto-complete="off"></el-input>
+          </el-form-item>
+          <el-form-item label="区域" label-width="100px">
+            <el-input v-model="selectTable.mobile" auto-complete="off"></el-input>
+          </el-form-item>
+          <el-form-item label="简称" label-width="100px">
+            <el-input v-model="selectTable.mobile" auto-complete="off"></el-input>
+          </el-form-item>
+        </el-form>
+        <div slot="footer" class="dialog-footer">
+          <el-button @click="updateCancel">取 消</el-button>
+          <el-button type="primary" @click="updateSubmit">确 定</el-button>
+        </div>
+      </el-dialog>
+    </div>
   </div>
 </template>
 
 <script type='text/babel'>
+  import {getList, deleteResource} from '@/api/template';
   export default {
     name: 'schoolDictionary',
-    props: {
-      key: {
-        type: String,
-        default: ''
-      }
-    },
     data () {
       return {
+        searchForm: {
+          creator: '',
+          templateName: ''
+        },
+        tableData: [],
+        currentPage: 1,
+        skip: 0,
+        limit: 20,
+        count: 0,
+        selectTable: {},
+        selectIndex: 0,
+        dialogFormVisible: false
       };
     },
-    created () {},
-    mounted () {},
-    computed: {},
-    watch: {},
-    methods: {},
-    components: {}
+    created () {
+      this.getData();
+    },
+    methods: {
+      search () {
+        this.getData();
+      },
+      getData () {
+        getList({
+          skip: this.skip,
+          limit: this.limit,
+          creator: this.searchForm.creator,
+          templateName: this.searchForm.templateName
+        }).then((res) => {
+          let data = res.data;
+          if (data.code == 0) {
+            this.count = data.total;
+            this.tableData = data.data;
+          }
+        });
+      },
+      handleCurrentChange (val) {
+        this.currentPage = val;
+        this.skip = (val - 1) * this.limit;
+        this.getData();
+      },
+      handleEdit (index, row) {
+        this.selectIndex = index;
+        this.selectTable = {...row};
+        this.dialogFormVisible = true;
+      },
+      handleDelete (index, row) {
+        console.log(row);
+        this.$confirm('确定删除当前资源?', '提示', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          type: 'warning'
+        }).then(() => {
+          deleteResource({id: row.id}).then((res) => {
+            if (res.data.data) {
+              this.$message({
+                type: 'success',
+                message: '成功删除'
+              });
+              this.tableData.splice(index, 1);
+            }
+          });
+        }).catch(() => {
+          this.$message({
+            type: 'info',
+            message: '取消'
+          });
+        });
+      },
+      updateCancel () {
+        this.dialogFormVisible = false;
+        this.$message({
+          type: 'info',
+          message: '取消'
+        });
+      },
+      updateSubmit () {
+        this.dialogFormVisible = false;
+        let noChange = true;
+        let os = {...this.tableData[this.selectIndex]};
+        let sKeys = Object.keys(this.selectTable);
+        let oKeys = Object.keys(os);
+        (sKeys.length != oKeys.length) && (noChange = false);
+        for (let i = 0; i < sKeys.length; i++) {
+          (this.selectTable[sKeys[i]] != os[oKeys[i]]) && (noChange = false);
+        }
+        if (noChange) { // 判断数据是否变更，无变更点提交不调接口
+          return this.$message({
+            type: 'info',
+            message: '无变更'
+          });
+        }
+        // updateAccount(this.selectTable).then((res) => {
+        //   let data = res.data;
+        //   if (data.code == 0) {
+        //     this.tableData.splice(this.selectIndex, 1, this.selectTable);
+        //     this.$message({
+        //       type: 'success',
+        //       message: '修改改成功'
+        //     });
+        //   }
+        // });
+      }
+    }
   };
 </script>
 <style scoped lang="less">
-  [name = 'schoolDictionary']{}
+  @import '../account/css/list';
 </style>

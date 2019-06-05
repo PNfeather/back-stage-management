@@ -1,30 +1,99 @@
 <template>
   <div name='tickling'>
     <head-top></head-top>
+    <div class="table_container">
+      <el-table
+        :data="tableData"
+        style="width: 100%; flex: 1">
+        <el-table-column
+          label="反馈用户"
+          prop="name">
+        </el-table-column>
+        <el-table-column
+          label="用户类型"
+          prop="pageNum">
+        </el-table-column>
+        <el-table-column
+          label="反馈内容"
+          prop="creatorName">
+          <template slot-scope="scope">
+           <div class="ellipsis">{{scope.row.creatorName}}</div>
+          </template>
+        </el-table-column>
+        <el-table-column
+          label="反馈时间"
+          prop="createdAt">
+        </el-table-column>
+        <el-table-column label="操作">
+          <template slot-scope="scope">
+            <el-button
+              size="mini"
+              @click="checkTickling(scope.row)">查看</el-button>
+          </template>
+        </el-table-column>
+      </el-table>
+      <div class="Pagination">
+        <el-pagination
+          @current-change="handleCurrentChange"
+          :current-page="currentPage"
+          :page-size="limit"
+          layout="total, prev, pager, next"
+          :total="count">
+        </el-pagination>
+      </div>
+    </div>
   </div>
 </template>
 
 <script type='text/babel'>
+  import {getList} from '@/api/template';
   export default {
     name: 'tickling',
-    props: {
-      key: {
-        type: String,
-        default: ''
-      }
-    },
     data () {
       return {
+        searchForm: {
+          creator: '',
+          templateName: ''
+        },
+        tableData: [],
+        currentPage: 1,
+        skip: 0,
+        limit: 20,
+        count: 0
       };
     },
-    created () {},
-    mounted () {},
-    computed: {},
-    watch: {},
-    methods: {},
-    components: {}
+    created () {
+      this.getData();
+    },
+    methods: {
+      search () {
+        this.getData();
+      },
+      getData () {
+        getList({
+          skip: this.skip,
+          limit: this.limit,
+          creator: this.searchForm.creator,
+          templateName: this.searchForm.templateName
+        }).then((res) => {
+          let data = res.data;
+          if (data.code == 0) {
+            this.count = data.total;
+            this.tableData = data.data;
+          }
+        });
+      },
+      handleCurrentChange (val) {
+        this.currentPage = val;
+        this.skip = (val - 1) * this.limit;
+        this.getData();
+      },
+      checkTickling (row) {
+        this.$router.push({'path': '/ticklingDetail', query: {id: row.id}});
+      }
+    }
   };
 </script>
 <style scoped lang="less">
-  [name = 'tickling']{}
+  @import '../account/css/list';
 </style>

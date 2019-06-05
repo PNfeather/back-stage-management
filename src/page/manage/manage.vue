@@ -25,7 +25,7 @@
           </el-submenu>
           <el-submenu index="6">
             <template slot="title"><i class="iconfont iconTickling"></i>反馈信息</template>
-            <el-menu-item index="tickling">反馈信息详情</el-menu-item>
+            <el-menu-item index="tickling">反馈列表</el-menu-item>
           </el-submenu>
         </el-menu>
       </el-col>
