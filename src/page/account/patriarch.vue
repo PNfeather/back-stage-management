@@ -4,10 +4,10 @@
     <div class="table_container">
       <el-form :model="searchForm" :inline="true" class="search">
         <el-form-item label="昵称" label-width="60px">
-          <el-input v-model="selectTable.nickName" auto-complete="off"></el-input>
+          <el-input v-model="searchForm.nickName" auto-complete="off"></el-input>
         </el-form-item>
         <el-form-item label="手机号" label-width="60px">
-          <el-input v-model="selectTable.mobile" auto-complete="off"></el-input>
+          <el-input v-model="searchForm.mobile" auto-complete="off"></el-input>
         </el-form-item>
         <el-button
           size="medium"

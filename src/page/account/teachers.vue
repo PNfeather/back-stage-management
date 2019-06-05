@@ -4,13 +4,13 @@
     <div class="table_container">
       <el-form :model="searchForm" :inline="true" class="search">
         <el-form-item label="学校" label-width="60px">
-          <el-input v-model="selectTable.schoolName" auto-complete="off"></el-input>
+          <el-input v-model="searchForm.schoolName" auto-complete="off"></el-input>
         </el-form-item>
         <el-form-item label="姓名" label-width="60px">
-          <el-input v-model="selectTable.name" auto-complete="off"></el-input>
+          <el-input v-model="searchForm.name" auto-complete="off"></el-input>
         </el-form-item>
         <el-form-item label="手机号" label-width="60px">
-          <el-input v-model="selectTable.mobile" auto-complete="off"></el-input>
+          <el-input v-model="searchForm.mobile" auto-complete="off"></el-input>
         </el-form-item>
         <el-button
           size="medium"
