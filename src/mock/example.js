@@ -1,6 +1,6 @@
 import Mock from 'mockjs'; // 引入mockjs
 
-let beseUrl = window.location.origin + '/apis';
+let baseUrl = window.location.origin + '/apis';
 
 const Random = Mock.Random; // Mock.Random 是一个工具类，用于生成各种随机数据
 
@@ -16,7 +16,7 @@ for (let i = 0; i < dataNum; i++) { // 可自定义生成的个数
   data.push(template);
 }
 
-Mock.mock(beseUrl + '/example', 'get', (options) => {
+Mock.mock(baseUrl + '/example', 'get', (options) => {
   let params = JSON.parse(options.body);
   let pageSize = params.pageSize;
   let pageNum = params.pageNum;

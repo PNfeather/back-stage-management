@@ -1,8 +1,8 @@
 import Mock from 'mockjs'; // 引入mockjs
 
-let beseUrl = window.location.origin + '/apis';
+let baseUrl = window.location.origin + '/apis';
 
-Mock.mock(beseUrl + '/update', 'patch', (options) => {
+Mock.mock(baseUrl + '/update', 'patch', (options) => {
   let params = JSON.parse(options.body);
   return {
     'code': 0,

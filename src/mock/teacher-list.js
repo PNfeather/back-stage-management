@@ -1,6 +1,7 @@
 import Mock from 'mockjs'; // 引入mockjs
 
-let beseUrl = window.location.origin + '/apis';
+let baseUrl = window.location.origin + '/apis';
+console.log(window.location.origin);
 
 const Random = Mock.Random;
 
@@ -21,7 +22,7 @@ for (let i = 0; i < total; i++) { // 可自定义生成的个数
   list.push(template);
 }
 
-Mock.mock(beseUrl + '/teacher-list', 'post', (options) => {
+Mock.mock(baseUrl + '/teacher-list', 'post', (options) => {
   let params = JSON.parse(options.body);
   let skip = params.skip;
   let limit = params.limit;

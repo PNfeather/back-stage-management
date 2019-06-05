@@ -1,8 +1,8 @@
 import Mock from 'mockjs'; // 引入mockjs
 
-let beseUrl = window.location.origin + '/apis';
+let baseUrl = window.location.origin + '/apis';
 
-Mock.mock(beseUrl + '/logout', 'get', () => {
+Mock.mock(baseUrl + '/logout', 'get', () => {
   return {
     'code': 0,
     'data': '1',
