@@ -12,6 +12,7 @@ const students = r => require.ensure([], () => r(require('@/page/account/student
 const service = r => require.ensure([], () => r(require('@/page/account/service')), 'service');
 const classList = r => require.ensure([], () => r(require('@/page/schoolClass/classList')), 'classList');
 const resourceList = r => require.ensure([], () => r(require('@/page/resource/resourceList')), 'resourceList');
+const resourceDetail = r => require.ensure([], () => r(require('@/page/resource/resourceDetail')), 'resourceDetail');
 const schoolDictionary = r => require.ensure([], () => r(require('@/page/dictionary/schoolDictionary')), 'schoolDictionary');
 const tickling = r => require.ensure([], () => r(require('@/page/tickling/tickling')), 'tickling');
 
@@ -53,6 +54,10 @@ const routes = [
         path: '/resourceList',
         component: resourceList,
         meta: ['资源管理', '资源列表']
+      }, {
+        path: '/resourceDetail',
+        component: resourceDetail,
+        meta: ['资源管理', '资源列表', '资源详情']
       }, {
         path: '/schoolDictionary',
         component: schoolDictionary,

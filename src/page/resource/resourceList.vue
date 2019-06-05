@@ -40,7 +40,7 @@
           <template slot-scope="scope">
             <el-button
               size="mini"
-              @click="checkResource(scope.$index, scope.row)">查看</el-button>
+              @click="checkResource(scope.row)">查看</el-button>
             <el-button
               size="mini"
               type="danger"
@@ -103,6 +103,9 @@
         this.currentPage = val;
         this.skip = (val - 1) * this.limit;
         this.getData();
+      },
+      checkResource (row) {
+        this.$router.push({'path': '/resourceDetail', query: {id: row.id}});
       },
       handleDelete (index, row) {
         console.log(row);
