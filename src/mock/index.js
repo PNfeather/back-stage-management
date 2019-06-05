@@ -1,10 +1,13 @@
-require('@/mock/example');
+// require('@/mock/example');
 require('@/mock/login');
 require('@/mock/logout');
-require('@/mock/getTeachersList');
-require('@/mock/deleteTeacher');
-require('@/mock/displayTeacher');
-require('@/mock/updateTeacher');
+// require('@/mock/customer-service-list');
+// require('@/mock/guardian-list');
+// require('@/mock/student-list');
+require('@/mock/teacher-list');
+require('@/mock/delete');
+require('@/mock/disable');
+require('@/mock/update');
 
 const Mock = require('mockjs');
 

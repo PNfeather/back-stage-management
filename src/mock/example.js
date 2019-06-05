@@ -29,8 +29,8 @@ Mock.mock(beseUrl + '/example', 'get', (options) => {
     result.push(data[i]);
   }
   return {
-    'resultCode': '000000',
-    'resultData': result,
-    'resultMsg': 'success'
+    'code': 0,
+    'data': result,
+    'message': 'success'
   };
 }); // 根据数据模板生成模拟数据

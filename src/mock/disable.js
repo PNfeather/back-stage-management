@@ -2,12 +2,12 @@ import Mock from 'mockjs'; // 引入mockjs
 
 let beseUrl = window.location.origin + '/apis';
 
-Mock.mock(beseUrl + '/updateTeacher', 'post', (options) => {
+Mock.mock(beseUrl + '/disable', 'patch', (options) => {
   let params = JSON.parse(options.body);
-  console.log(params);
+  let id = params.id;
   return {
-    'resultCode': '000000',
-    'resultData': params,
-    'resultMsg': 'success'
+    'code': 0,
+    'data': id,
+    'message': 'success'
   };
 }); // 根据数据模板生成模拟数据

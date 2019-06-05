@@ -30,7 +30,7 @@
         } else if (command === 'signout') {
           logout().then((res) => {
             let data = res.data;
-            if (data.resultData === '1') {
+            if (data.data === '1') {
               this.$message({
                 type: 'success',
                 message: '退出成功'

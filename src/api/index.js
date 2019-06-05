@@ -1,8 +1,8 @@
 import {Http} from '@/plugins/http';
 
-export const login = data => Http.get('/login', {data: data});
+export const login = data => Http.post('/login', data);
 export const logout = () => Http.get('/logout');
-export const getTeachersList = data => Http.get('/getTeachersList', {data: data});
-export const deleteTeacher = data => Http.get('/deleteTeacher', {data: data});
-export const displayTeacher = data => Http.get('/displayTeacher', {data: data});
-export const updateTeacher = data => Http.post('/getTeachersList', data);
+export const getTeachersList = data => Http.post('/teacher-list', data);
+export const deleteAccount = data => Http.delete('/delete', {data: data});
+export const disableAccount = data => Http.patch('/disable', data);
+export const updateAccount = data => Http.patch('/update', data);

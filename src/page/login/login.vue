@@ -6,8 +6,8 @@
           <p>闪批作业后台管理系统</p>
         </div>
         <el-form :model="loginForm" :rules="rules" ref="loginForm">
-          <el-form-item prop="username">
-            <el-input v-model="loginForm.username" placeholder="用户名"></el-input>
+          <el-form-item prop="account">
+            <el-input v-model="loginForm.account" placeholder="账号"></el-input>
           </el-form-item>
           <el-form-item prop="password">
             <el-input type="password" placeholder="密码" v-model="loginForm.password"></el-input>
@@ -28,12 +28,12 @@
     data () {
       return {
         loginForm: {
-          username: '',
+          account: '',
           password: ''
         },
         rules: {
-          username: [
-            { required: true, message: '请输入用户名', trigger: 'blur' }
+          account: [
+            { required: true, message: '请输入账号', trigger: 'blur' }
           ],
           password: [
             { required: true, message: '请输入密码', trigger: 'blur' }
@@ -49,9 +49,9 @@
       submitForm (formName) {
         this.$refs[formName].validate((valid) => {
           if (valid) {
-            login({user_name: this.loginForm.username, password: this.loginForm.password}).then((res) => {
+            login({user_name: this.loginForm.account, password: this.loginForm.password}).then((res) => {
               let data = res.data;
-              if (data.resultData === '1') {
+              if (data.data === '1') {
                 this.$message({
                   type: 'success',
                   message: '登录成功'
