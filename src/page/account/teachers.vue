@@ -102,8 +102,6 @@
     created () {
       this.getData();
     },
-    mounted () {
-    },
     computed: {
       btnStyle () {
         return (val) => {
@@ -111,7 +109,6 @@
         };
       }
     },
-    watch: {},
     methods: {
       search () {
         this.getData();
@@ -149,7 +146,7 @@
         this.dialogFormVisible = true;
       },
       handleDelete (index, row) {
-        this.$confirm('确定删除当前教师用户?', '提示', {
+        this.$confirm('确定删除当前用户?', '提示', {
           confirmButtonText: '确定',
           cancelButtonText: '取消',
           type: 'warning'
@@ -172,7 +169,7 @@
       },
       handleDisplay (row) {
         let keyText = (row.status == 0) ? '禁用' : '启用';
-        this.$confirm('确定' + keyText + '当前教师用户?', '提示', {
+        this.$confirm('确定' + keyText + '当前用户?', '提示', {
           confirmButtonText: '确定',
           cancelButtonText: '取消',
           type: 'warning'
@@ -227,8 +224,7 @@
           }
         });
       }
-    },
-    components: {}
+    }
   };
 </script>
 <style scoped lang="less">

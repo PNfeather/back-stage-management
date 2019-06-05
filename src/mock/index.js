@@ -2,7 +2,7 @@
 require('@/mock/login');
 require('@/mock/logout');
 // require('@/mock/customer-service-list');
-// require('@/mock/guardian-list');
+require('@/mock/guardian-list');
 // require('@/mock/student-list');
 require('@/mock/teacher-list');
 require('@/mock/delete');
