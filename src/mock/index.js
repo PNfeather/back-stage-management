@@ -9,6 +9,9 @@ require('./user/delete');
 require('./user/disable');
 require('./user/update');
 
+require('./template/list');
+require('./template/delete');
+
 const Mock = require('mockjs');
 
 Mock.setup({

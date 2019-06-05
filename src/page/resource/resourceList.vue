@@ -18,29 +18,29 @@
         style="width: 100%; flex: 1">
         <el-table-column
           label="资源名称"
-          prop="schoolName">
+          prop="name">
         </el-table-column>
         <el-table-column
           label="总页数"
-          prop="grade">
+          prop="">
         </el-table-column>
         <el-table-column
           label="创建客服"
-          prop="className">
+          prop="creatorName">
         </el-table-column>
         <el-table-column
           label="创建时间"
-          prop="className">
+          prop="createdAt">
         </el-table-column>
         <el-table-column
           label="修改时间"
-          prop="className">
+          prop="updatedAt">
         </el-table-column>
         <el-table-column label="操作">
           <template slot-scope="scope">
             <el-button
               size="mini"
-              @click="handleEdit(scope.$index, scope.row)">查看</el-button>
+              @click="checkResource(scope.$index, scope.row)">查看</el-button>
             <el-button
               size="mini"
               type="danger"
@@ -62,7 +62,7 @@
 </template>
 
 <script type='text/babel'>
-  import {getGuardianList} from '@/api/user';
+  import {getList, deleteResource} from '@/api/template';
   export default {
     name: 'resourceList',
     data () {
@@ -86,11 +86,11 @@
         this.getData();
       },
       getData () {
-        getGuardianList({
+        getList({
           skip: this.skip,
           limit: this.limit,
-          nickName: this.searchForm.creator,
-          mobile: this.searchForm.templateName
+          creator: this.searchForm.creator,
+          templateName: this.searchForm.templateName
         }).then((res) => {
           let data = res.data;
           if (data.code == 0) {
@@ -103,6 +103,29 @@
         this.currentPage = val;
         this.skip = (val - 1) * this.limit;
         this.getData();
+      },
+      handleDelete (index, row) {
+        console.log(row);
+        this.$confirm('确定删除当前资源?', '提示', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          type: 'warning'
+        }).then(() => {
+          deleteResource({id: row.id}).then((res) => {
+            if (res.data.data) {
+              this.$message({
+                type: 'success',
+                message: '成功删除'
+              });
+              this.tableData.splice(index, 1);
+            }
+          });
+        }).catch(() => {
+          this.$message({
+            type: 'info',
+            message: '取消'
+          });
+        });
       }
     }
   };
