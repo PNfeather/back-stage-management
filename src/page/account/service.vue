@@ -12,6 +12,9 @@
         <el-button
           size="medium"
           @click="search">查询</el-button>
+        <el-button
+          size="medium"
+          @click="createService">新增</el-button>
       </el-form>
       <el-table
         :data="tableData"
@@ -58,13 +61,30 @@
           <el-form-item label="姓名" label-width="100px">
             <el-input v-model="selectTable.name" auto-complete="off"></el-input>
           </el-form-item>
-          <el-form-item label="父母手机号" label-width="100px">
+          <el-form-item label="手机号" label-width="100px">
             <el-input v-model="selectTable.mobile" auto-complete="off"></el-input>
           </el-form-item>
         </el-form>
         <div slot="footer" class="dialog-footer">
           <el-button @click="updateCancel">取 消</el-button>
           <el-button type="primary" @click="updateSubmit">确 定</el-button>
+        </div>
+      </el-dialog>
+      <el-dialog title="新增客服" v-model="createServiceModel">
+        <el-form :model="createServiceInfo">
+          <el-form-item label="账号" label-width="100px">
+            <el-input v-model="createServiceInfo.account" placeholder="请输入账号" auto-complete="off"></el-input>
+          </el-form-item>
+          <el-form-item label="姓名" label-width="100px">
+            <el-input v-model="createServiceInfo.name" placeholder="请输入姓名" auto-complete="off"></el-input>
+          </el-form-item>
+          <el-form-item label="手机号" label-width="100px">
+            <el-input v-model="createServiceInfo.mobile" placeholder="请输入手机号" auto-complete="off"></el-input>
+          </el-form-item>
+        </el-form>
+        <div slot="footer" class="dialog-footer">
+          <el-button @click="createCancel">取 消</el-button>
+          <el-button type="primary" @click="createSubmit">确 定</el-button>
         </div>
       </el-dialog>
     </div>
@@ -82,7 +102,13 @@
         searchForm: {
           name: '',
           mobile: ''
-        }
+        },
+        createServiceInfo: {
+          account: '',
+          name: '',
+          mobile: ''
+        },
+        createServiceModel: false
       };
     },
     methods: {
@@ -99,6 +125,20 @@
             this.tableData = data.data;
           }
         });
+      },
+      createService () {
+        this.createServiceModel = true;
+      },
+      createCancel () {
+        this.createServiceModel = false;
+        this.$message({
+          type: 'info',
+          message: '取消'
+        });
+      },
+      createSubmit () {
+        this.createServiceModel = false;
+        console.log('创建');
       }
     }
   };
