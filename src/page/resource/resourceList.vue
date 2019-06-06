@@ -113,7 +113,6 @@
         this.$router.push({'path': '/resourceDetail', query: {id: row.id, templateName: row.name}});
       },
       handleDelete (index, row) {
-        console.log(row);
         this.$confirm('确定删除当前资源?', '提示', {
           confirmButtonText: '确定',
           cancelButtonText: '取消',

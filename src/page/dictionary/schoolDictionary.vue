@@ -54,7 +54,7 @@
           :total="count">
         </el-pagination>
       </div>
-      <el-dialog title="信息修改" v-model="dialogFormVisible">
+      <el-dialog title="信息修改" v-model="dialogFormVisible" size="large">
         <el-form :model="selectTable">
           <el-form-item label="学校名称" label-width="100px">
             <el-input v-model="selectTable.name" auto-complete="off"></el-input>
@@ -63,7 +63,7 @@
             <el-input v-model="selectTable.simpleName" auto-complete="off"></el-input>
           </el-form-item>
           <el-form-item label="区域" label-width="100px">
-            <el-input v-model="selectTable.district" auto-complete="off"></el-input>
+            <linkage v-model="currentAddress" :originalAddress="originalAddress"></linkage>
           </el-form-item>
         </el-form>
         <div slot="footer" class="dialog-footer">
@@ -76,6 +76,7 @@
 </template>
 
 <script type='text/babel'>
+  import linkage from '@C/linkage';
   import {getList, deleteSchool, updateSchool} from '@/api/school';
   export default {
     name: 'schoolDictionary',
@@ -92,8 +93,22 @@
         count: 0,
         selectTable: {},
         selectIndex: 0,
-        dialogFormVisible: false
+        dialogFormVisible: false,
+        addressOptions: [],
+        currentAddress: {},
+        originalAddress: {}
       };
+    },
+    watch: {
+      currentAddress: {
+        handler (val) {
+          Object.assign(this.selectTable, val);
+        },
+        deep: true
+      }
+    },
+    components: {
+      linkage
     },
     created () {
       this.getData();
@@ -123,6 +138,11 @@
       },
       handleEdit (index, row) {
         this.selectIndex = index;
+        this.originalAddress = {
+          province: row.province,
+          city: row.city,
+          district: row.district
+        };
         this.selectTable = {...row};
         this.dialogFormVisible = true;
       },

@@ -8,11 +8,11 @@ let list = []; // 用于接受生成数据的数组
 let total = 125;
 for (let i = 0; i < total; i++) { // 可自定义生成的个数
   let template = {
-    'city': Random.city(),
-    'district': Random.cword(2, 3) + '区',
+    'city': '北京市',
+    'district': '东城区',
     'id': Random.integer(10000, 99999),
     'name': Random.cword(2, 5) + '小学',
-    'province': Random.province(),
+    'province': '北京市',
     'simpleName': Random.cword(1, 2) + '小',
     'status': 0
   };
