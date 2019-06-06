@@ -37,7 +37,7 @@
           label="教师"
           prop="teacherCount">
           <template slot-scope="scope">
-            <div @click="checkTeachers(scope.row.classCode)">{{scope.row.teacherCount}}</div>
+            <div class="amplify" @click="checkTeachers(scope.row.classCode)">{{scope.row.teacherCount}}</div>
           </template>
         </el-table-column>
         <el-table-column
@@ -157,4 +157,11 @@
 </script>
 <style scoped lang="less">
   @import '../account/css/list';
+  .amplify{
+    position: relative;
+    &:after{
+      .posAb(-10px, -10px, -10px, -10px);
+      content: '';
+    }
+  }
 </style>
