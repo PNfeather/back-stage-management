@@ -1,12 +1,12 @@
 import axios from 'axios';
 // 设置用户类型
-axios.defaults.headers.common['Clinent-Identify'] = 'H5';
+// axios.defaults.headers.common['Clinent-Identify'] = 'H5';
 
 // 设置资源说明
-axios.defaults.headers.common['RESOURCE-FLAG'] = 'vue';
+// axios.defaults.headers.common['RESOURCE-FLAG'] = 'vue';
 
 // 请求参数类型
-axios.defaults.headers['Content-Type'] = 'application/x-www-form-urlencoded; charset=utf-8';
+axios.defaults.headers['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8';
 
 // 请求超时时间
 axios.defaults.timeout = 30000;
@@ -18,7 +18,7 @@ axios.defaults.responseType = 'json';
 axios.defaults.baseURL = process.env.BASE_URL;
 
 // 设置默认token
-axios.defaults.headers['TOCKEN'] = window.localStorage.getItem('MYAPP-TOCKEN') || '';
+// axios.defaults.headers['TOCKEN'] = window.localStorage.getItem('MYAPP-TOCKEN') || '';
 
 let pending = []; // 声明一个数组用于存储每个ajax请求的取消函数和ajax标识
 let CancelToken = axios.CancelToken;

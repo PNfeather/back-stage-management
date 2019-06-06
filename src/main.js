@@ -18,7 +18,7 @@ Vue.use(VueLazyload, {
   listenEvents: [ 'scroll' ]
 });
 
-process.env.MOCK && require('@/mock');
+(process.env.BASE_URL == '/api') && process.env.MOCK && require('@/mock');
 
 Vue.use(http.install);
 
