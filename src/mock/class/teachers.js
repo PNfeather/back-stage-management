@@ -3,27 +3,21 @@ import Mock from 'mockjs'; // 引入mockjs
 const Random = Mock.Random;
 
 let list = []; // 用于接受生成数据的数组
-let total = 40;
+let total = Random.integer(2, 4);
 for (let i = 0; i < total; i++) { // 可自定义生成的个数
   let template = {
-    'height': 0,
-    'id': 0,
-    'questionSign': 'string',
-    'url': Random.image('250x300', '#fb0a2a')
+    'mobile': 134 + Random.integer(10000000, 99999999),
+    'name': Random.cname()
   };
   list.push(template);
 }
 
-Mock.mock(/(\/class\/)[\w\W]*(\/students)$/, 'get', () => {
-  let result = {
-    'width': 0,
-    'bookId': Random.integer(10000, 99999),
-    'bookName': Random.name(true),
-    'templatePages': list
-  };
+Mock.mock(/(\/class\/)[\w\W]*(\/teachers)$/, 'get', (options) => {
+  let params = JSON.parse(options.body);
+  console.log(params);
   return {
     'code': 0,
-    'data': result,
+    'data': list,
     'message': 'success'
   };
 }); // 根据数据模板生成模拟数据

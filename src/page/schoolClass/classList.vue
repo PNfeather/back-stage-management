@@ -19,27 +19,33 @@
         </el-table-column>
         <el-table-column
           label="年级"
-          prop="grade">
+          prop="gradeName">
         </el-table-column>
         <el-table-column
           label="班级名称"
-          prop="className">
+          prop="name">
         </el-table-column>
         <el-table-column
           label="班级码"
-          prop="className">
+          prop="classCode">
         </el-table-column>
         <el-table-column
           label="创建老师"
-          prop="className">
+          prop="creatorName">
         </el-table-column>
         <el-table-column
           label="教师"
-          prop="className">
+          prop="teacherCount">
+          <template slot-scope="scope">
+            <div @click="checkTeachers(scope.row.classCode)">{{scope.row.teacherCount}}</div>
+          </template>
         </el-table-column>
         <el-table-column
           label="学生"
-          prop="className">
+          prop="studentCount">
+          <template slot-scope="scope">
+            <div @click="checkStudents(scope.row.classCode)">{{scope.row.studentCount}}</div>
+          </template>
         </el-table-column>
       </el-table>
       <div class="Pagination">
@@ -51,12 +57,40 @@
           :total="count">
         </el-pagination>
       </div>
+      <el-dialog title="教师信息" v-model="showTeachers">
+        <el-table
+          :data="selectTeachers"
+          style="width: 100%; flex: 1">
+          <el-table-column
+            label="教师姓名"
+            prop="name">
+          </el-table-column>
+          <el-table-column
+            label="手机号"
+            prop="mobile">
+          </el-table-column>
+        </el-table>
+      </el-dialog>
+      <el-dialog title="学生信息" v-model="showStudents">
+        <el-table
+          :data="selectStudents"
+          style="width: 100%; flex: 1">
+          <el-table-column
+            label="学生姓名"
+            prop="name">
+          </el-table-column>
+          <el-table-column
+            label="账号"
+            prop="account">
+          </el-table-column>
+        </el-table>
+      </el-dialog>
     </div>
   </div>
 </template>
 
 <script type='text/babel'>
-  // import {getGuardianList} from '@/api';
+  import {getList, getStudents, getTeachers} from '@/api/class';
   export default {
     name: 'classList',
     data () {
@@ -65,6 +99,10 @@
           schoolName: ''
         },
         tableData: [],
+        selectTeachers: [],
+        showTeachers: false,
+        selectStudents: [],
+        showStudents: false,
         currentPage: 1,
         skip: 0,
         limit: 20,
@@ -74,35 +112,45 @@
     created () {
       this.getData();
     },
-    computed: {
-      btnStyle () {
-        return (val) => {
-          return ((val == 0) ? 'success' : 'disUse');
-        };
-      }
-    },
     methods: {
       search () {
         this.getData();
       },
       getData () {
-        // getGuardianList({
-        //   skip: this.skip,
-        //   limit: this.limit,
-        //   nickName: this.searchForm.nickName,
-        //   mobile: this.searchForm.mobile
-        // }).then((res) => {
-        //   let data = res.data;
-        //   if (data.code == 0) {
-        //     this.count = data.total;
-        //     this.tableData = data.data;
-        //   }
-        // });
+        getList({
+          skip: this.skip,
+          limit: this.limit,
+          schoolName: this.searchForm.schoolName
+        }).then((res) => {
+          let data = res.data;
+          if (data.code == 0) {
+            this.count = data.total;
+            this.tableData = data.data;
+          }
+        });
       },
       handleCurrentChange (val) {
         this.currentPage = val;
         this.skip = (val - 1) * this.limit;
         this.getData();
+      },
+      checkTeachers (id) {
+        this.showTeachers = true;
+        getTeachers(id).then((res) => {
+          let data = res.data;
+          if (data.code == 0) {
+            this.selectTeachers = data.data;
+          }
+        });
+      },
+      checkStudents (id) {
+        this.showStudents = true;
+        getStudents(id).then((res) => {
+          let data = res.data;
+          if (data.code == 0) {
+            this.selectStudents = data.data;
+          }
+        });
       }
     }
   };

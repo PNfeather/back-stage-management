@@ -12,6 +12,11 @@ require('./user/delete');
 require('./user/disable');
 require('./user/update');
 
+// 班级模块
+require('./class/list');
+require('./class/students');
+require('./class/teachers');
+
 // 资源模块
 require('./template/list');
 require('./template/delete');
