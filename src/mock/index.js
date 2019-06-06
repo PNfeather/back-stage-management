@@ -2,6 +2,7 @@
 require('./user/login');
 require('./user/logout');
 require('./user/customer-service-list');
+require('./user/customer-service-create');
 require('./user/guardian-list');
 require('./user/student-list');
 require('./user/teacher-list');

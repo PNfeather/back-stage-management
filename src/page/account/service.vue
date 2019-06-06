@@ -92,7 +92,7 @@
 </template>
 
 <script type='text/babel'>
-  import {getServiceList} from '@/api/user';
+  import {getServiceList, createService} from '@/api/user';
   import {mixins} from './js/mixins';
   export default {
     name: 'service',
@@ -138,7 +138,20 @@
       },
       createSubmit () {
         this.createServiceModel = false;
-        console.log('创建');
+        createService(this.createServiceInfo).then((res) => {
+          let data = res.data;
+          if (data.code == 0) {
+            this.$message({
+              type: 'success',
+              message: '创建成功'
+            });
+          } else {
+            this.$message({
+              type: 'error',
+              message: data.message
+            });
+          }
+        });
       }
     }
   };
