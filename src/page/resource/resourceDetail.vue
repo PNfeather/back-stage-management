@@ -44,7 +44,7 @@
     },
     methods: {
       back () {
-        this.$router.push('resourceList');
+        this.$router.go(-1);
       },
       openImg (url) {
         this.dialogFormVisible = true;

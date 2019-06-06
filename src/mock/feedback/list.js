@@ -5,44 +5,21 @@ let baseUrl = process.env.BASE_URL;
 const Random = Mock.Random;
 
 let list = []; // 用于接受生成数据的数组
-let total = 333;
+let total = 211;
 for (let i = 0; i < total; i++) { // 可自定义生成的个数
   let template = {
-    'createdAt': '2019-06-05T11:37:37.911Z',
-    'creatorId': Random.integer(10000, 99999),
-    'creatorMobile': '138' + Random.integer(10000000, 99999999),
-    'creatorName': Random.name(true),
+    'content': Random.csentence(100, 1000),
+    'feedbackTime': '2019-06-06T11:49:51.026Z',
     'id': Random.integer(10000, 99999),
-    'name': Random.name(true),
-    'pageNum': Random.integer(10, 99),
     'status': 0,
-    'templates': [
-      {
-        'height': 0,
-        'id': 0,
-        'questionSigns': [
-          {
-            'height': 0,
-            'left': 0,
-            'result': 0,
-            'rightCount': 0,
-            'status': 0,
-            'top': 0,
-            'width': 0
-          }
-        ],
-        'status': 0,
-        'studentUrl': 'string',
-        'url': 'string',
-        'width': 0
-      }
-    ],
-    'updatedAt': '2019-06-05T11:37:37.911Z'
+    'userId': Random.integer(10000, 99999),
+    'userName': Random.cname(true),
+    'userType': '教师'
   };
   list.push(template);
 }
 
-Mock.mock(baseUrl + '/template/list', 'post', (options) => {
+Mock.mock(baseUrl + '/feedback/list', 'get', (options) => {
   let params = JSON.parse(options.body);
   let skip = params.skip;
   let limit = params.limit;

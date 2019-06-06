@@ -27,6 +27,9 @@ require('./school/list');
 require('./school/delete');
 require('./school/update');
 
+// 反馈
+require('./feedback/list');
+
 const Mock = require('mockjs');
 
 Mock.setup({

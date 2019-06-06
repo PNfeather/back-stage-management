@@ -7,22 +7,22 @@
         style="width: 100%; flex: 1">
         <el-table-column
           label="反馈用户"
-          prop="name">
+          prop="userName">
         </el-table-column>
         <el-table-column
           label="用户类型"
-          prop="pageNum">
+          prop="userType">
         </el-table-column>
         <el-table-column
           label="反馈内容"
-          prop="creatorName">
+          prop="content">
           <template slot-scope="scope">
-           <div class="ellipsis">{{scope.row.creatorName}}</div>
+           <div class="ellipsis">{{scope.row.content}}</div>
           </template>
         </el-table-column>
         <el-table-column
           label="反馈时间"
-          prop="createdAt">
+          prop="feedbackTime">
         </el-table-column>
         <el-table-column label="操作">
           <template slot-scope="scope">
@@ -46,7 +46,8 @@
 </template>
 
 <script type='text/babel'>
-  import {getList} from '@/api/template';
+  import {getList} from '@/api/feedback';
+  import format from '@/tools/format';
   export default {
     name: 'tickling',
     data () {
@@ -66,9 +67,6 @@
       this.getData();
     },
     methods: {
-      search () {
-        this.getData();
-      },
       getData () {
         getList({
           skip: this.skip,
@@ -79,7 +77,10 @@
           let data = res.data;
           if (data.code == 0) {
             this.count = data.total;
-            this.tableData = data.data;
+            this.tableData = data.data.map((item) => {
+              item.feedbackTime = format(new Date(item.feedbackTime), 'YYYY-MM-DD');
+              return item;
+            });
           }
         });
       },
@@ -89,7 +90,7 @@
         this.getData();
       },
       checkTickling (row) {
-        this.$router.push({'path': '/ticklingDetail', query: {id: row.id}});
+        this.$router.push({'path': '/ticklingDetail', query: row});
       }
     }
   };
