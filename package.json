@@ -15,10 +15,11 @@
   "dependencies": {
     "axios": "^0.18.0",
     "element-ui": "^1.2.9",
+    "lodash": "^4.17.11",
     "vue": "^2.2.6",
+    "vue-lazyload": "^1.2.6",
     "vue-router": "^2.3.1",
-    "vuex": "^2.3.1",
-    "lodash": "^4.17.11"
+    "vuex": "^2.3.1"
   },
   "devDependencies": {
     "autoprefixer": "^6.7.2",
@@ -90,7 +91,6 @@
     "webpack-dev-middleware": "^1.10.0",
     "webpack-hot-middleware": "^2.18.0",
     "webpack-merge": "^4.1.0",
-
     "babel-helper-vue-jsx-merge-props": "^2.0.3",
     "babel-jest": "^21.0.2",
     "babel-plugin-dynamic-import-node": "^1.2.0",

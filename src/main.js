@@ -8,6 +8,15 @@ import store from './store/';
 import ElementUI from 'element-ui';
 import HeadTop from '@C/headTop';
 import 'element-ui/lib/theme-default/index.css';
+import VueLazyload from 'vue-lazyload';
+
+Vue.use(VueLazyload, {
+  preLoad: 1.3,
+  loading: require('@IMG/loading.jpg'),
+  attempt: 1,
+  // the default is ['scroll', 'wheel', 'mousewheel', 'resize', 'animationend', 'transitionend']
+  listenEvents: [ 'scroll' ]
+});
 
 process.env.MOCK && require('@/mock');
 

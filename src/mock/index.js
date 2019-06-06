@@ -11,6 +11,7 @@ require('./user/update');
 
 require('./template/list');
 require('./template/delete');
+require('./template/template-book-detail');
 
 const Mock = require('mockjs');
 

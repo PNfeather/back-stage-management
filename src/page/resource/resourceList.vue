@@ -63,6 +63,7 @@
 
 <script type='text/babel'>
   import {getList, deleteResource} from '@/api/template';
+  import format from '@/tools/format';
   export default {
     name: 'resourceList',
     data () {
@@ -95,7 +96,11 @@
           let data = res.data;
           if (data.code == 0) {
             this.count = data.total;
-            this.tableData = data.data;
+            this.tableData = data.data.map((item) => {
+              item.createdAt = format(new Date(item.createdAt), 'YYYY-MM-DD');
+              item.updatedAt = format(new Date(item.updatedAt), 'YYYY-MM-DD');
+              return item;
+            });
           }
         });
       },
@@ -105,7 +110,7 @@
         this.getData();
       },
       checkResource (row) {
-        this.$router.push({'path': '/resourceDetail', query: {id: row.id}});
+        this.$router.push({'path': '/resourceDetail', query: {id: row.id, templateName: row.name}});
       },
       handleDelete (index, row) {
         console.log(row);
