@@ -37,7 +37,6 @@
 </template>
 
 <script>
-    /* eslint-disable */
     import axios from 'axios';
     export default {
         props: {
@@ -54,17 +53,17 @@
         },
         data () {
             return {
-                mapJson:'../static/json/map.json',
-                province:'',
+                mapJson: '../static/json/map.json',
+                province: '',
                 sheng: '',
                 shi: '',
                 shi1: [],
                 qu: '',
                 qu1: [],
-                city:'',
-                block:'',
+                city: '',
+                block: '',
                 outPutTimer: 0
-            }
+            };
         },
         computed: {
           shengName () {
@@ -84,15 +83,13 @@
         },
         watch: {
             sheng () {
-                this.outPut()
+                this.outPut();
             },
             shi () {
-                this.outPut()
+                this.outPut();
             },
             qu () {
-                console.log(this.qu);
-                console.log();
-                this.outPut()
+                this.outPut();
             },
             originalAddress: {
                 handler () {
@@ -103,7 +100,7 @@
         },
         mounted () {
         },
-        methods:{
+        methods: {
             getOriginal () {
                 if (this.originalAddress.district) {
                     this.province.forEach((o) => {
@@ -120,84 +117,83 @@
                       district: this.quName,
                       province: this.shengName,
                       city: this.shi
-                  })
+                  });
                 }, 300);
             },
             // 加载china地点数据，三级
-            getCityData:function(){
-                var that = this
-                return axios.get(this.mapJson).then(function(response){
-                    if (response.status==200) {
-                        var data = response.data
-                        that.province = []
-                        that.city = []
-                        that.block = []
+            getCityData () {
+                let that = this;
+                return axios.get(this.mapJson).then((response) => {
+                    if (response.status == 200) {
+                        let data = response.data;
+                        that.province = [];
+                        that.city = [];
+                        that.block = [];
                         // 省市区数据分类
-                        for (var item in data) {
-                            if (item.match(/0000$/)) {//省
-                                that.province.push({id: item, value: data[item], children: []})
-                            } else if (item.match(/00$/)) {//市
-                                that.city.push({id: item, value: data[item], children: []})
-                            } else {//区
-                                that.block.push({id: item, value: data[item]})
+                        for (let item in data) {
+                            if (item.match(/0000$/)) { // 省
+                                that.province.push({id: item, value: data[item], children: []});
+                            } else if (item.match(/00$/)) { // 市
+                                that.city.push({id: item, value: data[item], children: []});
+                            } else { // 区
+                                that.block.push({id: item, value: data[item]});
                             }
                         }
                         // 分类市级
-                        for (var index in that.province) {
-                            for (var index1 in that.city) {
+                        for (let index in that.province) {
+                            for (let index1 in that.city) {
                                 if (that.province[index].id.slice(0, 2) === that.city[index1].id.slice(0, 2)) {
-                                    that.province[index].children.push(that.city[index1])
+                                    that.province[index].children.push(that.city[index1]);
                                 }
                             }
                         }
                         // 分类区级
-                        for(var item1 in that.city) {
-                            for(var item2 in that.block) {
+                        for (let item1 in that.city) {
+                            for (let item2 in that.block) {
                                 if (that.block[item2].id.slice(0, 4) === that.city[item1].id.slice(0, 4)) {
-                                    that.city[item1].children.push(that.block[item2])
+                                    that.city[item1].children.push(that.block[item2]);
                                 }
                             }
                         }
                         return Promise.resolve(true);
+                    } else {
+                        console.log(response.status);
                     }
-                    else{
-                        console.log(response.status)
-                    }
-                }).catch(function(error){console.log(typeof+ error)})
+                }).catch((error) => { console.log(typeof error); });
             },
             // 选省
-            choseProvince:function(e) {
-                for (var index2 in this.province) {
+            choseProvince (e) {
+                for (let index2 in this.province) {
                     if (e === this.province[index2].id) {
-                        this.shi1 = this.province[index2].children
-                        this.shi = this.province[index2].children[0].value
-                        this.qu1 =this.province[index2].children[0].children
-                        this.qu = this.province[index2].children[0].children[0].value
-                        this.E = this.qu1[0].id
+                        this.shi1 = this.province[index2].children;
+                        this.shi = this.province[index2].children[0].value;
+                        this.qu1 = this.province[index2].children[0].children;
+                        this.qu = this.province[index2].children[0].children[0].value;
+                        this.E = this.qu1[0].id;
                     }
                 }
             },
             // 选市
-            choseCity:function(e) {
-                for (var index3 in this.city) {
+            choseCity (e) {
+                for (let index3 in this.city) {
                     if (e === this.city[index3].id) {
-                        this.qu1 = this.city[index3].children
-                        this.qu = this.city[index3].children[0].value
-                        this.E = this.qu1[0].id
+                        this.qu1 = this.city[index3].children;
+                        this.qu = this.city[index3].children[0].value;
+                        this.E = this.qu1[0].id;
                     }
                 }
             },
             // 选区
-            choseBlock:function(e) {
-                this.E=e;
-            },
+            choseBlock (e) {
+                this.E = e;
+            }
         },
-        created:function(){
+        created () {
             this.getCityData().then((res) => {
               if (res) this.getOriginal();
-            })
+            });
         }
-    }
+    };
 </script>
 
 <style scoped lang="less">
