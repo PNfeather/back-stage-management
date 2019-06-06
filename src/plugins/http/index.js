@@ -15,7 +15,7 @@ axios.defaults.timeout = 30000;
 axios.defaults.responseType = 'json';
 
 // 请求路径
-axios.defaults.baseURL = window.location.origin + '/apis';
+axios.defaults.baseURL = process.env.BASE_URL;
 
 // 设置默认token
 axios.defaults.headers['TOCKEN'] = window.localStorage.getItem('MYAPP-TOCKEN') || '';

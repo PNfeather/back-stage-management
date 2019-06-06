@@ -1,6 +1,6 @@
 import Mock from 'mockjs'; // 引入mockjs
 
-let baseUrl = window.location.origin + '/apis';
+let baseUrl = process.env.BASE_URL;
 
 Mock.mock(baseUrl + '/user/delete', 'delete', (options) => {
   let params = JSON.parse(options.body);
