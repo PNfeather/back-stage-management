@@ -1,4 +1,6 @@
 // require('@/mock/example');
+
+// 用户模块
 require('./user/login');
 require('./user/logout');
 require('./user/customer-service-list');
@@ -10,9 +12,15 @@ require('./user/delete');
 require('./user/disable');
 require('./user/update');
 
+// 资源模块
 require('./template/list');
 require('./template/delete');
 require('./template/template-book-detail');
+
+// 学校模块
+require('./school/list');
+require('./school/delete');
+require('./school/update');
 
 const Mock = require('mockjs');
 

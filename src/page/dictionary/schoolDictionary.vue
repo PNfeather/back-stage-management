@@ -19,19 +19,19 @@
         </el-table-column>
         <el-table-column
           label="简称"
-          prop="pageNum">
+          prop="simpleName">
         </el-table-column>
         <el-table-column
           label="省份"
-          prop="creatorName">
+          prop="province">
         </el-table-column>
         <el-table-column
           label="市"
-          prop="createdAt">
+          prop="city">
         </el-table-column>
         <el-table-column
           label="县/区/乡镇"
-          prop="updatedAt">
+          prop="district">
         </el-table-column>
         <el-table-column label="操作">
           <template slot-scope="scope">
@@ -59,11 +59,11 @@
           <el-form-item label="学校名称" label-width="100px">
             <el-input v-model="selectTable.name" auto-complete="off"></el-input>
           </el-form-item>
-          <el-form-item label="区域" label-width="100px">
-            <el-input v-model="selectTable.mobile" auto-complete="off"></el-input>
-          </el-form-item>
           <el-form-item label="简称" label-width="100px">
-            <el-input v-model="selectTable.mobile" auto-complete="off"></el-input>
+            <el-input v-model="selectTable.simpleName" auto-complete="off"></el-input>
+          </el-form-item>
+          <el-form-item label="区域" label-width="100px">
+            <el-input v-model="selectTable.district" auto-complete="off"></el-input>
           </el-form-item>
         </el-form>
         <div slot="footer" class="dialog-footer">
@@ -76,7 +76,7 @@
 </template>
 
 <script type='text/babel'>
-  import {getList, deleteResource} from '@/api/template';
+  import {getList, deleteSchool, updateSchool} from '@/api/school';
   export default {
     name: 'schoolDictionary',
     data () {
@@ -127,13 +127,12 @@
         this.dialogFormVisible = true;
       },
       handleDelete (index, row) {
-        console.log(row);
-        this.$confirm('确定删除当前资源?', '提示', {
+        this.$confirm('确定删除当前学校?', '提示', {
           confirmButtonText: '确定',
           cancelButtonText: '取消',
           type: 'warning'
         }).then(() => {
-          deleteResource({id: row.id}).then((res) => {
+          deleteSchool({id: row.id}).then((res) => {
             if (res.data.data) {
               this.$message({
                 type: 'success',
@@ -172,16 +171,16 @@
             message: '无变更'
           });
         }
-        // updateAccount(this.selectTable).then((res) => {
-        //   let data = res.data;
-        //   if (data.code == 0) {
-        //     this.tableData.splice(this.selectIndex, 1, this.selectTable);
-        //     this.$message({
-        //       type: 'success',
-        //       message: '修改改成功'
-        //     });
-        //   }
-        // });
+        updateSchool(this.selectTable).then((res) => {
+          let data = res.data;
+          if (data.code == 0) {
+            this.tableData.splice(this.selectIndex, 1, this.selectTable);
+            this.$message({
+              type: 'success',
+              message: '修改改成功'
+            });
+          }
+        });
       }
     }
   };
