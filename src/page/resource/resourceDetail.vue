@@ -70,8 +70,9 @@
       box-sizing: border-box;
       padding: 20px 50px;
       .templateItem{
-        flex: 26% 0 0;
-        margin:0 50px 68px 0;
+        flex: 33% 0 0;
+        padding: 0 50px 68px 0;
+        box-sizing: border-box;
         img{
           .wh(100%, 100%);
         }
