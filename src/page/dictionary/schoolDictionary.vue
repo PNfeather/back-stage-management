@@ -4,7 +4,7 @@
     <div class="table_container">
       <el-form :model="searchForm" :inline="true" class="search">
         <el-form-item label="区域查询" label-width="90px">
-          <el-input v-model="searchForm.creator" auto-complete="off"></el-input>
+          <linkage v-model="searchForm" :autoChoose="false"></linkage>
         </el-form-item>
         <el-button
           size="medium"
@@ -83,8 +83,9 @@
     data () {
       return {
         searchForm: {
-          creator: '',
-          templateName: ''
+          city: '',
+          district: '',
+          province: ''
         },
         tableData: [],
         currentPage: 1,
@@ -121,8 +122,9 @@
         getList({
           skip: this.skip,
           limit: this.limit,
-          creator: this.searchForm.creator,
-          templateName: this.searchForm.templateName
+          city: this.searchForm.city,
+          province: this.searchForm.province,
+          district: this.searchForm.district
         }).then((res) => {
           let data = res.data;
           if (data.code == 0) {
@@ -207,4 +209,7 @@
 </script>
 <style scoped lang="less">
   @import '../account/css/list';
+  .table_container .search .el-form-item{
+    max-width: 500px!important;
+  }
 </style>

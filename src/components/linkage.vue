@@ -49,11 +49,15 @@
                         district: ''
                     };
                 }
-            }
+            },
+          autoChoose: {
+            type: Boolean,
+            default: true
+          }
         },
         data () {
             return {
-                mapJson: '../static/json/map.json',
+                mapJson: '/static/json/map.json',
                 province: '',
                 sheng: '',
                 shi: '',
@@ -62,7 +66,8 @@
                 qu1: [],
                 city: '',
                 block: '',
-                outPutTimer: 0
+                outPutTimer: 0,
+                baseUrl: ''
             };
         },
         computed: {
@@ -72,6 +77,13 @@
                   (o.id == this.sheng) && (shengName = o.value);
               });
               return shengName;
+          },
+          shiName () {
+            let shiName = '';
+            this.shi1.forEach((o) => {
+              (o.id == this.shi) && (shiName = o.value);
+            });
+            return shiName;
           },
             quName () {
               let quName = this.qu;
@@ -102,12 +114,18 @@
         },
         methods: {
             getOriginal () {
-                if (this.originalAddress.district) {
+                if (this.originalAddress.province) {
                     this.province.forEach((o) => {
                         (o.value == this.originalAddress.province) && (this.sheng = o.id);
                     });
-                    this.shi = this.originalAddress.city;
-                    this.qu = this.originalAddress.district;
+                    this.$nextTick(() => {
+                      this.shi1.forEach((o) => {
+                        (o.value == this.originalAddress.city) && (this.shi = o.id);
+                      });
+                      this.$nextTick(() => {
+                        this.qu = this.originalAddress.district;
+                      });
+                    });
                 }
             },
             outPut () {
@@ -116,13 +134,15 @@
                   this.$emit('input', {
                       district: this.quName,
                       province: this.shengName,
-                      city: this.shi
+                      city: this.shiName
                   });
                 }, 300);
             },
             // 加载china地点数据，三级
             getCityData () {
                 let that = this;
+                this.baseUrl = axios.defaults.baseURL;
+                delete axios.defaults.baseURL;
                 return axios.get(this.mapJson).then((response) => {
                     if (response.status == 200) {
                         let data = response.data;
@@ -165,11 +185,18 @@
             choseProvince (e) {
                 for (let index2 in this.province) {
                     if (e === this.province[index2].id) {
-                        this.shi1 = this.province[index2].children;
+                      this.shi1 = this.province[index2].children;
+                      if (!this.autoChoose) {
+                        this.shi = '';
+                        this.qu1 = '';
+                        this.qu = '';
+                        this.E = '';
+                      } else {
                         this.shi = this.province[index2].children[0].value;
                         this.qu1 = this.province[index2].children[0].children;
                         this.qu = this.province[index2].children[0].children[0].value;
                         this.E = this.qu1[0].id;
+                      }
                     }
                 }
             },
@@ -177,9 +204,14 @@
             choseCity (e) {
                 for (let index3 in this.city) {
                     if (e === this.city[index3].id) {
-                        this.qu1 = this.city[index3].children;
+                      this.qu1 = this.city[index3].children;
+                      if (!this.autoChoose) {
+                        this.qu = '';
+                        this.E = '';
+                      } else {
                         this.qu = this.city[index3].children[0].value;
                         this.E = this.qu1[0].id;
+                      }
                     }
                 }
             },
@@ -190,8 +222,11 @@
         },
         created () {
             this.getCityData().then((res) => {
-              if (res) this.getOriginal();
+              if (res) {
+                  this.getOriginal();
+              }
             });
+            axios.defaults.baseURL = this.baseUrl;
         }
     };
 </script>
