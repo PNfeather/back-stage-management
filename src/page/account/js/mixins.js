@@ -110,7 +110,7 @@ const mixins = {
         id: this.selectTable.id,
         mobile: this.selectTable.imobile,
         name: this.userType == 1 ? this.selectTable.nickName : this.selectTable.name, // 家长用户传昵称
-        userType: this.userType,
+        userType: this.userType
       }).then((res) => {
         let data = res.data;
         if (data.code == 0) {
