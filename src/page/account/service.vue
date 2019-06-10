@@ -108,7 +108,8 @@
           name: '',
           mobile: ''
         },
-        createServiceModel: false
+        createServiceModel: false,
+        userType: 2
       };
     },
     methods: {

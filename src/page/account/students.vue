@@ -90,7 +90,8 @@
         searchForm: {
           name: '',
           mobile: ''
-        }
+        },
+        userType: 0
       };
     },
     methods: {

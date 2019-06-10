@@ -82,7 +82,8 @@
         searchForm: {
           nickName: '',
           mobile: ''
-        }
+        },
+        userType: 1
       };
     },
     methods: {

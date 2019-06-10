@@ -106,13 +106,18 @@ const mixins = {
           message: '无变更'
         });
       }
-      updateAccount({param: this.selectTable}).then((res) => {
+      updateAccount({param: Object.assign(this.selectTable, {userType: this.userType})}).then((res) => {
         let data = res.data;
         if (data.code == 0) {
           this.tableData.splice(this.selectIndex, 1, this.selectTable);
           this.$message({
             type: 'success',
             message: '修改改成功'
+          });
+        } else {
+          this.$message({
+            type: 'error',
+            message: data.message
           });
         }
       });

@@ -90,7 +90,8 @@
           schoolName: '',
           name: '',
           mobile: ''
-        }
+        },
+        userType: 3
       };
     },
     methods: {
