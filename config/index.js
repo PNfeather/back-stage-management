@@ -11,14 +11,14 @@ module.exports = {
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     proxyTable: {
-      '/apis': {
-        // 开发环境
-        target: 'http://www.test.cn/',  // 接口域名
-        changeOrigin: true,  //  是否跨域
-        pathRewrite: {
-          '^/apis': ''   // 需要rewrite重写的,
-        }
-      }
+      // '/apis': {
+      //   // 开发环境
+      //   target: 'http://www.test.cn/',  // 接口域名
+      //   changeOrigin: true,  //  是否跨域
+      //   pathRewrite: {
+      //     '^/apis': ''   // 需要rewrite重写的,
+      //   }
+      // }
     },
     // Various Dev Server settings
     host: '0.0.0.0', // can be overwritten by process.env.HOST

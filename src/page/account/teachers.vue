@@ -95,19 +95,19 @@
     },
     methods: {
       getData () {
-        getTeachersList({
+        getTeachersList({param: {
           skip: this.skip,
           limit: this.limit,
           schoolName: this.searchForm.schoolName,
           name: this.searchForm.name,
           mobile: this.searchForm.mobile
-        }).then((res) => {
+        }}).then((res) => {
           let data = res.data;
           if (data.code == 0) {
             this.count = data.total;
             this.tableData = data.data.map((item) => {
               let schoolArr = [];
-              item.classes.forEach((c) => {
+              item.classes && item.classes.length && item.classes.forEach((c) => {
                 !schoolArr.includes(c.schoolName) && schoolArr.push(c.schoolName);
               });
               item.schoolName = schoolArr.join(',');

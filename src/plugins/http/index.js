@@ -6,7 +6,7 @@ import axios from 'axios';
 // axios.defaults.headers.common['RESOURCE-FLAG'] = 'vue';
 
 // 请求参数类型
-axios.defaults.headers['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8';
+// axios.defaults.headers['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8';
 
 // 请求超时时间
 axios.defaults.timeout = 30000;
