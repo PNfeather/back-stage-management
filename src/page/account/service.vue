@@ -143,7 +143,7 @@
       },
       createSubmit () {
         this.createServiceModel = false;
-        createService({param: this.createServiceInfo}).then((res) => {
+        createService(this.createServiceInfo).then((res) => {
           let data = res.data;
           if (data.code == 0) {
             this.$message({

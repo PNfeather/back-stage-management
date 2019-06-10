@@ -49,9 +49,9 @@
       submitForm (formName) {
         this.$refs[formName].validate((valid) => {
           if (valid) {
-            login({user_name: this.loginForm.account, password: this.loginForm.password}).then((res) => {
+            login({account: this.loginForm.account, password: this.loginForm.password}).then((res) => {
               let data = res.data;
-              if (data.data === '1') {
+              if (data.code == '0') {
                 this.$message({
                   type: 'success',
                   message: '登录成功'
@@ -60,7 +60,7 @@
               } else {
                 this.$message({
                   type: 'error',
-                  message: res.message
+                  message: data.message
                 });
               }
             });
