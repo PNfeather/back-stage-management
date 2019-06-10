@@ -44,7 +44,7 @@ const mixins = {
         type: 'warning'
       }).then(() => {
         deleteAccount({id: row.id}).then((res) => {
-          if (res.data.data) {
+          if (res.data.code == 0) {
             this.$message({
               type: 'success',
               message: '成功删除'
@@ -60,20 +60,20 @@ const mixins = {
         });
       });
     },
-    handleDisplay (row) {
+    handleDisplay (index, row) {
       let keyText = (row.status == 0) ? '禁用' : '启用';
       this.$confirm('确定' + keyText + '当前用户?', '提示', {
         confirmButtonText: '确定',
         cancelButtonText: '取消',
         type: 'warning'
       }).then(() => {
-        disableAccount({id: row.id}).then((res) => {
-          if (res.data.data) {
+        disableAccount(row.id).then((res) => {
+          if (res.data.code == 0) {
             this.$message({
               type: 'success',
               message: '成功' + keyText
             });
-            (row.status == 0) ? (row.status = 1) : (row.status = 0);
+            (row.status == 0) ? (this.$set(this.tableData[index], 'status', 1)) : (this.$set(this.tableData[index], 'status', 0));
           }
         });
       }).catch(() => {
@@ -106,7 +106,7 @@ const mixins = {
           message: '无变更'
         });
       }
-      updateAccount({param: Object.assign(this.selectTable, {userType: this.userType})}).then((res) => {
+      updateAccount(Object.assign(this.selectTable, {userType: this.userType})).then((res) => {
         let data = res.data;
         if (data.code == 0) {
           this.tableData.splice(this.selectIndex, 1, this.selectTable);

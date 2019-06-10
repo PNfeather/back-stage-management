@@ -15,8 +15,8 @@ export const getServiceList = data => Http.post('/user/customer-service-list', d
 // 新增客服
 export const createService = data => Http.post('/user/customer-service-create', data);
 // 用户删除
-export const deleteAccount = data => Http.delete('/user/delete', {data: data});
+export const deleteAccount = data => Http.delete('/user/delete', {params: data});
 // 用户禁用
-export const disableAccount = data => Http.patch('/user/disable', data);
+export const disableAccount = data => Http.patch('/user/disable?id=' + data);
 // 用户修改(用户类型: 0学生1家长2客服3教师4管理员)
 export const updateAccount = data => Http.patch('/user/update', data);

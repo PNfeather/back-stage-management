@@ -36,7 +36,7 @@
             <el-button
               size="mini"
               :type="btnStyle(scope.row.status)"
-              @click="handleDisplay(scope.row)">{{(scope.row.status == 0) ? '禁用' : '启用'}}</el-button>
+              @click="handleDisplay(scope.$index, scope.row)">{{(scope.row.status == 0) ? '禁用' : '启用'}}</el-button>
             <el-button
               size="mini"
               type="danger"
