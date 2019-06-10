@@ -67,7 +67,7 @@ const mixins = {
         cancelButtonText: '取消',
         type: 'warning'
       }).then(() => {
-        disableAccount(row.id).then((res) => {
+        disableAccount({id: row.id}).then((res) => {
           if (res.data.code == 0) {
             this.$message({
               type: 'success',
@@ -106,7 +106,12 @@ const mixins = {
           message: '无变更'
         });
       }
-      updateAccount(Object.assign(this.selectTable, {userType: this.userType})).then((res) => {
+      updateAccount({
+        id: this.selectTable.id,
+        mobile: this.selectTable.imobile,
+        name: this.userType == 1 ? this.selectTable.nickName : this.selectTable.name, // 家长用户传昵称
+        userType: this.userType,
+      }).then((res) => {
         let data = res.data;
         if (data.code == 0) {
           this.tableData.splice(this.selectIndex, 1, this.selectTable);
