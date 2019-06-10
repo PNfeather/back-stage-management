@@ -95,26 +95,31 @@
     },
     methods: {
       getData () {
-        getTeachersList({param: {
-          skip: this.skip,
-          limit: this.limit,
-          schoolName: this.searchForm.schoolName,
-          name: this.searchForm.name,
-          mobile: this.searchForm.mobile
-        }}).then((res) => {
-          let data = res.data;
-          if (data.code == 0) {
-            this.count = data.total;
-            this.tableData = data.data.map((item) => {
-              let schoolArr = [];
-              item.classes && item.classes.length && item.classes.forEach((c) => {
-                !schoolArr.includes(c.schoolName) && schoolArr.push(c.schoolName);
+        if (this.cache[this.skip]) {
+          this.tableData = this.cache[this.skip];
+        } else {
+          getTeachersList({param: {
+              skip: this.skip,
+              limit: this.limit,
+              schoolName: this.searchForm.schoolName,
+              name: this.searchForm.name,
+              mobile: this.searchForm.mobile
+            }}).then((res) => {
+            let data = res.data;
+            if (data.code == 0) {
+              this.count = data.total;
+              this.tableData = data.data.map((item) => {
+                let schoolArr = [];
+                item.classes && item.classes.length && item.classes.forEach((c) => {
+                  !schoolArr.includes(c.schoolName) && schoolArr.push(c.schoolName);
+                });
+                item.schoolName = schoolArr.join(',');
+                return item;
               });
-              item.schoolName = schoolArr.join(',');
-              return item;
-            });
-          }
-        });
+              this.cache[this.skip] = this.tableData;
+            }
+          });
+        }
       }
     }
   };

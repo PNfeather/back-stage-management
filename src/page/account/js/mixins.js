@@ -9,7 +9,8 @@ const mixins = {
       count: 0,
       selectTable: {},
       selectIndex: 0,
-      dialogFormVisible: false
+      dialogFormVisible: false,
+      cache: {} // 数据缓存
     };
   },
   created () {
@@ -48,6 +49,7 @@ const mixins = {
               type: 'success',
               message: '成功删除'
             });
+            this.cache = {}; // 清空缓存
             this.tableData.splice(index, 1);
           }
         });
@@ -104,7 +106,7 @@ const mixins = {
           message: '无变更'
         });
       }
-      updateAccount(this.selectTable).then((res) => {
+      updateAccount({param: this.selectTable}).then((res) => {
         let data = res.data;
         if (data.code == 0) {
           this.tableData.splice(this.selectIndex, 1, this.selectTable);

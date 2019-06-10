@@ -113,18 +113,23 @@
     },
     methods: {
       getData () {
-        getServiceList({
-          skip: this.skip,
-          limit: this.limit,
-          name: this.searchForm.name,
-          mobile: this.searchForm.mobile
-        }).then((res) => {
-          let data = res.data;
-          if (data.code == 0) {
-            this.count = data.total;
-            this.tableData = data.data;
-          }
-        });
+        if (this.cache[this.skip]) {
+          this.tableData = this.cache[this.skip];
+        } else {
+          getServiceList({param: {
+            skip: this.skip,
+            limit: this.limit,
+            name: this.searchForm.name,
+            mobile: this.searchForm.mobile
+          }}).then((res) => {
+            let data = res.data;
+            if (data.code == 0) {
+              this.count = data.total;
+              this.tableData = data.data;
+              this.cache[this.skip] = this.tableData;
+            }
+          });
+        }
       },
       createService () {
         this.createServiceModel = true;
@@ -138,7 +143,7 @@
       },
       createSubmit () {
         this.createServiceModel = false;
-        createService(this.createServiceInfo).then((res) => {
+        createService({param: this.createServiceInfo}).then((res) => {
           let data = res.data;
           if (data.code == 0) {
             this.$message({

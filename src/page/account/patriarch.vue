@@ -87,18 +87,23 @@
     },
     methods: {
       getData () {
-        getGuardianList({
-          skip: this.skip,
-          limit: this.limit,
-          nickName: this.searchForm.nickName,
-          mobile: this.searchForm.mobile
-        }).then((res) => {
-          let data = res.data;
-          if (data.code == 0) {
-            this.count = data.total;
-            this.tableData = data.data;
-          }
-        });
+        if (this.cache[this.skip]) {
+          this.tableData = this.cache[this.skip];
+        } else {
+          getGuardianList({param: {
+              skip: this.skip,
+              limit: this.limit,
+              nickName: this.searchForm.nickName,
+              mobile: this.searchForm.mobile
+            }}).then((res) => {
+            let data = res.data;
+            if (data.code == 0) {
+              this.count = data.total;
+              this.tableData = data.data;
+              this.cache[this.skip] = this.tableData;
+            }
+          });
+        }
       }
     }
   };
