@@ -95,34 +95,30 @@
       };
     },
     methods: {
-      getData () {
-        if (this.cache[this.skip]) {
-          this.tableData = this.cache[this.skip];
-        } else {
-          getStudengList({param: {
-            skip: this.skip,
-            limit: this.limit,
-            name: this.searchForm.name,
-            mobile: this.searchForm.mobile
-          }}).then((res) => {
-            let data = res.data;
-            if (data.code == 0) {
-              this.count = data.total;
-              this.tableData = data.data.map((item) => {
-                let schoolArr = [];
-                let gradeArr = [];
-                item.classes.forEach((c) => {
-                  !schoolArr.includes(c.schoolName) && schoolArr.push(c.schoolName);
-                  !gradeArr.includes(c.gradeName) && gradeArr.push(c.gradeName);
-                });
-                item.schoolName = schoolArr.join(',');
-                item.gradeName = gradeArr.join(',');
-                return item;
+      getData (CST) {
+        getStudengList({param: {
+          skip: this.skip,
+          limit: this.limit,
+          name: this.searchForm.name,
+          mobile: this.searchForm.mobile
+        }}).then((res) => {
+          let data = res.data;
+          if (data.code == 0) {
+            this.count = data.total;
+            this.tableData = data.data.map((item) => {
+              let schoolArr = [];
+              let gradeArr = [];
+              item.classes.forEach((c) => {
+                !schoolArr.includes(c.schoolName) && schoolArr.push(c.schoolName);
+                !gradeArr.includes(c.gradeName) && gradeArr.push(c.gradeName);
               });
-              this.cache[this.skip] = this.tableData;
-            }
-          });
-        }
+              item.schoolName = schoolArr.join(',');
+              item.gradeName = gradeArr.join(',');
+              return item;
+            });
+            this.cache[CST][this.skip] = this.tableData;
+          }
+        });
       }
     }
   };

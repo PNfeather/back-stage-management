@@ -14,7 +14,7 @@ const mixins = {
     };
   },
   created () {
-    this.getData();
+    this.getDataWidthCache();
   },
   computed: {
     btnStyle () {
@@ -24,13 +24,30 @@ const mixins = {
     }
   },
   methods: {
+    getSearchString () {
+      let keys = Object.keys(this.searchForm);
+      let string = '';
+      for (let i = 0; i < keys.length; i++) {
+        string += (keys[i] + this.searchForm[keys[i]]);
+      }
+      return string;
+    },
+    getDataWidthCache () {
+      let CST = this.getSearchString();
+      !this.cache[CST] && (this.cache[CST] = {});
+      if (this.cache[CST][this.skip]) {
+        this.tableData = this.cache[CST][this.skip];
+      } else {
+        this.getData(CST);
+      }
+    },
     search () {
-      this.getData();
+      this.getDataWidthCache();
     },
     handleCurrentChange (val) {
       this.currentPage = val;
       this.skip = (val - 1) * this.limit;
-      this.getData();
+      this.getDataWidthCache();
     },
     handleEdit (index, row) {
       this.selectIndex = index;
@@ -49,7 +66,7 @@ const mixins = {
               type: 'success',
               message: '成功删除'
             });
-            this.cache = {}; // 清空缓存
+            this.cache[this.getSearchString()] = {}; // 清空缓存
             this.tableData.splice(index, 1);
           }
         });

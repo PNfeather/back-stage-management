@@ -9,7 +9,7 @@
             <el-menu-item index="teachers">教师用户</el-menu-item>
             <el-menu-item index="patriarch">家长用户</el-menu-item>
             <el-menu-item index="students">学生用户</el-menu-item>
-            <el-menu-item index="service">客户用户</el-menu-item>
+            <el-menu-item index="service">客服用户</el-menu-item>
           </el-submenu>
           <el-submenu index="3">
             <template slot="title"><i class="iconfont iconClassManagement"></i>班级管理</template>

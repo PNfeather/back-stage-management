@@ -113,24 +113,20 @@
       };
     },
     methods: {
-      getData () {
-        if (this.cache[this.skip]) {
-          this.tableData = this.cache[this.skip];
-        } else {
-          getServiceList({param: {
-            skip: this.skip,
-            limit: this.limit,
-            name: this.searchForm.name,
-            mobile: this.searchForm.mobile
-          }}).then((res) => {
-            let data = res.data;
-            if (data.code == 0) {
-              this.count = data.total;
-              this.tableData = data.data;
-              this.cache[this.skip] = this.tableData;
-            }
-          });
-        }
+      getData (CST) {
+        getServiceList({param: {
+          skip: this.skip,
+          limit: this.limit,
+          name: this.searchForm.name,
+          mobile: this.searchForm.mobile
+        }}).then((res) => {
+          let data = res.data;
+          if (data.code == 0) {
+            this.count = data.total;
+            this.tableData = data.data;
+            this.cache[CST][this.skip] = this.tableData;
+          }
+        });
       },
       createService () {
         this.createServiceModel = true;
