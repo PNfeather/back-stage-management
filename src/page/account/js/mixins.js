@@ -66,7 +66,7 @@ const mixins = {
               type: 'success',
               message: '成功删除'
             });
-            this.cache[this.getSearchString()] = {}; // 清空缓存
+            this.cache = {}; // 清空缓存
             this.tableData.splice(index, 1);
           }
         });
