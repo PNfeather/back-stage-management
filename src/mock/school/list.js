@@ -8,7 +8,7 @@ let list = []; // 用于接受生成数据的数组
 let total = 125;
 for (let i = 0; i < total; i++) { // 可自定义生成的个数
   let template = {
-    'city': '北京市',
+    'city': '市辖区',
     'district': '东城区',
     'id': Random.integer(10000, 99999),
     'name': Random.cword(2, 5) + '小学',

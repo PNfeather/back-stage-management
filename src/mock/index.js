@@ -26,6 +26,7 @@ require('./template/template-book-detail');
 require('./school/list');
 require('./school/delete');
 require('./school/update');
+require('./school/create');
 
 // 反馈
 require('./feedback/list');

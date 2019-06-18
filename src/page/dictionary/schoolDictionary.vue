@@ -3,15 +3,25 @@
     <head-top></head-top>
     <div class="table_container">
       <el-form :model="searchForm" :inline="true" class="search">
-        <el-form-item label="区域查询" label-width="90px">
-          <linkage v-model="searchForm" :originalAddress="searchForm" :autoChoose="false"></linkage>
-        </el-form-item>
-        <el-button
-          size="medium"
-          @click="search">查询</el-button>
-        <el-button
-          size="medium"
-          @click="reset">重置</el-button>
+        <div style="flex: 1;display: flex;justify-content: flex-start">
+          <el-form-item label="区域查询" label-width="90px">
+            <linkage v-model="searchForm" :originalAddress="searchForm" :autoChoose="false"></linkage>
+          </el-form-item>
+          <el-button
+            size="medium"
+            @click="search">查询</el-button>
+          <el-button
+            size="medium"
+            @click="reset">重置</el-button>
+        </div>
+        <div style="flex: 200px 0 0; display: flex;justify-content: flex-end">
+          <el-button
+            size="medium"
+            @click="lead">导入</el-button>
+          <el-button
+            size="medium"
+            @click="addNew">新增</el-button>
+        </div>
       </el-form>
       <el-table
         :data="tableData"
@@ -60,10 +70,10 @@
       <el-dialog title="信息修改" v-model="dialogFormVisible" size="large">
         <el-form :model="selectTable">
           <el-form-item label="学校名称" label-width="100px">
-            <el-input v-model="selectTable.name" auto-complete="off"></el-input>
+            <el-input v-model="selectTable.name" placeholder="请输入学校名称" auto-complete="off"></el-input>
           </el-form-item>
           <el-form-item label="简称" label-width="100px">
-            <el-input v-model="selectTable.simpleName" auto-complete="off"></el-input>
+            <el-input v-model="selectTable.simpleName" placeholder="请输入学校简称" auto-complete="off"></el-input>
           </el-form-item>
           <el-form-item label="区域" label-width="100px">
             <linkage v-model="currentAddress" :originalAddress="originalAddress"></linkage>
@@ -80,7 +90,7 @@
 
 <script type='text/babel'>
   import linkage from '@C/linkage';
-  import {getList, deleteSchool, updateSchool} from '@/api/school';
+  import {getList, deleteSchool, updateSchool, createSchool} from '@/api/school';
   export default {
     name: 'schoolDictionary',
     data () {
@@ -100,7 +110,8 @@
         dialogFormVisible: false,
         addressOptions: [],
         currentAddress: {},
-        originalAddress: {}
+        originalAddress: {},
+        modalType: 'add' // add添加 //edit编辑
       };
     },
     watch: {
@@ -130,6 +141,22 @@
           province: ''
         };
       },
+      lead () {
+        console.log('导入');
+      },
+      addNew () {
+        this.originalAddress = {
+          province: '',
+          city: '',
+          district: ''
+        };
+        this.selectTable = {
+          name: '',
+          simpleName: ''
+        };
+        this.modalType = 'add';
+        this.dialogFormVisible = true;
+      },
       getData () {
         getList({
           skip: this.skip,
@@ -158,6 +185,7 @@
           district: row.district
         };
         this.selectTable = {...row};
+        this.modalType = 'edit';
         this.dialogFormVisible = true;
       },
       handleDelete (index, row) {
@@ -191,30 +219,43 @@
       },
       updateSubmit () {
         this.dialogFormVisible = false;
-        let noChange = true;
-        let os = {...this.tableData[this.selectIndex]};
-        let sKeys = Object.keys(this.selectTable);
-        let oKeys = Object.keys(os);
-        (sKeys.length != oKeys.length) && (noChange = false);
-        for (let i = 0; i < sKeys.length; i++) {
-          (this.selectTable[sKeys[i]] != os[oKeys[i]]) && (noChange = false);
-        }
-        if (noChange) { // 判断数据是否变更，无变更点提交不调接口
-          return this.$message({
-            type: 'info',
-            message: '无变更'
-          });
-        }
-        updateSchool(this.selectTable).then((res) => {
-          let data = res.data;
-          if (data.code == 0) {
-            this.tableData.splice(this.selectIndex, 1, this.selectTable);
-            this.$message({
-              type: 'success',
-              message: '修改改成功'
+        if (this.modalType == 'edit') {
+          let noChange = true;
+          let os = {...this.tableData[this.selectIndex]};
+          let sKeys = Object.keys(this.selectTable);
+          let oKeys = Object.keys(os);
+          (sKeys.length != oKeys.length) && (noChange = false);
+          for (let i = 0; i < sKeys.length; i++) {
+            (this.selectTable[sKeys[i]] != os[oKeys[i]]) && (noChange = false);
+          }
+          if (noChange) { // 判断数据是否变更，无变更点提交不调接口
+            return this.$message({
+              type: 'info',
+              message: '无变更'
             });
           }
-        });
+          updateSchool(this.selectTable).then((res) => {
+            let data = res.data;
+            if (data.code == 0) {
+              this.tableData.splice(this.selectIndex, 1, this.selectTable);
+              this.$message({
+                type: 'success',
+                message: '修改改成功'
+              });
+            }
+          });
+        }
+        if (this.modalType == 'add') {
+          createSchool({...this.currentAddress, ...this.selectTable}).then((res) => {
+            let data = res.data;
+            if (data.code == 0) {
+              this.$message({
+                type: 'success',
+                message: '新增成功'
+              });
+            }
+          });
+        }
       }
     }
   };

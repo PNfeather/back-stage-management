@@ -72,15 +72,15 @@
         },
         computed: {
           shengName () {
-              let shengName = '';
-              this.province.forEach((o) => {
+              let shengName = this.sheng;
+            /^[0-9]+$/.test(this.sheng) && this.province.forEach((o) => {
                   (o.id == this.sheng) && (shengName = o.value);
               });
               return shengName;
           },
           shiName () {
-            let shiName = '';
-            this.shi1.forEach((o) => {
+            let shiName = this.shi;
+            /^[0-9]+$/.test(this.shi) && this.shi1.forEach((o) => {
               (o.id == this.shi) && (shiName = o.value);
             });
             return shiName;
