@@ -18,7 +18,7 @@ for (let i = 0; i < total; i++) { // 可自定义生成的个数
 }
 
 Mock.mock(baseUrl + '/user/customer-service-list', 'post', (options) => {
-  let params = JSON.parse(options.body);
+  let params = JSON.parse(options.body).param;
   let skip = params.skip;
   let limit = params.limit;
   let start = skip;

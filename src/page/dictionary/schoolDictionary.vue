@@ -4,11 +4,14 @@
     <div class="table_container">
       <el-form :model="searchForm" :inline="true" class="search">
         <el-form-item label="区域查询" label-width="90px">
-          <linkage v-model="searchForm" :autoChoose="false"></linkage>
+          <linkage v-model="searchForm" :originalAddress="searchForm" :autoChoose="false"></linkage>
         </el-form-item>
         <el-button
           size="medium"
           @click="search">查询</el-button>
+        <el-button
+          size="medium"
+          @click="reset">重置</el-button>
       </el-form>
       <el-table
         :data="tableData"
@@ -116,7 +119,16 @@
     },
     methods: {
       search () {
+        this.currentPage = 1;
+        this.skip = 0;
         this.getData();
+      },
+      reset () {
+        this.searchForm = {
+          city: '',
+          district: '',
+          province: ''
+        };
       },
       getData () {
         getList({

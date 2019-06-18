@@ -114,19 +114,19 @@
         },
         methods: {
             getOriginal () {
-                if (this.originalAddress.province) {
-                    this.province.forEach((o) => {
-                        (o.value == this.originalAddress.province) && (this.sheng = o.id);
+                  this.province.forEach((o) => {
+                      (o.value == this.originalAddress.province) && (this.sheng = o.id);
+                  });
+                  this.originalAddress.province == '' && (this.sheng = '');
+                  this.$nextTick(() => {
+                    this.shi1.forEach((o) => {
+                      (o.value == this.originalAddress.city) && (this.shi = o.id);
                     });
+                    this.originalAddress.city == '' && (this.shi = '');
                     this.$nextTick(() => {
-                      this.shi1.forEach((o) => {
-                        (o.value == this.originalAddress.city) && (this.shi = o.id);
-                      });
-                      this.$nextTick(() => {
-                        this.qu = this.originalAddress.district;
-                      });
+                      this.qu = this.originalAddress.district;
                     });
-                }
+                  });
             },
             outPut () {
                 if (this.outPutTimer) clearTimeout(this.outPutTimer);

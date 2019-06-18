@@ -87,18 +87,18 @@
       };
     },
     methods: {
-      getData (CST) {
+      getData () {
         getGuardianList({param: {
             skip: this.skip,
             limit: this.limit,
             nickName: this.searchForm.nickName,
             mobile: this.searchForm.mobile
           }}).then((res) => {
+            console.log(res);
           let data = res.data;
           if (data.code == 0) {
             this.count = data.total;
             this.tableData = data.data;
-            this.cache[CST][this.skip] = this.tableData;
           }
         });
       }

@@ -95,7 +95,7 @@
       };
     },
     methods: {
-      getData (CST) {
+      getData () {
         getTeachersList({param: {
             skip: this.skip,
             limit: this.limit,
@@ -114,7 +114,6 @@
               item.schoolName = schoolArr.join(',');
               return item;
             });
-            this.cache[CST][this.skip] = this.tableData;
           }
         });
       }

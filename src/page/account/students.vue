@@ -95,7 +95,7 @@
       };
     },
     methods: {
-      getData (CST) {
+      getData () {
         getStudengList({param: {
           skip: this.skip,
           limit: this.limit,
@@ -116,7 +116,6 @@
               item.gradeName = gradeArr.join(',');
               return item;
             });
-            this.cache[CST][this.skip] = this.tableData;
           }
         });
       }

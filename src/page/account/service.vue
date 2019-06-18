@@ -113,7 +113,7 @@
       };
     },
     methods: {
-      getData (CST) {
+      getData () {
         getServiceList({param: {
           skip: this.skip,
           limit: this.limit,
@@ -124,7 +124,6 @@
           if (data.code == 0) {
             this.count = data.total;
             this.tableData = data.data;
-            this.cache[CST][this.skip] = this.tableData;
           }
         });
       },

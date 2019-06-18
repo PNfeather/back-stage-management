@@ -14,7 +14,7 @@ const mixins = {
     };
   },
   created () {
-    this.getDataWidthCache();
+    this.getData();
   },
   computed: {
     btnStyle () {
@@ -24,30 +24,13 @@ const mixins = {
     }
   },
   methods: {
-    getSearchString () {
-      let keys = Object.keys(this.searchForm);
-      let string = '';
-      for (let i = 0; i < keys.length; i++) {
-        string += (keys[i] + this.searchForm[keys[i]]);
-      }
-      return string;
-    },
-    getDataWidthCache () {
-      let CST = this.getSearchString();
-      !this.cache[CST] && (this.cache[CST] = {});
-      if (this.cache[CST][this.skip]) {
-        this.tableData = this.cache[CST][this.skip];
-      } else {
-        this.getData(CST);
-      }
-    },
     search () {
-      this.getDataWidthCache();
+      this.getData();
     },
     handleCurrentChange (val) {
       this.currentPage = val;
       this.skip = (val - 1) * this.limit;
-      this.getDataWidthCache();
+      this.getData();
     },
     handleEdit (index, row) {
       this.selectIndex = index;
