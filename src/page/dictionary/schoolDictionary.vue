@@ -111,6 +111,7 @@
         addressOptions: [],
         currentAddress: {},
         originalAddress: {},
+        getDataTimer: null,
         modalType: 'add' // add添加 //edit编辑
       };
     },
@@ -126,13 +127,23 @@
       linkage
     },
     created () {
-      this.getData();
+      this.limitGetData();
+    },
+    activated () {
+      this.limitGetData();
     },
     methods: {
       search () {
         this.currentPage = 1;
         this.skip = 0;
+        this.limitGetData();
+      },
+      limitGetData () {
+        if (this.getDataTimer) return;
         this.getData();
+        this.getDataTimer = setTimeout(() => {
+          this.getDataTimer = null;
+        }, 500);
       },
       reset () {
         this.searchForm = {
@@ -175,7 +186,7 @@
       handleCurrentChange (val) {
         this.currentPage = val;
         this.skip = (val - 1) * this.limit;
-        this.getData();
+        this.limitGetData();
       },
       handleEdit (index, row) {
         this.selectIndex = index;

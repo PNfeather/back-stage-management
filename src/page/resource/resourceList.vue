@@ -76,15 +76,26 @@
         currentPage: 1,
         skip: 0,
         limit: 20,
-        count: 0
+        count: 0,
+        getDataTimer: null
       };
     },
     created () {
-      this.getData();
+      this.limitGetData();
+    },
+    activated () {
+      this.limitGetData();
     },
     methods: {
       search () {
+        this.limitGetData();
+      },
+      limitGetData () {
+        if (this.getDataTimer) return;
         this.getData();
+        this.getDataTimer = setTimeout(() => {
+          this.getDataTimer = null;
+        }, 500);
       },
       getData () {
         getList({
@@ -107,7 +118,7 @@
       handleCurrentChange (val) {
         this.currentPage = val;
         this.skip = (val - 1) * this.limit;
-        this.getData();
+        this.limitGetData();
       },
       checkResource (row) {
         this.$router.push({'path': '/resourceDetail', query: {id: row.id, templateName: row.name}});

@@ -47,6 +47,14 @@
             <div @click="checkStudents(scope.row.classCode)">{{scope.row.studentCount}}</div>
           </template>
         </el-table-column>
+        <el-table-column label="操作">
+          <template slot-scope="scope">
+            <el-button
+              size="mini"
+              :type="btnStyle(scope.row.status)"
+              @click="handleDisplay(scope.$index, scope.row)">{{(scope.row.status == 0) ? '禁用' : '启用'}}</el-button>
+          </template>
+        </el-table-column>
       </el-table>
       <div class="Pagination">
         <el-pagination
@@ -106,15 +114,33 @@
         currentPage: 1,
         skip: 0,
         limit: 20,
-        count: 0
+        count: 0,
+        getDataTimer: null
       };
     },
     created () {
-      this.getData();
+      this.limitGetData();
+    },
+    activated () {
+      this.limitGetData();
+    },
+    computed: {
+      btnStyle () {
+        return (val) => {
+          return ((val == 0) ? 'success' : 'disUse');
+        };
+      }
     },
     methods: {
       search () {
+        this.limitGetData();
+      },
+      limitGetData () {
+        if (this.getDataTimer) return;
         this.getData();
+        this.getDataTimer = setTimeout(() => {
+          this.getDataTimer = null;
+        }, 500);
       },
       getData () {
         getList({
@@ -132,7 +158,7 @@
       handleCurrentChange (val) {
         this.currentPage = val;
         this.skip = (val - 1) * this.limit;
-        this.getData();
+        this.limitGetData();
       },
       checkTeachers (id) {
         this.showTeachers = true;
@@ -141,6 +167,29 @@
           if (data.code == 0) {
             this.selectTeachers = data.data;
           }
+        });
+      },
+      handleDisplay (index, row) {
+        let keyText = (row.status == 0) ? '禁用' : '启用';
+        this.$confirm('确定' + keyText + '当前用户?', '提示', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          type: 'warning'
+        }).then(() => {
+          getList({id: row.id}).then((res) => { // todo 待修改或完善 待后端禁用接口
+            if (res.data.code == 0) {
+              this.$message({
+                type: 'success',
+                message: '成功' + keyText
+              });
+              (row.status == 0) ? (this.$set(this.tableData[index], 'status', 1)) : (this.$set(this.tableData[index], 'status', 0));
+            }
+          });
+        }).catch(() => {
+          this.$message({
+            type: 'info',
+            message: '取消'
+          });
         });
       },
       checkStudents (id) {
