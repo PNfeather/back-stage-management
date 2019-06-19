@@ -106,7 +106,6 @@ const mixins = {
           message: '无变更'
         });
       }
-      console.log(this.selectTable);
       updateAccount({
         id: this.selectTable.id,
         mobile: this.selectTable.mobile,
