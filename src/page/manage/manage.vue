@@ -35,20 +35,15 @@
         </keep-alive>
       </el-col>
     </el-row>
-    <superviseFooter></superviseFooter>
   </div>
 </template>
 
 <script type='text/babel'>
-  import superviseFooter from '@C/superviseFooter.vue';
   export default {
     computed: {
       defaultActive () {
         return this.$route.path.replace('/', '');
       }
-    },
-    components: {
-      superviseFooter
     }
   };
 </script>

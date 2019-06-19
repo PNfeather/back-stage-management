@@ -1,5 +1,5 @@
 <template>
-  <div name='superviseFooter' v-show="showToggle">
+  <div name='superviseFooter'>
     <div class="text">Copyright © 2007 - {{fullYear}} ecaiedu.com All Rights Reserved.</div>
     <div class="text">
       <a href="http://www.beian.miit.gov.cn/" target="_blank">粤ICP备16110768号</a>
@@ -21,11 +21,6 @@
       return {
         fullYear: new Date().getFullYear()
       };
-    },
-    computed: {
-      showToggle () {
-        return (this.$route.path.replace('/', '') === 'manage');
-      }
     }
   };
 </script>
@@ -34,8 +29,8 @@
     width: 100%;
     height: 60px;
     position: fixed;
-    bottom: 0;
-    background-color: #fff;
+    bottom: 30px;
+    color: #fff;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -43,7 +38,7 @@
     text-align: center;
     .text{
       width: 100%;
-      height: 36px;
+      height: 26px;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -54,6 +49,8 @@
         margin-left: 0;
       }
       a{
+        color: #fff;
+        text-decoration: underline;
         display: flex;
         justify-content: center;
         align-items: center;

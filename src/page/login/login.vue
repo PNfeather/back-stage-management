@@ -18,11 +18,13 @@
         </el-form>
       </section>
     </transition>
+    <superviseFooter></superviseFooter>
   </div>
 </template>
 
 <script type='text/babel'>
   import {login} from '@/api/user';
+  import superviseFooter from '@C/superviseFooter.vue';
   export default {
     name: 'login',
     data () {
@@ -44,6 +46,9 @@
     },
     mounted () {
       this.showLogin = true;
+    },
+    components: {
+      superviseFooter
     },
     methods: {
       submitForm (formName) {
@@ -93,8 +98,9 @@
     }
   }
   .form_contianer{
-    .wh(320px, 180px);
-    .ctp(320px, 180px);
+    .wh(370px, 220px);
+    .ctp(370px, 220px);
+    box-sizing: border-box;
     padding: 25px;
     border-radius: 5px;
     text-align: center;
