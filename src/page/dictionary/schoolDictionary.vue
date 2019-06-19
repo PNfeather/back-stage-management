@@ -207,7 +207,7 @@
           type: 'warning'
         }).then(() => {
           deleteSchool({id: row.id}).then((res) => {
-            if (res.data.data) {
+            if (res.data.code == '0') {
               this.$message({
                 type: 'success',
                 message: '成功删除'
