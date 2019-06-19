@@ -23,6 +23,10 @@ const routes = [
     component: login
   },
   {
+    path: '*',
+    redirect: 'manage'
+  },
+  {
     path: '/manage',
     component: manage,
     name: '',
