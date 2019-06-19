@@ -146,7 +146,7 @@
               type: 'success',
               message: '创建成功'
             });
-            this.getData();
+            this.limitGetData();
           } else {
             this.$message({
               type: 'error',

@@ -94,7 +94,6 @@
             nickName: this.searchForm.nickName,
             mobile: this.searchForm.mobile
           }}).then((res) => {
-            console.log(res);
           let data = res.data;
           if (data.code == 0) {
             this.count = data.total;

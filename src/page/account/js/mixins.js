@@ -10,11 +10,15 @@ const mixins = {
       selectTable: {},
       selectIndex: 0,
       dialogFormVisible: false,
+      getDataTimer: null,
       cache: {} // 数据缓存
     };
   },
   created () {
-    this.getData();
+    this.limitGetData();
+  },
+  activated () {
+    this.limitGetData();
   },
   computed: {
     btnStyle () {
@@ -24,13 +28,20 @@ const mixins = {
     }
   },
   methods: {
-    search () {
+    limitGetData () {
+      if (this.getDataTimer) return;
       this.getData();
+      this.getDataTimer = setTimeout(() => {
+        this.getDataTimer = null;
+      }, 500);
+    },
+    search () {
+      this.limitGetData();
     },
     handleCurrentChange (val) {
       this.currentPage = val;
       this.skip = (val - 1) * this.limit;
-      this.getData();
+      this.limitGetData();
     },
     handleEdit (index, row) {
       this.selectIndex = index;
@@ -117,7 +128,7 @@ const mixins = {
           this.tableData.splice(this.selectIndex, 1, this.selectTable);
           this.$message({
             type: 'success',
-            message: '修改改成功'
+            message: '修改成功'
           });
         } else {
           this.$message({

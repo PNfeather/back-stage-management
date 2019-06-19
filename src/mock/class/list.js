@@ -1,7 +1,5 @@
 import Mock from 'mockjs'; // 引入mockjs
 
-let baseUrl = process.env.BASE_URL;
-
 const Random = Mock.Random;
 
 let list = []; // 用于接受生成数据的数组
@@ -26,8 +24,13 @@ for (let i = 0; i < total; i++) { // 可自定义生成的个数
   list.push(template);
 }
 
-Mock.mock(baseUrl + '/class/list', 'post', (options) => {
-  let params = JSON.parse(options.body);
+Mock.mock(/(\/class\/list)/, 'get', (options) => {
+  let paramsArr = options.url.split('?')[1].split('&');
+  let params = {};
+  paramsArr.forEach(item => {
+    let arr = item.split('=');
+    params[arr[0]] = arr[1];
+  });
   let skip = params.skip;
   let limit = params.limit;
   let start = skip;
