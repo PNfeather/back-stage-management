@@ -106,9 +106,10 @@ const mixins = {
           message: '无变更'
         });
       }
+      console.log(this.selectTable);
       updateAccount({
         id: this.selectTable.id,
-        mobile: this.selectTable.imobile,
+        mobile: this.selectTable.mobile,
         name: this.userType == 1 ? this.selectTable.nickName : this.selectTable.name, // 家长用户传昵称
         userType: this.userType
       }).then((res) => {

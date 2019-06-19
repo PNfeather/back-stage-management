@@ -67,7 +67,7 @@
           :total="count">
         </el-pagination>
       </div>
-      <el-dialog title="信息修改" v-model="dialogFormVisible" size="large">
+      <el-dialog title="信息修改" v-model="dialogFormVisible" size="middle">
         <el-form :model="selectTable">
           <el-form-item label="学校名称" label-width="100px">
             <el-input v-model="selectTable.name" placeholder="请输入学校名称" auto-complete="off"></el-input>
