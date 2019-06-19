@@ -60,11 +60,15 @@
         currentPage: 1,
         skip: 0,
         limit: 20,
-        count: 0
+        count: 0,
+        getDataTimer: null
       };
     },
     created () {
-      this.getData();
+      this.limitGetData();
+    },
+    activated () {
+      this.limitGetData();
     },
     methods: {
       getData () {
@@ -74,6 +78,7 @@
           creator: this.searchForm.creator,
           templateName: this.searchForm.templateName
         }).then((res) => {
+          console.log(res);
           let data = res.data;
           if (data.code == 0) {
             this.count = data.total;
@@ -84,10 +89,17 @@
           }
         });
       },
+      limitGetData () {
+        if (this.getDataTimer) return;
+        this.getData();
+        this.getDataTimer = setTimeout(() => {
+          this.getDataTimer = null;
+        }, 500);
+      },
       handleCurrentChange (val) {
         this.currentPage = val;
         this.skip = (val - 1) * this.limit;
-        this.getData();
+        this.limitGetData();
       },
       checkTickling (row) {
         this.$router.push({'path': '/ticklingDetail', query: row});
