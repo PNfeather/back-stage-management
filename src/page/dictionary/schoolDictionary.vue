@@ -17,6 +17,7 @@
         <div style="flex: 200px 0 0; display: flex;justify-content: flex-end">
           <el-button
             size="medium"
+            v-show="false"
             @click="lead">导入</el-button>
           <el-button
             size="medium"
@@ -260,6 +261,7 @@
           createSchool({...this.currentAddress, ...this.selectTable}).then((res) => {
             let data = res.data;
             if (data.code == 0) {
+              this.limitGetData();
               this.$message({
                 type: 'success',
                 message: '新增成功'
