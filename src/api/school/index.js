@@ -1,5 +1,4 @@
 import {Http} from '@/plugins/http';
-import qs from 'qs';
 
 export const getList = data => Http.post('/school/list', data);
 export const createSchool = data => Http.post('/school/create', data);
