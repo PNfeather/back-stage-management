@@ -110,7 +110,7 @@
               let gradeArr = [];
               item.classes.forEach((c) => {
                 !schoolArr.includes(c.schoolName) && schoolArr.push(c.schoolName);
-                !gradeArr.includes(c.gradeName) && gradeArr.push(c.gradeName);
+                !gradeArr.includes(c.name) && gradeArr.push(c.name);
               });
               item.schoolName = schoolArr.join(',');
               item.gradeName = gradeArr.join(',');

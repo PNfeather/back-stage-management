@@ -17,10 +17,6 @@
         :data="tableData"
         style="width: 100%; flex: 1">
         <el-table-column
-          label="账号"
-          prop="account">
-        </el-table-column>
-        <el-table-column
           label="昵称"
           prop="nickName">
         </el-table-column>
