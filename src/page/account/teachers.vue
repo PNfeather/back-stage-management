@@ -25,7 +25,7 @@
         </el-table-column>
         <el-table-column
           label="姓名"
-          prop="name">
+          prop="nickName">
         </el-table-column>
         <el-table-column
           label="手机号"
@@ -33,7 +33,7 @@
         </el-table-column>
         <el-table-column
           label="学校"
-          prop="schoolName">
+          prop="name">
         </el-table-column>
         <el-table-column label="操作" width="200">
           <template slot-scope="scope">
@@ -63,7 +63,7 @@
       <el-dialog title="信息修改" v-model="dialogFormVisible">
         <el-form :model="selectTable">
           <el-form-item label="姓名" label-width="100px">
-            <el-input v-model="selectTable.name" auto-complete="off"></el-input>
+            <el-input v-model="selectTable.nickName" auto-complete="off"></el-input>
           </el-form-item>
           <el-form-item label="手机号" label-width="100px">
             <el-input v-model="selectTable.mobile" auto-complete="off"></el-input>

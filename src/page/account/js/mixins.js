@@ -1,4 +1,4 @@
-import {deleteAccount, disableAccount, updateAccount} from '@/api/user';
+import {deleteAccount, disableAccount, enableAccount, updateAccount} from '@/api/user';
 const mixins = {
   data () {
     return {
@@ -54,7 +54,7 @@ const mixins = {
         cancelButtonText: '取消',
         type: 'warning'
       }).then(() => {
-        deleteAccount({id: row.id}).then((res) => {
+        deleteAccount(row.id).then((res) => {
           if (res.data.code == 0) {
             this.$message({
               type: 'success',
@@ -78,13 +78,22 @@ const mixins = {
         cancelButtonText: '取消',
         type: 'warning'
       }).then(() => {
-        disableAccount({id: row.id}).then((res) => {
+        row.status != 0 && enableAccount(row.id).then((res) => {
           if (res.data.code == 0) {
             this.$message({
               type: 'success',
               message: '成功' + keyText
             });
-            (row.status == 0) ? (this.$set(this.tableData[index], 'status', 1)) : (this.$set(this.tableData[index], 'status', 0));
+            this.$set(this.tableData[index], 'status', 0);
+          }
+        });
+        row.status == 0 && disableAccount(row.id).then((res) => {
+          if (res.data.code == 0) {
+            this.$message({
+              type: 'success',
+              message: '成功' + keyText
+            });
+            this.$set(this.tableData[index], 'status', 1);
           }
         });
       }).catch(() => {
