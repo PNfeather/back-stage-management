@@ -4,8 +4,8 @@
     <section class="title"><i class="el-icon-arrow-left" @click="back"></i>{{templateName}}</section>
     <section class="templateContent">
       <div class="templateItem" v-for="(item, index) in templatePages" :key="index">
-        <img v-lazy="item.url" alt="" @click="openImg(item.url)">
-        <div style="text-align: center;margin-top: 5px">第{{index + 1}}页</div>
+        <img v-lazy="$CJIMGURL + item.url" alt="" @click="openImg($CJIMGURL + item.url)">
+        <div style="text-align: center;margin-top: 5px">第{{item.serialNumber}}页</div>
       </div>
     </section>
     <el-dialog title="预览" v-model="dialogFormVisible" size="full" custom-class="dialog">

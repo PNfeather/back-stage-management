@@ -99,6 +99,7 @@
       },
       getData () {
         getList({
+          bookStatus: '',
           skip: this.skip,
           limit: this.limit,
           creator: this.searchForm.creator,
@@ -129,8 +130,8 @@
           cancelButtonText: '取消',
           type: 'warning'
         }).then(() => {
-          deleteResource({id: row.id}).then((res) => {
-            if (res.data.data) {
+          deleteResource(row.id).then((res) => {
+            if (res.data.code == 0) {
               this.$message({
                 type: 'success',
                 message: '成功删除'

@@ -1,5 +1,4 @@
 import {Http} from '@/plugins/http';
-import qs from 'qs';
 
 // 登录
 export const login = data => Http.post('/user/login', data);

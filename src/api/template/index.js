@@ -1,5 +1,5 @@
 import {Http} from '@/plugins/http';
 
-export const getList = data => Http.post('/template/list', data);
-export const deleteResource = data => Http.delete('/template/delete', {params: data});
-export const getTemplateDetail = (bookId) => Http.get('/template/' + bookId + '/template-book-detail');
+export const getList = data => Http.post('/book/list', data);
+export const deleteResource = bookId => Http.delete('/book/' + bookId);
+export const getTemplateDetail = (bookId) => Http.get('/book/' + bookId);

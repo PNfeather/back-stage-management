@@ -6,5 +6,6 @@ module.exports = merge(prodEnv, {
   NODE_ENV: '"development"',
   MOCK: 'true',
   // BASE_URL: '"/api"'
-  BASE_URL: '"https://cjapi.ecaiedu.com/api/admin"'
+  BASE_URL: '"https://cjapi.ecaiedu.com/api/admin"',
+  CJIMGURL: '"https://cjfc-dev.oss-cn-shenzhen.aliyuncs.com/"'
 })
