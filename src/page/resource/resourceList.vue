@@ -113,6 +113,8 @@
               item.updatedAt = format(new Date(item.updatedAt), 'YYYY-MM-DD');
               return item;
             });
+          } else {
+            this.$message.error(data.message);
           }
         });
       },
@@ -137,6 +139,8 @@
                 message: '成功删除'
               });
               this.tableData.splice(index, 1);
+            } else {
+              this.$message.error(res.data.message);
             }
           });
         }).catch(() => {

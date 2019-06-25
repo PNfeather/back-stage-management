@@ -124,6 +124,8 @@
           if (data.code == 0) {
             this.count = data.total;
             this.tableData = data.data;
+          } else {
+            this.$message.error(data.message);
           }
         });
       },

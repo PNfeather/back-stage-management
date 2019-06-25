@@ -62,6 +62,8 @@ const mixins = {
             });
             this.cache = {}; // 清空缓存
             this.tableData.splice(index, 1);
+          } else {
+            this.$message.error(res.data.message);
           }
         });
       }).catch(() => {
@@ -85,6 +87,8 @@ const mixins = {
               message: '成功' + keyText
             });
             this.$set(this.tableData[index], 'status', 0);
+          } else {
+            this.$message.error(res.data.message);
           }
         });
         row.status == 0 && disableAccount(row.id).then((res) => {
@@ -94,6 +98,8 @@ const mixins = {
               message: '成功' + keyText
             });
             this.$set(this.tableData[index], 'status', 1);
+          } else {
+            this.$message.error(res.data.message);
           }
         });
       }).catch(() => {

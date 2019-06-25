@@ -114,6 +114,8 @@
               item.schoolName = schoolArr.join(',');
               return item;
             });
+          } else {
+            this.$message.error(data.message);
           }
         });
       }

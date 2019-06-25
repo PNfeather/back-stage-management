@@ -181,6 +181,8 @@
           if (data.code == 0) {
             this.count = data.total;
             this.tableData = data.data;
+          } else {
+            this.$message.error(data.message);
           }
         });
       },
@@ -213,6 +215,8 @@
                 message: '成功删除'
               });
               this.tableData.splice(index, 1);
+            } else {
+              this.$message.error(res.data.message);
             }
           });
         }).catch(() => {
@@ -268,6 +272,8 @@
                 type: 'success',
                 message: '新增成功'
               });
+            } else {
+              this.$message.error(data.message);
             }
           });
         }

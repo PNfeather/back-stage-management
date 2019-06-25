@@ -98,7 +98,7 @@
 </template>
 
 <script type='text/babel'>
-  import {getList, getStudents, getTeachers} from '@/api/class';
+  import {getList, getStudents, getTeachers, disableClass, enableClass} from '@/api/class';
   export default {
     name: 'classList',
     data () {
@@ -150,8 +150,11 @@
         }).then((res) => {
           let data = res.data;
           if (data.code == 0) {
+            // todo 待修改或完善 缺少创建教师字段
             this.count = data.total;
             this.tableData = data.data;
+          } else {
+            this.$message.error(data.message);
           }
         });
       },
@@ -166,6 +169,8 @@
           let data = res.data;
           if (data.code == 0) {
             this.selectTeachers = data.data;
+          } else {
+            this.$message.error(data.message);
           }
         });
       },
@@ -176,13 +181,26 @@
           cancelButtonText: '取消',
           type: 'warning'
         }).then(() => {
-          getList({id: row.id}).then((res) => { // todo 待修改或完善 待后端禁用接口
+          row.status != 0 && enableClass(row.classCode).then((res) => {
             if (res.data.code == 0) {
               this.$message({
                 type: 'success',
                 message: '成功' + keyText
               });
-              (row.status == 0) ? (this.$set(this.tableData[index], 'status', 1)) : (this.$set(this.tableData[index], 'status', 0));
+              this.$set(this.tableData[index], 'status', 0);
+            } else {
+              this.$message.error(res.data.message);
+            }
+          });
+          row.status == 0 && disableClass(row.classCode).then((res) => {
+            if (res.data.code == 0) {
+              this.$message({
+                type: 'success',
+                message: '成功' + keyText
+              });
+              this.$set(this.tableData[index], 'status', 1);
+            } else {
+              this.$message.error(res.data.message);
             }
           });
         }).catch(() => {
@@ -198,6 +216,8 @@
           let data = res.data;
           if (data.code == 0) {
             this.selectStudents = data.data;
+          } else {
+            this.$message.error(data.message);
           }
         });
       }

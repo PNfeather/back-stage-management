@@ -78,7 +78,6 @@
           creator: this.searchForm.creator,
           templateName: this.searchForm.templateName
         }).then((res) => {
-          console.log(res);
           let data = res.data;
           if (data.code == 0) {
             this.count = data.total;
@@ -93,6 +92,8 @@
               item.userTypeName = userTypeName[item.userType];
               return item;
             });
+          } else {
+            this.$message.error(data.message);
           }
         });
       },

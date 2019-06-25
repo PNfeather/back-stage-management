@@ -38,6 +38,8 @@
           let data = res.data;
           if (data.code == 0) {
             this.templatePages = data.data.templatePages;
+          } else {
+            this.$message.error(data.message);
           }
         });
       }
