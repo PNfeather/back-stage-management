@@ -22,7 +22,7 @@
         </el-table-column>
         <el-table-column
           label="总页数"
-          prop="pageNum">
+          prop="countPage">
         </el-table-column>
         <el-table-column
           label="创建客服"
@@ -108,7 +108,6 @@
           let data = res.data;
           if (data.code == 0) {
             this.count = data.total;
-            // todo 待修改或完善 待后端数据完善
             this.tableData = data.data.map((item) => {
               item.createdAt = format(new Date(item.createdAt), 'YYYY-MM-DD');
               item.updatedAt = format(new Date(item.updatedAt), 'YYYY-MM-DD');

@@ -11,7 +11,7 @@
         </el-col>
         <el-col :span="8">
           <el-form-item label="用户类型" label-width="100px">
-            <div>{{tickling.userType}}</div>
+            <div>{{tickling.userTypeName}}</div>
           </el-form-item>
         </el-col>
         <el-col :span="8">
@@ -32,6 +32,8 @@
 </template>
 
 <script type='text/babel'>
+  import {getTicklingDetail} from '@/api/feedback';
+  import format from '@/tools/format';
   export default {
     name: 'ticklingDetail',
     data () {
@@ -40,7 +42,23 @@
       };
     },
     activated () {
-      this.tickling = {...this.$route.query};
+      getTicklingDetail(this.$route.query.id).then(res => {
+        let data = res.data;
+        if (data.code == 0) {
+          let userTypeName = {
+            0: '学生',
+            1: '家长',
+            2: '客服',
+            3: '教师'
+          };
+          let reData = data.data;
+          this.tickling = reData;
+          this.tickling.feedbackTime = format(new Date(this.tickling.feedbackTime), 'YYYY-MM-DD');
+          this.tickling.userTypeName = userTypeName[this.tickling.userType];
+        } else {
+          this.$message.error(data.message);
+        }
+      });
     },
     methods: {
       back () {

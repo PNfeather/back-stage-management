@@ -11,7 +11,7 @@
         </el-table-column>
         <el-table-column
           label="用户类型"
-          prop="userType">
+          prop="userTypeName">
         </el-table-column>
         <el-table-column
           label="反馈内容"
@@ -82,8 +82,15 @@
           let data = res.data;
           if (data.code == 0) {
             this.count = data.total;
+            let userTypeName = {
+              0: '学生',
+              1: '家长',
+              2: '客服',
+              3: '教师'
+            };
             this.tableData = data.data.map((item) => {
               item.feedbackTime = format(new Date(item.feedbackTime), 'YYYY-MM-DD');
+              item.userTypeName = userTypeName[item.userType];
               return item;
             });
           }
@@ -102,7 +109,7 @@
         this.limitGetData();
       },
       checkTickling (row) {
-        this.$router.push({'path': '/ticklingDetail', query: row});
+        this.$router.push({'path': '/ticklingDetail', query: {id: row.id}});
       }
     }
   };
