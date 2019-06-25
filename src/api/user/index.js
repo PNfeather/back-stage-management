@@ -21,4 +21,4 @@ export const disableAccount = userId => Http.post('/user/' + userId + '/disable'
 // 用户启用
 export const enableAccount = userId => Http.post('/user/' + userId + '/enable');
 // 用户修改(用户类型: 0学生1家长2客服3教师4管理员)
-export const updateAccount = data => Http.patch('/user/update', data);
+export const updateAccount = data => Http.post('/user/update', data);
