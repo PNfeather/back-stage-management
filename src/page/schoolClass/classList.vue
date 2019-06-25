@@ -37,14 +37,14 @@
           label="教师"
           prop="teacherCount">
           <template slot-scope="scope">
-            <div class="amplify" @click="checkTeachers(scope.row.classCode)">{{scope.row.teacherCount}}</div>
+            <div class="amplify" @click="checkTeachers(scope.row.id)">{{scope.row.teacherCount}}</div>
           </template>
         </el-table-column>
         <el-table-column
           label="学生"
           prop="studentCount">
           <template slot-scope="scope">
-            <div @click="checkStudents(scope.row.classCode)">{{scope.row.studentCount}}</div>
+            <div @click="checkStudents(scope.row.id)">{{scope.row.studentCount}}</div>
           </template>
         </el-table-column>
         <el-table-column label="操作">
@@ -71,7 +71,7 @@
           style="width: 100%; flex: 1">
           <el-table-column
             label="教师姓名"
-            prop="name">
+            prop="userName">
           </el-table-column>
           <el-table-column
             label="手机号"
@@ -85,7 +85,7 @@
           style="width: 100%; flex: 1">
           <el-table-column
             label="学生姓名"
-            prop="name">
+            prop="userName">
           </el-table-column>
           <el-table-column
             label="账号"
@@ -150,7 +150,6 @@
         }).then((res) => {
           let data = res.data;
           if (data.code == 0) {
-            // todo 待修改或完善 缺少创建教师字段
             this.count = data.total;
             this.tableData = data.data;
           } else {
@@ -181,7 +180,7 @@
           cancelButtonText: '取消',
           type: 'warning'
         }).then(() => {
-          row.status != 0 && enableClass(row.classCode).then((res) => {
+          row.status != 0 && enableClass(row.id).then((res) => {
             if (res.data.code == 0) {
               this.$message({
                 type: 'success',
@@ -192,7 +191,7 @@
               this.$message.error(res.data.message);
             }
           });
-          row.status == 0 && disableClass(row.classCode).then((res) => {
+          row.status == 0 && disableClass(row.id).then((res) => {
             if (res.data.code == 0) {
               this.$message({
                 type: 'success',
