@@ -206,7 +206,7 @@
           cancelButtonText: '取消',
           type: 'warning'
         }).then(() => {
-          deleteSchool({id: row.id}).then((res) => {
+          deleteSchool(row.id).then((res) => {
             if (res.data.code == '0') {
               this.$message({
                 type: 'success',
@@ -254,6 +254,8 @@
                 type: 'success',
                 message: '修改改成功'
               });
+            } else {
+              this.$message.error(data.message);
             }
           });
         }
