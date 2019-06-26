@@ -3,7 +3,7 @@
     <head-top></head-top>
     <section class="welcome fillcontain">
       <p style="margin-top: -100px">欢迎来到</p>
-      <p>闪批作业后台管理系统</p>
+      <p>习之道后台管理系统</p>
     </section>
   </div>
 </template>
