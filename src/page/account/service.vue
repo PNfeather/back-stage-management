@@ -57,7 +57,7 @@
         </el-pagination>
       </div>
       <el-dialog title="信息修改" v-model="dialogFormVisible">
-        <el-form :model="selectTable" :rules="rules">
+        <el-form :model="selectTable" :rules="rules" ref="updateForm">
           <el-form-item label="姓名" label-width="100px" prop="name">
             <el-input v-model="selectTable.name" auto-complete="off"></el-input>
           </el-form-item>
@@ -71,7 +71,7 @@
         </div>
       </el-dialog>
       <el-dialog title="新增客服" v-model="createServiceModel">
-        <el-form :model="createServiceInfo" :rules="createRules">
+        <el-form :model="createServiceInfo" :rules="createRules" ref="createForm">
           <el-form-item label="账号" label-width="100px" prop="account">
             <el-input v-model="createServiceInfo.account" placeholder="请输入账号" auto-complete="off"></el-input>
           </el-form-item>
@@ -159,19 +159,23 @@
         });
       },
       createSubmit () {
-        this.createServiceModel = false;
-        createService(this.createServiceInfo).then((res) => {
-          let data = res.data;
-          if (data.code == 0) {
-            this.$message({
-              type: 'success',
-              message: '创建成功'
-            });
-            this.limitGetData();
-          } else {
-            this.$message({
-              type: 'error',
-              message: data.message
+        this.$refs.createForm.validate((valid) => {
+          if (valid) {
+            this.createServiceModel = false;
+            createService(this.createServiceInfo).then((res) => {
+              let data = res.data;
+              if (data.code == 0) {
+                this.$message({
+                  type: 'success',
+                  message: '创建成功'
+                });
+                this.limitGetData();
+              } else {
+                this.$message({
+                  type: 'error',
+                  message: data.message
+                });
+              }
             });
           }
         });

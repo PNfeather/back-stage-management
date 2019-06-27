@@ -61,11 +61,11 @@
         </el-pagination>
       </div>
       <el-dialog title="信息修改" v-model="dialogFormVisible">
-        <el-form :model="selectTable" :rules="rules">
+        <el-form :model="selectTable" :rules="rules" ref="updateForm">
           <el-form-item label="姓名" label-width="100px" prop="name">
             <el-input v-model="selectTable.name" auto-complete="off"></el-input>
           </el-form-item>
-          <el-form-item label="手机号" label-width="100px" prop="name">
+          <el-form-item label="手机号" label-width="100px" prop="mobile">
             <el-input v-model="selectTable.mobile" auto-complete="off"></el-input>
           </el-form-item>
         </el-form>

@@ -50,7 +50,7 @@
         </el-pagination>
       </div>
       <el-dialog title="信息修改" v-model="dialogFormVisible">
-        <el-form :model="selectTable" :rules="rules">
+        <el-form :model="selectTable" :rules="rules" ref="updateForm">
           <el-form-item label="昵称" label-width="100px" prop="nickName">
             <el-input v-model="selectTable.nickName" auto-complete="off"></el-input>
           </el-form-item>

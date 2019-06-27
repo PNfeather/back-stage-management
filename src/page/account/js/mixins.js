@@ -117,38 +117,42 @@ const mixins = {
       });
     },
     updateSubmit () {
-      this.dialogFormVisible = false;
-      let noChange = true;
-      let os = {...this.tableData[this.selectIndex]};
-      let sKeys = Object.keys(this.selectTable);
-      let oKeys = Object.keys(os);
-      (sKeys.length != oKeys.length) && (noChange = false);
-      for (let i = 0; i < sKeys.length; i++) {
-        (this.selectTable[sKeys[i]] != os[oKeys[i]]) && (noChange = false);
-      }
-      if (noChange) { // 判断数据是否变更，无变更点提交不调接口
-        return this.$message({
-          type: 'info',
-          message: '无变更'
-        });
-      }
-      updateAccount({
-        id: this.selectTable.id,
-        mobile: this.selectTable.mobile,
-        name: this.userType == 1 ? this.selectTable.nickName : this.selectTable.name, // 家长用户传昵称
-        userType: this.userType
-      }).then((res) => {
-        let data = res.data;
-        if (data.code == 0) {
-          this.tableData.splice(this.selectIndex, 1, this.selectTable);
-          this.$message({
-            type: 'success',
-            message: '修改成功'
-          });
-        } else {
-          this.$message({
-            type: 'error',
-            message: data.message
+      this.$refs.updateForm.validate((valid) => {
+        if (valid) {
+          this.dialogFormVisible = false;
+          let noChange = true;
+          let os = {...this.tableData[this.selectIndex]};
+          let sKeys = Object.keys(this.selectTable);
+          let oKeys = Object.keys(os);
+          (sKeys.length != oKeys.length) && (noChange = false);
+          for (let i = 0; i < sKeys.length; i++) {
+            (this.selectTable[sKeys[i]] != os[oKeys[i]]) && (noChange = false);
+          }
+          if (noChange) { // 判断数据是否变更，无变更点提交不调接口
+            return this.$message({
+              type: 'info',
+              message: '无变更'
+            });
+          }
+          updateAccount({
+            id: this.selectTable.id,
+            mobile: this.selectTable.mobile,
+            name: this.userType == 1 ? this.selectTable.nickName : this.selectTable.name, // 家长用户传昵称
+            userType: this.userType
+          }).then((res) => {
+            let data = res.data;
+            if (data.code == 0) {
+              this.tableData.splice(this.selectIndex, 1, this.selectTable);
+              this.$message({
+                type: 'success',
+                message: '修改成功'
+              });
+            } else {
+              this.$message({
+                type: 'error',
+                message: data.message
+              });
+            }
           });
         }
       });
