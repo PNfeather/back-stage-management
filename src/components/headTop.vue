@@ -30,10 +30,10 @@
         } else if (command === 'signout') {
           logout().then((res) => {
             let data = res.data;
-            if (data.data === '1') {
+            if (data.code == 0) {
               this.$message({
                 type: 'success',
-                message: '退出成功'
+                message: '退出登录'
               });
               this.$router.push('/');
             } else {

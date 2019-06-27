@@ -25,7 +25,7 @@
         </el-table-column>
         <el-table-column
           label="姓名"
-          prop="nickName">
+          prop="name">
         </el-table-column>
         <el-table-column
           label="手机号"
@@ -33,7 +33,7 @@
         </el-table-column>
         <el-table-column
           label="学校"
-          prop="name">
+          prop="schoolName">
         </el-table-column>
         <el-table-column label="操作" width="200">
           <template slot-scope="scope">
@@ -106,14 +106,7 @@
           let data = res.data;
           if (data.code == 0) {
             this.count = data.total;
-            this.tableData = data.data.map((item) => {
-              let schoolArr = [];
-              item.classes && item.classes.length && item.classes.forEach((c) => {
-                !schoolArr.includes(c.schoolName) && schoolArr.push(c.schoolName);
-              });
-              item.schoolName = schoolArr.join(',');
-              return item;
-            });
+            this.tableData = data.data;
           } else {
             this.$message.error(data.message);
           }
