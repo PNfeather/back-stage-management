@@ -50,11 +50,11 @@
         </el-pagination>
       </div>
       <el-dialog title="信息修改" v-model="dialogFormVisible">
-        <el-form :model="selectTable">
-          <el-form-item label="昵称" label-width="100px">
+        <el-form :model="selectTable" :rules="rules">
+          <el-form-item label="昵称" label-width="100px" prop="nickName">
             <el-input v-model="selectTable.nickName" auto-complete="off"></el-input>
           </el-form-item>
-          <el-form-item label="手机号" label-width="100px">
+          <el-form-item label="手机号" label-width="100px" prop="mobile">
             <el-input v-model="selectTable.mobile" auto-complete="off"></el-input>
           </el-form-item>
         </el-form>
@@ -78,6 +78,14 @@
         searchForm: {
           nickName: '',
           mobile: ''
+        },
+        rules: {
+          nickName: [
+            { required: true, message: '请输入姓名', trigger: 'blur' }
+          ],
+          mobile: [
+            { required: true, message: '请输入手机号码', trigger: 'blur' }
+          ]
         },
         userType: 1
       };

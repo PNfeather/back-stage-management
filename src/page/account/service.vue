@@ -57,11 +57,11 @@
         </el-pagination>
       </div>
       <el-dialog title="信息修改" v-model="dialogFormVisible">
-        <el-form :model="selectTable">
-          <el-form-item label="姓名" label-width="100px">
+        <el-form :model="selectTable" :rules="rules">
+          <el-form-item label="姓名" label-width="100px" prop="name">
             <el-input v-model="selectTable.name" auto-complete="off"></el-input>
           </el-form-item>
-          <el-form-item label="手机号" label-width="100px">
+          <el-form-item label="手机号" label-width="100px" prop="mobile">
             <el-input v-model="selectTable.mobile" auto-complete="off"></el-input>
           </el-form-item>
         </el-form>
@@ -71,14 +71,14 @@
         </div>
       </el-dialog>
       <el-dialog title="新增客服" v-model="createServiceModel">
-        <el-form :model="createServiceInfo">
-          <el-form-item label="账号" label-width="100px">
+        <el-form :model="createServiceInfo" :rules="createRules">
+          <el-form-item label="账号" label-width="100px" prop="account">
             <el-input v-model="createServiceInfo.account" placeholder="请输入账号" auto-complete="off"></el-input>
           </el-form-item>
-          <el-form-item label="姓名" label-width="100px">
+          <el-form-item label="姓名" label-width="100px" prop="name">
             <el-input v-model="createServiceInfo.name" placeholder="请输入姓名" auto-complete="off"></el-input>
           </el-form-item>
-          <el-form-item label="手机号" label-width="100px">
+          <el-form-item label="手机号" label-width="100px" prop="mobile">
             <el-input v-model="createServiceInfo.mobile" placeholder="请输入手机号" auto-complete="off"></el-input>
           </el-form-item>
         </el-form>
@@ -103,10 +103,29 @@
           name: '',
           mobile: ''
         },
+        rules: {
+          name: [
+            { required: true, message: '请输入姓名', trigger: 'blur' }
+          ],
+          mobile: [
+            { required: true, message: '请输入手机号码', trigger: 'blur' }
+          ]
+        },
         createServiceInfo: {
           account: '',
           name: '',
           mobile: ''
+        },
+        createRules: {
+          account: [
+            { required: true, message: '请输入姓名', trigger: 'blur' }
+          ],
+          name: [
+            { required: true, message: '请输入姓名', trigger: 'blur' }
+          ],
+          mobile: [
+            { required: true, message: '请输入手机号码', trigger: 'blur' }
+          ]
         },
         createServiceModel: false,
         userType: 2
