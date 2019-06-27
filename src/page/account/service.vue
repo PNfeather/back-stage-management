@@ -133,12 +133,12 @@
     },
     methods: {
       getData () {
-        getServiceList({param: {
+        getServiceList({
           skip: this.skip,
           limit: this.limit,
           name: this.searchForm.name,
           mobile: this.searchForm.mobile
-        }}).then((res) => {
+        }).then((res) => {
           let data = res.data;
           if (data.code == 0) {
             this.count = data.total;

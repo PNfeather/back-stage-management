@@ -104,13 +104,13 @@
     },
     methods: {
       getData () {
-        getTeachersList({param: {
+        getTeachersList({
             skip: this.skip,
             limit: this.limit,
             schoolName: this.searchForm.schoolName,
             name: this.searchForm.name,
             mobile: this.searchForm.mobile
-          }}).then((res) => {
+          }).then((res) => {
           let data = res.data;
           if (data.code == 0) {
             this.count = data.total;
