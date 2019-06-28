@@ -6,7 +6,6 @@
         <span>习之道</span>
       </div>
       <nav class="nav">
-        <div class="nav-item"><a href="#" @click="jump($XZDHT_ENTRANCE)">后台管理系统</a></div>
         <div class="nav-item"><a href="#" @click="jump($XZDKF_ENTRANCE)">客服系统</a></div>
       </nav>
     </header>
@@ -65,6 +64,7 @@
       height: 72px;
       line-height: 72px;
       display: flex;
+      justify-content: space-between;
       .logo{
         flex: 33% 0 0;
         display: flex;
@@ -78,9 +78,9 @@
         }
       }
       .nav{
-        flex: 1;
+        flex: 33% 0 0;
         display: flex;
-        justify-content: flex-start;
+        justify-content: center;
         align-items: center;
         .nav-item{
           margin-right: 30px;
