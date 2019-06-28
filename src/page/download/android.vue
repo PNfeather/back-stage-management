@@ -91,7 +91,7 @@
       z-index: 99;
       .leadArrows{
         position: absolute;
-        right: 5px;
+        right: 30px;
         top: 0;
         height: 150px;
         width: auto;
