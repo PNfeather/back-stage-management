@@ -6,12 +6,6 @@
 <script type='text/babel'>
   export default {
     name: 'ios',
-    props: {
-      key: {
-        type: String,
-        default: ''
-      }
-    },
     data () {
       return {
       };

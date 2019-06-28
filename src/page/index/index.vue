@@ -6,8 +6,8 @@
         <span>习之道</span>
       </div>
       <nav class="nav">
-        <div class="nav-item"><a :href="$XZDKF_ENTRANCE">后台管理系统</a></div>
-        <div class="nav-item"><a :href="$XZDHT_ENTRANCE">客服系统</a></div>
+        <div class="nav-item"><a href="#" @click="jump($XZDHT_ENTRANCE)">后台管理系统</a></div>
+        <div class="nav-item"><a href="#" @click="jump($XZDKF_ENTRANCE)">客服系统</a></div>
       </nav>
     </header>
     <div class="indexContent fillcontain">
@@ -41,15 +41,11 @@
 <script type='text/babel'>
   export default {
     name: 'index',
-    data () {
-      return {
-      };
+    methods: {
+      jump (url) {
+        window.location.href = url;
+      }
     },
-    created () {},
-    mounted () {},
-    computed: {},
-    watch: {},
-    methods: {},
     components: {}
   };
 </script>
