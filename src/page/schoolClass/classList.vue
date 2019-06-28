@@ -44,7 +44,7 @@
           label="学生"
           prop="studentCount">
           <template slot-scope="scope">
-            <div @click="checkStudents(scope.row.id)">{{scope.row.studentCount}}</div>
+            <div class="amplify" @click="checkStudents(scope.row.id)">{{scope.row.studentCount}}</div>
           </template>
         </el-table-column>
         <el-table-column label="操作">
@@ -227,6 +227,8 @@
   @import '../account/css/list';
   .amplify{
     position: relative;
+    color: #20a0ff;
+    text-decoration: underline;
     &:after{
       .posAb(-10px, -10px, -10px, -10px);
       content: '';

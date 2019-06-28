@@ -3,17 +3,20 @@
     <head-top></head-top>
     <div class="table_container">
       <el-form :model="searchForm" :inline="true" class="search">
-        <el-form-item label="姓名" label-width="60px">
-          <el-input v-model="searchForm.name" auto-complete="off"></el-input>
-        </el-form-item>
-        <el-form-item label="手机号" label-width="60px">
-          <el-input v-model="searchForm.mobile" auto-complete="off"></el-input>
-        </el-form-item>
+        <div class="flexDiv">
+          <el-form-item label="姓名" label-width="60px">
+            <el-input v-model="searchForm.name" auto-complete="off"></el-input>
+          </el-form-item>
+          <el-form-item label="手机号" label-width="60px">
+            <el-input v-model="searchForm.mobile" auto-complete="off"></el-input>
+          </el-form-item>
+          <el-button
+            size="medium"
+            @click="search">查询</el-button>
+        </div>
         <el-button
           size="medium"
-          @click="search">查询</el-button>
-        <el-button
-          size="medium"
+          class="addBtn"
           @click="createService">新增</el-button>
       </el-form>
       <el-table
@@ -185,4 +188,8 @@
 </script>
 <style scoped lang="less">
   @import './css/list';
+  .flexDiv{
+    flex: 1;
+    display: flex;
+  }
 </style>
