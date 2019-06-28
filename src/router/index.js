@@ -95,7 +95,28 @@ const routes = [
   }
 ];
 
-export default new Router({
+const router = new Router({
   routes,
   strict: process.env.NODE_ENV !== 'production'
 });
+
+router.beforeEach((to, from, next) => {
+  let toPath = to.path.replace('/', '');
+  switch (toPath) {
+    case '':
+      document.title = '习之道';
+      break;
+    case 'android-download':
+      document.title = '习之道-家长版下载';
+      break;
+    case 'ios-download':
+      document.title = '习之道-教师版下载';
+      break;
+    default:
+      document.title = '习之道后台管理系统';
+      break;
+  }
+  next();
+});
+
+export default router;

@@ -21,6 +21,8 @@ Vue.use(VueLazyload, {
 (process.env.BASE_URL == '/api') && process.env.MOCK && require('@/mock');
 
 Vue.prototype.$CJIMGURL = process.env.CJIMGURL;
+Vue.prototype.$XZDKF_ENTRANCE= process.env.XZDKF_ENTRANCE;
+Vue.prototype.$XZDHT_ENTRANCE= process.env.XZDHT_ENTRANCE;
 
 Vue.use(http.install);
 

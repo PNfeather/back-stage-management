@@ -6,8 +6,8 @@
         <span>习之道</span>
       </div>
       <nav class="nav">
-        <div class="nav-item">后台管理系统</div>
-        <div class="nav-item">客服系统</div>
+        <div class="nav-item"><a :href="$XZDKF_ENTRANCE">后台管理系统</a></div>
+        <div class="nav-item"><a :href="$XZDHT_ENTRANCE">客服系统</a></div>
       </nav>
     </header>
     <div class="indexContent fillcontain">
@@ -85,6 +85,12 @@
         .nav-item{
           margin-right: 30px;
           font-size: 14px;
+          a{
+            color: #fff;
+            &:hover{
+              color: #00A8E2;
+            }
+          }
         }
       }
     }
