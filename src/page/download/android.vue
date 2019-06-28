@@ -12,7 +12,7 @@
       </div>
     </header>
     <div class="download-button-area">
-      <div class="btn">下载安装({{info.size}})</div>
+      <div class="btn" @click="download">下载安装({{info.size}})</div>
       <div class="shadow"></div>
     </div>
     <div class="tips">
@@ -56,6 +56,9 @@
         } else {
           return (M.toFixed(2) + 'M');
         }
+      },
+      download () {
+        window.open(this.$CJIMGURL + this.info.url);
       }
     },
     components: {}
