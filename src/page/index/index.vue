@@ -35,10 +35,12 @@
         </div>
       </div>
     </div>
+    <superviseFooter></superviseFooter>
   </div>
 </template>
 
 <script type='text/babel'>
+  import superviseFooter from '@C/superviseFooter.vue';
   export default {
     name: 'index',
     methods: {
@@ -46,7 +48,9 @@
         window.location.href = url;
       }
     },
-    components: {}
+    components: {
+      superviseFooter
+    }
   };
 </script>
 <style scoped lang="less">

@@ -58,7 +58,7 @@
         }
       },
       download () {
-        let myFrame= document.createElement('iframe');
+        let myFrame = document.createElement('iframe');
         myFrame.src = this.$CJIMGURL + this.info.url;
         myFrame.style.display = 'none';
         document.body.appendChild(myFrame);
