@@ -3,7 +3,7 @@
     <header class="header">
       <div class="headerContent">
         <div class="logo">
-          <img src="~@IMG/ic_launcher.png" alt="">
+          <img class="logoImg" :src="logoImg" alt="">
         </div>
         <div class="name">习之道</div>
         <div class="version">
@@ -18,6 +18,12 @@
     <div class="tips">
       适用于Android系统
     </div>
+    <div class="shade" v-show="shadeToggle">
+      <img class="leadArrows" :src="leadArrows" alt="">
+      <p class="leadText">
+        请使用浏览器打开
+      </p>
+    </div>
   </div>
 </template>
 
@@ -27,7 +33,10 @@
     name: 'android',
     data () {
       return {
-        info: {}
+        info: {},
+        logoImg: require('@IMG/ic_launcher.png'),
+        leadArrows: require('@IMG/leadArrows.png'),
+        shadeToggle: false
       };
     },
     created () {
@@ -35,6 +44,10 @@
     },
     methods: {
       pageInit () {
+        let ua = window.navigator.userAgent.toLowerCase();
+        if (ua.match(/MicroMessenger/i) == 'micromessenger') {
+          this.shadeToggle = true;
+        }
         getAppVersion(0).then(res => {
           let data = res.data;
           if (data.code == 0) {
@@ -70,6 +83,28 @@
 <style scoped lang="less">
   @import '~@/style/mixin';
   [name = 'android']{
+    .shade{
+      position: absolute;
+      .wh(100%, 100%);
+      .allcover();
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 99;
+      .leadArrows{
+        position: absolute;
+        right: 5px;
+        top: 0;
+        height: 150px;
+        width: auto;
+      }
+      .leadText{
+        color: #fff;
+        text-align: right;
+        font-size: 14px;
+        position: absolute;
+        top: 155px;
+        right: 5px;
+      }
+    }
     .header{
       .wh(100%, 222px);
       position: relative;
@@ -105,6 +140,9 @@
         .logo{
           .wh(72px, 72px);
           margin: 65px auto 0;
+          .logoImg{
+            .wh(100%, 100%)
+          }
         }
         .name{
           .ft(18px, 25px);
