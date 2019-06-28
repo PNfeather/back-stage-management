@@ -23,7 +23,7 @@ const ticklingDetail = r => require.ensure([], () => r(require('@/page/tickling/
 const routes = [
   {
     path: '*',
-    redirect: 'index'
+    redirect: '/'
   },
   {
     path: '/',
