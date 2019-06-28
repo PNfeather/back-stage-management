@@ -9,6 +9,7 @@ import ElementUI from 'element-ui';
 import HeadTop from '@C/headTop';
 import 'element-ui/lib/theme-default/index.css';
 import VueLazyload from 'vue-lazyload';
+require('es6-promise').polyfill();
 
 Vue.use(VueLazyload, {
   preLoad: 1.3,
