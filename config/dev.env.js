@@ -7,5 +7,6 @@ module.exports = merge(prodEnv, {
   MOCK: 'true',
   // BASE_URL: '"/api"'
   BASE_URL: '"https://cjapi.ecaiedu.com/api"',
+  XZDKF_ENTRANCE: '"http://www.ecaiedu.com/service/#/login"', // 客服入口
   CJIMGURL: '"https://cjfc-dev.oss-cn-shenzhen.aliyuncs.com/"'
 })
