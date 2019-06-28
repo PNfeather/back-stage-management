@@ -3,6 +3,9 @@ import Router from 'vue-router';
 
 Vue.use(Router);
 
+const index = r => require.ensure([], () => r(require('@/page/index/index')), 'index');
+const ios = r => require.ensure([], () => r(require('@/page/download/ios')), 'ios');
+const android = r => require.ensure([], () => r(require('@/page/download/android')), 'android');
 const login = r => require.ensure([], () => r(require('@/page/login/login')), 'login');
 const manage = r => require.ensure([], () => r(require('@/page/manage/manage')), 'manage');
 const home = r => require.ensure([], () => r(require('@/page/home/home')), 'home');
@@ -19,12 +22,24 @@ const ticklingDetail = r => require.ensure([], () => r(require('@/page/tickling/
 
 const routes = [
   {
-    path: '/',
-    component: login
+    path: '*',
+    redirect: 'index'
   },
   {
-    path: '*',
-    redirect: 'manage'
+    path: '/',
+    component: index
+  },
+  {
+    path: '/ios-download',
+    component: ios
+  },
+  {
+    path: '/android-download',
+    component: android
+  },
+  {
+    path: '/login',
+    component: login
   },
   {
     path: '/manage',
