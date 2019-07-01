@@ -1,5 +1,6 @@
 const getters = {
-  name: state => state.user.name,
-  orgId: state => state.user.orgId
+  templateHeight: state => state.template.templateHeight,
+  templateWidth: state => state.template.templateWidth,
+  imgScale: state => state.template.imgScale
 };
 export default getters;

@@ -99,7 +99,7 @@
       },
       getData () {
         getList({
-          bookStatus: '',
+          bookStatus: '1', // 0草稿1已发布
           skip: this.skip,
           limit: this.limit,
           creator: this.searchForm.creator,
