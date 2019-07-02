@@ -23,7 +23,7 @@
             <div class="QR_code">
               <img src="~@IMG/android-download.png" alt="">
             </div>
-            <div class="text">习之道app家长版(adroid)</div>
+            <div class="text">习之道app家长版(android)</div>
           </div>
           <!--<div class="download-item">-->
             <!--<div class="QR_code">-->

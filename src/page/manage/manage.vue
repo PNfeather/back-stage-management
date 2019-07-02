@@ -27,6 +27,10 @@
             <template slot="title"><i class="iconfont iconTickling"></i>反馈信息</template>
             <el-menu-item index="tickling">反馈列表</el-menu-item>
           </el-submenu>
+          <el-submenu index="7">
+            <template slot="title"><i class="iconfont icondownload-o"></i>APP管理</template>
+            <el-menu-item index="appManage">版本列表</el-menu-item>
+          </el-submenu>
         </el-menu>
       </el-col>
       <el-col :span="20" style="height: 100%;overflow: auto;">

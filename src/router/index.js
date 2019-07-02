@@ -19,6 +19,7 @@ const resourceDetail = r => require.ensure([], () => r(require('@/page/resource/
 const schoolDictionary = r => require.ensure([], () => r(require('@/page/dictionary/schoolDictionary')), 'schoolDictionary');
 const tickling = r => require.ensure([], () => r(require('@/page/tickling/tickling')), 'tickling');
 const ticklingDetail = r => require.ensure([], () => r(require('@/page/tickling/ticklingDetail')), 'ticklingDetail');
+const appManage = r => require.ensure([], () => r(require('@/page/appManage/appManage')), 'appManage');
 
 const routes = [
   {
@@ -90,6 +91,10 @@ const routes = [
         path: '/ticklingDetail',
         component: ticklingDetail,
         meta: ['反馈信息', '反馈列表', '反馈详情']
+      }, {
+        path: '/appManage',
+        component: appManage,
+        meta: ['app管理', '版本列表']
       }
     ]
   }
