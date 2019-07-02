@@ -50,18 +50,18 @@
         </el-pagination>
       </div>
     </div>
-    <el-dialog title="信息修改" v-model="dialogFormVisible" size="small">
+    <el-dialog :title="isCheck ? '查看信息' : '发布更新'" v-model="dialogFormVisible" size="small">
       <el-form :model="selectTable" :rules="rules">
         <el-form-item label="产品名称" label-width="120px">
-          <el-select v-model="selectTable.productName" placeholder="请选择活动区域" :disabled="isCheck">
+          <el-select v-model="selectTable.productName" placeholder="请选择产品名称" :disabled="isCheck">
             <el-option label="习之道家长版android端" value="0"></el-option>
           </el-select>
         </el-form-item>
         <el-form-item label="版本名称" label-width="120px" prop="versionString">
-          <el-input :disabled="isCheck" v-model="selectTable.versionString" placeholder="请输入版本名称" auto-complete="off"></el-input>
+          <el-input :disabled="isCheck" v-model="selectTable.versionString" placeholder="请输入版本名称(例如:V1.0)" auto-complete="off"></el-input>
         </el-form-item>
         <el-form-item label="版本号" label-width="120px" prop="versionCode">
-          <el-input :disabled="isCheck" v-model="selectTable.versionCode" placeholder="请输入版本号" auto-complete="off"></el-input>
+          <el-input :disabled="isCheck" v-model="selectTable.versionCode" placeholder="请输入版本号(例如:1)" auto-complete="off"></el-input>
         </el-form-item>
         <el-form-item label="版本更新内容" label-width="120px" prop="message">
           <el-input :disabled="isCheck" type="textarea" :autosize="{ minRows: 2, maxRows: 6}" v-model="selectTable.message" placeholder="请输入更新内容"></el-input>
@@ -229,4 +229,7 @@
 </script>
 <style scoped lang="less">
   @import '../account/css/list';
+  .search{
+    justify-content: flex-end;
+  }
 </style>
