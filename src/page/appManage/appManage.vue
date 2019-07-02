@@ -80,7 +80,7 @@
           </el-upload>
         </el-form-item>
       </el-form>
-      <div slot="footer" class="dialog-footer">
+      <div slot="footer" class="dialog-footer" v-show="!isCheck">
         <el-button @click="closeModel">取 消</el-button>
         <el-button type="primary" @click="submit">发 布</el-button>
       </div>
