@@ -51,20 +51,20 @@
       </div>
     </div>
     <el-dialog title="信息修改" v-model="dialogFormVisible" size="small">
-      <el-form :model="selectTable">
+      <el-form :model="selectTable" :rules="rules">
         <el-form-item label="产品名称" label-width="100px">
           <el-select v-model="selectTable.productName" placeholder="请选择活动区域" :disabled="isCheck">
             <el-option label="习之道家长版android端" value="0"></el-option>
           </el-select>
         </el-form-item>
-        <el-form-item label="版本名称" label-width="100px">
+        <el-form-item label="版本名称" label-width="100px" prop="versionString">
           <el-input :disabled="isCheck" v-model="selectTable.versionString" placeholder="请输入版本名称" auto-complete="off"></el-input>
         </el-form-item>
-        <el-form-item label="版本号" label-width="100px">
+        <el-form-item label="版本号" label-width="100px" prop="versionCode">
           <el-input :disabled="isCheck" v-model="selectTable.versionCode" placeholder="请输入版本号" auto-complete="off"></el-input>
         </el-form-item>
-        <el-form-item label="版本更新内容" label-width="100px">
-          <el-input :disabled="isCheck" type="textarea" v-model="selectTable.message" placeholder="请输入更新内容"></el-input>
+        <el-form-item label="版本更新内容" label-width="100px" prop="message">
+          <el-input :disabled="isCheck" type="textarea" :autosize="{ minRows: 2, maxRows: 6}" v-model="selectTable.message" placeholder="请输入更新内容"></el-input>
         </el-form-item>
         <el-form-item label="app安装包" label-width="100px" v-if="!isCheck">
           <el-upload
@@ -82,7 +82,7 @@
       </el-form>
       <div slot="footer" class="dialog-footer" v-show="!isCheck">
         <el-button @click="closeModel">取 消</el-button>
-        <el-button type="primary" @click="submit">发 布</el-button>
+        <el-button type="primary" @click="submit" :disabled="submitDisable">发 布</el-button>
       </div>
     </el-dialog>
   </div>
@@ -98,6 +98,17 @@
         fileList: [],
         dialogFormVisible: false,
         selectTable: {},
+        rules: {
+          versionString: [
+            { required: true, message: '请输入版本名称', trigger: 'blur' }
+          ],
+          versionCode: [
+            { required: true, message: '请输入版本号', trigger: 'blur' }
+          ],
+          message: [
+            { required: true, message: '请输入更新内容', trigger: 'blur' }
+          ]
+        },
         tableData: [],
         currentPage: 1,
         skip: 0,
@@ -112,6 +123,11 @@
     },
     activated () {
       this.limitGetData();
+    },
+    computed: {
+      submitDisable () {
+        return !(this.fileList.length && this.selectTable.versionString && this.selectTable.versionCode && this.selectTable.message);
+      }
     },
     watch: {
       dialogFormVisible (val) {
