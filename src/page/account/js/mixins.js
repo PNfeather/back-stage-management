@@ -10,8 +10,7 @@ const mixins = {
       selectTable: {},
       selectIndex: 0,
       dialogFormVisible: false,
-      getDataTimer: null,
-      cache: {} // 数据缓存
+      getDataTimer: null
     };
   },
   created () {
@@ -60,7 +59,6 @@ const mixins = {
               type: 'success',
               message: '成功删除'
             });
-            this.cache = {}; // 清空缓存
             this.tableData.splice(index, 1);
           } else {
             this.$message.error(res.data.message);
