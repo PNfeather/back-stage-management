@@ -118,6 +118,10 @@
         isCheck: false
       };
     },
+    beforeRouteLeave (to, from, next) {
+      this.dialogFormVisible = false;
+      next();
+    },
     created () {
       this.limitGetData();
     },

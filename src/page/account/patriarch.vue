@@ -90,6 +90,10 @@
         userType: 1
       };
     },
+    beforeRouteLeave (to, from, next) {
+      this.dialogFormVisible = false;
+      next();
+    },
     methods: {
       getData () {
         getGuardianList({

@@ -48,6 +48,10 @@
       this.templateName = query.templateName;
       this.id = query.id;
     },
+    beforeRouteLeave (to, from, next) {
+      this.dialogFormVisible = false;
+      next();
+    },
     watch: {
       id (val) {
         getTemplateDetail(val).then((res) => {

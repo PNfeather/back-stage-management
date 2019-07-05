@@ -124,6 +124,11 @@
     activated () {
       this.limitGetData();
     },
+    beforeRouteLeave (to, from, next) {
+      this.showTeachers = false;
+      this.showStudents = false;
+      next();
+    },
     computed: {
       btnStyle () {
         return (val) => {

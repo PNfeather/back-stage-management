@@ -133,6 +133,10 @@
     activated () {
       this.limitGetData();
     },
+    beforeRouteLeave (to, from, next) {
+      this.dialogFormVisible = false;
+      next();
+    },
     methods: {
       search () {
         this.skip = 0;

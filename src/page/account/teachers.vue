@@ -102,6 +102,10 @@
         userType: 3
       };
     },
+    beforeRouteLeave (to, from, next) {
+      this.dialogFormVisible = false;
+      next();
+    },
     methods: {
       getData () {
         getTeachersList({

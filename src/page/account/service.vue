@@ -134,6 +134,11 @@
         userType: 2
       };
     },
+    beforeRouteLeave (to, from, next) {
+      this.dialogFormVisible = false;
+      this.createServiceModel = false;
+      next();
+    },
     methods: {
       getData () {
         getServiceList({

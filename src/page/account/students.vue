@@ -102,6 +102,10 @@
         userType: 0
       };
     },
+    beforeRouteLeave (to, from, next) {
+      this.dialogFormVisible = false;
+      next();
+    },
     methods: {
       getData () {
         getStudengList({
