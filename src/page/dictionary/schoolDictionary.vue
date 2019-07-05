@@ -4,7 +4,7 @@
     <div class="table_container">
       <el-form :model="searchForm" :inline="true" class="search">
         <div style="flex: 1;display: flex;justify-content: flex-start">
-          <el-form-item label="区域查询" label-width="90px">
+          <el-form-item label="区域查询" label-width="120px">
             <linkage v-model="searchForm" :originalAddress="searchForm" :autoChoose="false"></linkage>
           </el-form-item>
           <el-button
@@ -135,8 +135,9 @@
     },
     methods: {
       search () {
-        this.currentPage = 1;
         this.skip = 0;
+        this.limit = 20;
+        this.currentPage = 1;
         this.limitGetData();
       },
       limitGetData () {

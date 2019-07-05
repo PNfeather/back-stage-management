@@ -88,6 +88,9 @@
     },
     methods: {
       search () {
+        this.skip = 0;
+        this.limit = 20;
+        this.currentPage = 1;
         this.limitGetData();
       },
       limitGetData () {
