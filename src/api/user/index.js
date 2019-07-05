@@ -12,6 +12,8 @@ export const getGuardianList = data => Http.post('/admin/user/guardian-list', da
 export const getStudengList = data => Http.post('/admin/user/student-list', data);
 // 客服列表
 export const getServiceList = data => Http.post('/admin/user/customer-service-list', data);
+// 查询所有客服
+export const getAllService = () => Http.get('/admin/user/all-service');
 // 新增客服
 export const createService = data => Http.post('/admin/user/customer-service-create', data);
 // 用户删除

@@ -4,10 +4,17 @@
     <div class="table_container">
       <el-form :model="searchForm" :inline="true" class="search">
         <el-form-item label="创建客服" label-width="90px">
-          <el-input v-model="searchForm.creator" auto-complete="off"></el-input>
+          <el-select v-model="searchForm.creatorId" clearable placeholder="请选择">
+            <el-option
+              v-for="item in serviceList"
+              :key="item.label"
+              :label="item.label"
+              :value="item.value">
+            </el-option>
+          </el-select>
         </el-form-item>
         <el-form-item label="资源名称" label-width="90px">
-          <el-input v-model="searchForm.templateName" auto-complete="off"></el-input>
+          <el-input v-model="searchForm.templateBookName" auto-complete="off"></el-input>
         </el-form-item>
         <el-button
           size="medium"
@@ -63,25 +70,42 @@
 
 <script type='text/babel'>
   import {getList, deleteResource} from '@/api/template';
+  import {getAllService} from '@/api/user';
   import format from '@/tools/format';
   export default {
     name: 'resourceList',
     data () {
       return {
         searchForm: {
-          creator: '',
-          templateName: ''
+          creatorId: '',
+          templateBookName: ''
         },
         tableData: [],
         currentPage: 1,
         skip: 0,
         limit: 20,
         count: 0,
-        getDataTimer: null
+        getDataTimer: null,
+        serviceList: []
       };
     },
     created () {
       this.limitGetData();
+      getAllService().then(res => {
+        let data = res.data;
+        if (data.code == 0) {
+          let reData = data.data;
+          this.serviceList = [{label: '全部', value: ''}, ...reData.map((item) => {
+            let cell = {
+              label: item.name,
+              value: item.id
+            };
+            return cell;
+          })];
+        } else {
+          this.$message.error(data.message);
+        }
+      });
     },
     activated () {
       this.limitGetData();
@@ -104,8 +128,8 @@
           bookStatus: '1', // 0草稿1已发布
           skip: this.skip,
           limit: this.limit,
-          creator: this.searchForm.creator,
-          templateName: this.searchForm.templateName
+          creatorId: this.searchForm.creatorId,
+          templateBookName: this.searchForm.templateBookName
         }).then((res) => {
           let data = res.data;
           if (data.code == 0) {
