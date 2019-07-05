@@ -5,7 +5,7 @@
     <section class="templateContent">
       <div class="templateItem" v-for="(item, index) in templatePages" :key="item.id">
         <div class="img"  @click="openImg(index)">
-          <img crossOrigin="anonymous" v-lazy='`${$CJIMGURL + item.url + $OSSIMGADJUSTMINI}`' alt="">
+          <img crossOrigin="anonymous" :src='`${$CJIMGURL + item.url + $OSSIMGADJUSTMINI}`' alt="">
         </div>
         <p><span v-show="item.serialNumber">第{{item.serialNumber}}页</span></p>
       </div>
