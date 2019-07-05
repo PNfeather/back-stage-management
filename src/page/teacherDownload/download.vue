@@ -1,6 +1,7 @@
 <template>
   <div name='download' class="fillcontain">
     <div class="backGroundDiv fillcontain">
+      <div class="bg"><img src="~@IMG/download-bg.png" alt=""></div>
       <div class="contentWrapper">
         <div class="title">邀请您加入班级</div>
         <div class="explain">大家好，我在“习之道作业”app里创建了我们的班级，这个app可以方便地发布作业、交作业、批改作业，请各位家长及时加入本班级。</div>
@@ -120,10 +121,20 @@
       }
     }
     .backGroundDiv{
-      background: url("~@IMG/download-bg.png");
       background-size: 100% 100%;
       padding-top: 1.47rem;
+      position: relative;
+      .bg{
+        position: absolute;
+        .wh(100%, 100%);
+        .allcover;
+        img{
+          .wh(100%, 100%);
+        }
+      }
       .contentWrapper{
+        position: relative;
+        z-index: 3;
         width: 7.68rem;
         margin: 0 auto;
         background: rgba(255, 255, 255, 0.45);
