@@ -7,13 +7,13 @@
         </div>
         <el-form :model="loginForm" :rules="rules" ref="loginForm">
           <el-form-item prop="account">
-            <el-input v-model="loginForm.account" placeholder="账号"></el-input>
+            <el-input v-model="loginForm.account" placeholder="账号" @keyup.native="accountKeyDown($event)"></el-input>
           </el-form-item>
           <el-form-item prop="password">
-            <el-input type="password" placeholder="密码" v-model="loginForm.password"></el-input>
+            <el-input type="password" placeholder="密码" v-model="loginForm.password" ref="pwd" @keyup.native="pwdKeyDown($event)"></el-input>
           </el-form-item>
           <el-form-item>
-            <el-button type="primary" @click="submitForm('loginForm')" class="submit_btn">登录</el-button>
+            <el-button type="primary" @click="submitForm()" class="submit_btn">登录</el-button>
           </el-form-item>
         </el-form>
       </section>
@@ -51,8 +51,18 @@
       superviseFooter
     },
     methods: {
-      submitForm (formName) {
-        this.$refs[formName].validate((valid) => {
+      accountKeyDown (e) {
+        if (e.keyCode == 13) { // 账号回车跳密码
+          this.$refs.pwd.$el.firstElementChild.focus();
+        }
+      },
+      pwdKeyDown (e) {
+        if (e.keyCode == 13) { // 密码回车登录
+          this.submitForm();
+        }
+      },
+      submitForm () {
+        this.$refs.loginForm.validate((valid) => {
           if (valid) {
             login({account: this.loginForm.account, password: this.loginForm.password}).then((res) => {
               let data = res.data;
