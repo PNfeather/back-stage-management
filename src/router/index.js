@@ -6,6 +6,7 @@ Vue.use(Router);
 const index = r => require.ensure([], () => r(require('@/page/index/index')), 'index');
 const ios = r => require.ensure([], () => r(require('@/page/download/ios')), 'ios');
 const android = r => require.ensure([], () => r(require('@/page/download/android')), 'android');
+const teacherDownload = r => require.ensure([], () => r(require('@/page/teacherDownload/download')), 'download');
 const login = r => require.ensure([], () => r(require('@/page/login/login')), 'login');
 const manage = r => require.ensure([], () => r(require('@/page/manage/manage')), 'manage');
 const home = r => require.ensure([], () => r(require('@/page/home/home')), 'home');
@@ -37,6 +38,10 @@ const routes = [
   {
     path: '/android-download',
     component: android
+  },
+  {
+    path: '/share-url',
+    component: teacherDownload
   },
   {
     path: '/login',

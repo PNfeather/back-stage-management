@@ -9,6 +9,7 @@ import ElementUI from 'element-ui';
 import HeadTop from '@C/headTop';
 import 'element-ui/lib/theme-default/index.css';
 import VueLazyload from 'vue-lazyload';
+import VueClipboard from 'vue-clipboard2';
 require('es6-promise').polyfill();
 
 Vue.use(VueLazyload, {
@@ -31,6 +32,8 @@ ElementUI.Dialog.props.closeOnClickModal.default = false; // element-ui点击遮
 Vue.use(http.install);
 
 Vue.use(ElementUI);
+
+Vue.use(VueClipboard);
 
 Vue.component(HeadTop.name, HeadTop);
 
