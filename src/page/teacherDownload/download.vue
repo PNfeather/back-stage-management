@@ -16,7 +16,7 @@
                v-clipboard:success="onCopy"
                v-clipboard:error="onError">复制</div>
         </div>
-        <div class="downloadBtn" @click="download">下载习之道作业APP</div>
+        <div class="downloadBtn" @click="download">下载习之道APP</div>
         <img class="logo" src="~@IMG/logo.png" alt="">
         <div class="logoName">习之道</div>
       </div>
@@ -74,7 +74,7 @@
         this.$message.error('复制失败');
       },
       setRem () {
-        let whdef = 100 / 1024;// 表示1450的设计图,使用10PX的默认值
+        let whdef = 20 / 375;// 表示1450的设计图,使用10PX的默认值
         let bodyWidth = document.body.clientWidth;// 当前窗口的宽度
         let rem = bodyWidth * whdef;// 以默认比例值乘以当前窗口宽度,得到该宽度下的相应FONT-SIZE值
         document.getElementsByTagName('html')[0].style.fontSize = rem + 'px';
@@ -120,80 +120,82 @@
       }
     }
     .backGroundDiv{
-      background: url("~@IMG/download-bg.png");
-      background-size: 100% 100%;
-      padding-top: 1.47rem;
+      background: url("~@IMG/download-bg.png") no-repeat center center;
+      background-size: cover;
+      padding-top: 2rem;
       .contentWrapper{
-        width: 7.68rem;
+        box-sizing: border-box;
+        width: 15rem;
         margin: 0 auto;
         background: rgba(255, 255, 255, 0.45);
-        padding: .99rem 0 .47rem;
+        padding: 1rem 1.4rem 1.2rem;
         color: #FFFFFF;
-        border-radius: .24rem;
+        border-radius: 1.2rem;
         .title{
-          font-size: .4rem;
-          line-height: .36rem;
+          font-size: 1.2rem;
+          line-height: 1.4rem;
+          font-weight: bold;
           text-align: center;
         }
         .explain{
           box-sizing: border-box;
           width: 100%;
-          padding: 0 1.34rem;
-          margin-top: .54rem;
-          font-size: .18rem;
-          line-height: .36rem;
+          margin-top: 1rem;
+          font-size: .7rem;
+          line-height: 1.2rem;
         }
         .how{
           box-sizing: border-box;
           width: 100%;
-          margin-top: .48rem;
-          padding: 0 2.27rem;
+          margin-top: 1.2rem;
+          padding-left: .4rem;
           p{
-            font-size: .18rem;
-            line-height: .36rem;
+            font-size: .7rem;
+            line-height: 1.2rem;
           }
         }
         .classCode{
-          margin-top: .85rem;
+          margin-top: 1.6rem;
           width: 100%;
           display: flex;
           justify-content: center;
           align-items: center;
           .text{
-            font-size: .3rem;
-            margin-right: .61rem;
+            font-size: .8rem;
+            margin-right: .9rem;
+            font-weight: bold;
           }
           .copyBtn{
-            width: .8rem;
-            height: .3rem;
+            width: 2.8rem;
+            height: 1.6rem;
             display: flex;
             justify-content: center;
             align-items: center;
-            font-size: .2rem;
+            font-size: .8rem;
             border: 1px solid #FFFFFF;
-            border-radius: .09rem;
+            border-radius: .5rem;
           }
         }
         .downloadBtn{
-          margin: .96rem auto 0;
-          width: 2.72rem;
-          height: .44rem;
+          margin: 1.6rem auto 0;
+          width: 100%;
+          height: 2rem;
           box-sizing: border-box;
-          line-height: .44rem;
+          line-height: 2rem;
           text-align: center;
           background: #2D87FA;
-          border-radius: .09rem;
-          font-size: .2rem;
+          border-radius: .4rem;
+          font-size: .7rem;
         }
         .logo{
           display: block;
-          margin: 1.12rem auto 0;
-          width: .61rem;
-          height: auto;
+          margin: 1rem auto 0;
+          width: auto;
+          height: 2.9rem;
         }
         .logoName{
-          margin-top: .1rem;
-          font-size: .24rem;
+          margin-top: .5rem;
+          font-size: .7rem;
           text-align: center;
         }
       }
