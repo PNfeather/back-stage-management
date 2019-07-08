@@ -128,7 +128,7 @@
         width: 15rem;
         margin: 2rem auto;
         background: rgba(255, 255, 255, 0.45);
-        padding: 1rem 1.2rem 1.2rem;
+        padding: 1.2rem;
         color: #FFFFFF;
         border-radius: 1.2rem;
         .title{
