@@ -3,7 +3,7 @@
     <div class="backGroundDiv fillcontain">
       <div class="contentWrapper">
         <div class="title">邀请您加入班级</div>
-        <div class="explain">大家好，我在“习之道作业”app里创建了我们的班级，这个app可以方便地发布作业、交作业、批改作业，请各位家长及时加入本班级。</div>
+        <div class="explain">大家好，我在"习之道作业"app里创建了我们的班级，这个app可以方便地发布作业、交作业、批改作业，请各位家长及时加入本班级。</div>
         <div class="how">
           <p>如何加入班级？</p>
           <p>1、点击页面链接下载闪批作业app</p>
@@ -122,13 +122,13 @@
     .backGroundDiv{
       background: url("~@IMG/download-bg.png") no-repeat center center;
       background-size: cover;
-      padding-top: 2rem;
+      overflow: auto;
       .contentWrapper{
         box-sizing: border-box;
         width: 15rem;
-        margin: 0 auto;
+        margin: 2rem auto;
         background: rgba(255, 255, 255, 0.45);
-        padding: 1rem 1.4rem 1.2rem;
+        padding: 1rem 1.2rem 1.2rem;
         color: #FFFFFF;
         border-radius: 1.2rem;
         .title{
@@ -148,7 +148,7 @@
           box-sizing: border-box;
           width: 100%;
           margin-top: 1.2rem;
-          padding-left: .4rem;
+          padding-left: .8rem;
           p{
             font-size: .7rem;
             line-height: 1.2rem;
