@@ -3,10 +3,10 @@
     <div class="backGroundDiv fillcontain">
       <div class="contentWrapper">
         <div class="title">邀请您加入班级</div>
-        <div class="explain">大家好，我在"习之道作业"app里创建了我们的班级，这个app可以方便地发布作业、交作业、批改作业，请各位家长及时加入本班级。</div>
+        <div class="explain">大家好，我在"习之道"app里创建了我们的班级，这个app可以方便地发布作业、交作业、批改作业，请各位家长及时加入本班级。</div>
         <div class="how">
           <p>如何加入班级？</p>
-          <p>1、点击页面链接下载闪批作业app</p>
+          <p>1、点击页面链接下载习之道app</p>
           <p>2、注册账号时输入班级码即可加入</p>
         </div>
         <div class="classCode">
