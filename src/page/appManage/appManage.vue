@@ -79,6 +79,10 @@
             <el-button slot="trigger" size="small" type="primary" :disabled="!!fileList.length">选取文件</el-button>
           </el-upload>
         </el-form-item>
+        <el-form-item label="强制更新" label-width="120px" prop="forcedUpgradeStatus">
+          <el-radio :disabled="isCheck" v-model="selectTable.forcedUpgradeStatus" label="0">否</el-radio>
+          <el-radio :disabled="isCheck" v-model="selectTable.forcedUpgradeStatus" label="1">是</el-radio>
+        </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer" v-show="!isCheck">
         <el-button @click="closeModel">取 消</el-button>
@@ -155,8 +159,8 @@
           file: file.raw,
           version: this.selectTable.versionString
         };
-        let {message, versionCode} = this.selectTable;
-        let result = {...params, ...{message, versionCode}};
+        let {message, versionCode, forcedUpgradeStatus} = this.selectTable;
+        let result = {...params, ...{message, versionCode, forcedUpgradeStatus}};
 
         let formData = new FormData();
         let keys = Object.keys(result);
@@ -184,7 +188,9 @@
       createNew () {
         this.isCheck = false;
         this.dialogFormVisible = true;
-        this.selectTable = {};
+        this.selectTable = {
+          forcedUpgradeStatus: '0'
+        };
       },
       limitGetData () {
         if (this.getDataTimer) return;
