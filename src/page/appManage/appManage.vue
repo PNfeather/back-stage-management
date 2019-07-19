@@ -232,6 +232,7 @@
       check (item) {
         this.isCheck = true;
         this.dialogFormVisible = true;
+        item.forcedUpgradeStatus += ''; // 单选数据转字符串格式才能匹配上
         this.selectTable = item;
       }
     }
