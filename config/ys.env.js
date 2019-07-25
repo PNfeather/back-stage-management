@@ -4,5 +4,6 @@ module.exports = {
   MOCK: 'false',
   BASE_URL: '"http://demoapi.ecaiedu.com/api"',
   XZDKF_ENTRANCE: '"http://demo.ecaiedu.com/service/#/login"',
-  CJIMGURL: '"https://cjfc-prod.oss-cn-shenzhen.aliyuncs.com/"'
+  CJIMGURL: '"https://cjfc-prod.oss-cn-shenzhen.aliyuncs.com/"',
+  CONFIG_NAME: '"ys"'
 }

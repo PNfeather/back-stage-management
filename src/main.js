@@ -26,6 +26,7 @@ Vue.prototype.$CJIMGURL = process.env.CJIMGURL;
 Vue.prototype.$OSSIMGADJUST = '?x-oss-process=image/auto-orient,1'; // oss图片自动旋正
 Vue.prototype.$OSSIMGADJUSTMINI = '?x-oss-process=image/resize,w_200,auto-orient,1'; // oss图片自动旋正并缩略200比例
 Vue.prototype.$XZDKF_ENTRANCE = process.env.XZDKF_ENTRANCE;
+Vue.prototype.$ENVCONFIGNAME = process.env.CONFIG_NAME;
 
 ElementUI.Dialog.props.closeOnClickModal.default = false; // element-ui点击遮罩默认不关闭弹框
 

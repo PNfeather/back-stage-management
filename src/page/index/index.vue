@@ -21,7 +21,7 @@
         <div class="download">
           <div class="download-item">
             <div class="QR_code">
-              <img src="~@IMG/android-download.png" alt="">
+              <img :src="downloadImg" alt="">
             </div>
             <div class="text">习之道app家长版(Android)</div>
           </div>
@@ -42,6 +42,11 @@
   import superviseFooter from '@C/superviseFooter.vue';
   export default {
     name: 'index',
+    data () {
+      return {
+        downloadImg: require('@IMG/' + (this.$ENVCONFIGNAME ? this.$ENVCONFIGNAME : 'cs') + '/android-download.png')
+      };
+    },
     methods: {
       jump (url) {
         window.location.href = url;
@@ -49,6 +54,9 @@
     },
     components: {
       superviseFooter
+    },
+    mounted () {
+      console.log('@IMG/' + (this.$ENVCONFIGNAME ? this.$ENVCONFIGNAME : 'cs') + '/android-download.png');
     }
   };
 </script>
