@@ -17,7 +17,7 @@
                v-clipboard:error="onError">复制</div>
         </div>
         <div class="downloadBtn" @click="download">下载习之道APP</div>
-        <img class="logo" src="~@IMG/logo.png" alt="">
+        <img class="logo" src="~@IMG/logoX4.png" alt="">
         <div class="logoName">习之道</div>
       </div>
     </div>
