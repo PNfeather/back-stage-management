@@ -122,6 +122,9 @@ router.beforeEach((to, from, next) => {
     case 'ios-download':
       document.title = '习之道-教师版下载';
       break;
+    case 'share-url':
+      document.title = '邀请您加入班级';
+      break;
     default:
       document.title = '习之道后台管理系统';
       break;
