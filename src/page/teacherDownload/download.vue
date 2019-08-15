@@ -186,6 +186,7 @@
           background: #2D87FA;
           border-radius: .4rem;
           font-size: .7rem;
+          cursor: pointer;
         }
         .logo{
           display: block;
