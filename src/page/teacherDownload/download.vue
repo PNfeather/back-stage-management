@@ -80,8 +80,8 @@
         document.getElementsByTagName('html')[0].style.fontSize = rem + 'px';
       },
       download () {
-        let ua = window.navigator.userAgent.toLowerCase();
-        if (ua.match(/MicroMessenger/i) == 'micromessenger') {
+        let ua = u.userAgent.toLowerCase();
+        if (ua.match(/MicroMessenger/i) == 'micromessenger' || ua.match(/QQ\/[0-9]/i)) {
           this.shadeToggle = true;
         } else {
           let myFrame = document.createElement('iframe');
