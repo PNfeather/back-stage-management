@@ -80,8 +80,11 @@
         document.getElementsByTagName('html')[0].style.fontSize = rem + 'px';
       },
       download () {
-        let ua = navigator.userAgent.toLowerCase();
-        if (ua.match(/MicroMessenger/i) == 'micromessenger' || ua.match(/QQ\/[0-9]/i)) {
+        let u = navigator.userAgent;
+        let ua = u.toLowerCase();
+        let isWX = ua.indexOf('micromessenger') > -1;
+        let isQQ = (ua.match(/QQ/i) == "qq") && !(u.indexOf('MQQBrowser') > -1);
+        if (isWX || isQQ) {
           this.shadeToggle = true;
         } else {
           let myFrame = document.createElement('iframe');
