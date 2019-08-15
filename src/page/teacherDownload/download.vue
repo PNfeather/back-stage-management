@@ -83,7 +83,7 @@
         let u = navigator.userAgent;
         let ua = u.toLowerCase();
         let isWX = ua.indexOf('micromessenger') > -1;
-        let isQQ = (ua.match(/QQ/i) == "qq") && !(u.indexOf('MQQBrowser') > -1);
+        let isQQ = (ua.match(/QQ/i) == 'qq') && !(u.indexOf('MQQBrowser') > -1);
         if (isWX || isQQ) {
           this.shadeToggle = true;
         } else {
