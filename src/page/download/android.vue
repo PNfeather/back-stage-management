@@ -5,7 +5,7 @@
         <div class="logo">
           <img class="logoImg" :src="logoImg" alt="">
         </div>
-        <div class="name">习之道</div>
+        <div class="name">传而习</div>
         <div class="version">
           版本 {{info.versionString}}
         </div>

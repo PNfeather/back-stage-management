@@ -114,13 +114,13 @@ router.beforeEach((to, from, next) => {
   let toPath = to.path.replace('/', '');
   switch (toPath) {
     case '':
-      document.title = '习之道';
+      document.title = '传而习';
       break;
     case 'android-download':
-      document.title = '习之道-家长版下载';
+      document.title = '传而习-家长版下载';
       break;
     case 'ios-download':
-      document.title = '习之道-教师版下载';
+      document.title = '传而习-教师版下载';
       break;
     case 'share-url':
       document.title = '邀请您加入班级';

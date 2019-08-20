@@ -3,7 +3,7 @@
     <header class="header">
       <div class="logo">
         <img src="~@IMG/logo.png" alt="">
-        <span>习之道</span>
+        <span>传而习</span>
       </div>
       <nav class="nav">
         <div class="nav-item"><a href="#" @click="jump($XZDKF_ENTRANCE)">客服系统</a></div>
