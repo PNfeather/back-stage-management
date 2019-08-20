@@ -23,13 +23,13 @@
             <div class="QR_code">
               <img :src="downloadImg" alt="">
             </div>
-            <div class="text">习之道app家长版(Android)</div>
+            <div class="text">传而习app家长版(Android)</div>
           </div>
           <!--<div class="download-item">-->
             <!--<div class="QR_code">-->
               <!--<img src="~@IMG/ios-download.png" alt="">-->
             <!--</div>-->
-            <!--<div class="text">习之道app教师版(ios)</div>-->
+            <!--<div class="text">传而习app教师版(ios)</div>-->
           <!--</div>-->
         </div>
       </div>

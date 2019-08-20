@@ -6,7 +6,7 @@
         <div class="explain">大家好，我在"传而习"app里创建了我们的班级，这个app可以方便地发布作业、交作业、批改作业，请各位家长及时加入本班级。</div>
         <div class="how">
           <p>如何加入班级？</p>
-          <p>1、点击页面链接下载习之道app</p>
+          <p>1、点击页面链接下载传而习app</p>
           <p>2、注册账号时输入班级码即可加入</p>
         </div>
         <div class="classCode">
@@ -16,7 +16,7 @@
                v-clipboard:success="onCopy"
                v-clipboard:error="onError">复制</div>
         </div>
-        <div class="downloadBtn" @click="download">下载习之道APP</div>
+        <div class="downloadBtn" @click="download">下载传而习APP</div>
         <img class="logo" src="~@IMG/logoX4.png" alt="">
         <div class="logoName">传而习</div>
       </div>

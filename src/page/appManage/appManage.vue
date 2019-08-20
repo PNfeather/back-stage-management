@@ -54,7 +54,7 @@
       <el-form :model="selectTable" :rules="rules">
         <el-form-item label="产品名称" label-width="120px">
           <el-select v-model="selectTable.productName" placeholder="请选择产品名称" :disabled="isCheck">
-            <el-option label="习之道家长版android端" value="0"></el-option>
+            <el-option label="传而习家长版android端" value="0"></el-option>
           </el-select>
         </el-form-item>
         <el-form-item label="版本名称" label-width="120px" prop="versionString">
@@ -209,7 +209,7 @@
             this.count = data.total;
             this.tableData = data.data.map((item) => {
               // APP类型(0:学生家长端 1:教师端)
-              item.appType == 0 && (item.productName = '习之道家长版android端');
+              item.appType == 0 && (item.productName = '传而习家长版android端');
               item.updateTime = format(new Date(item.releaseTime), 'YYYY-MM-DD');
               return item;
             });

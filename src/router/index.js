@@ -126,7 +126,7 @@ router.beforeEach((to, from, next) => {
       document.title = '邀请您加入班级';
       break;
     default:
-      document.title = '习之道后台管理系统';
+      document.title = '传而习后台管理系统';
       break;
   }
   next();
