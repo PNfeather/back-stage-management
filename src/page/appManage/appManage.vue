@@ -3,9 +3,22 @@
     <head-top></head-top>
     <div class="table_container">
       <header class="search">
-        <el-button
-          size="medium"
-          @click="createNew">发布更新</el-button>
+        <div class='search_type'>
+          <span>产品名称：</span>
+          <el-select v-model="searchProductName" clearable placeholder="全部产品" @change="changeSearchType">
+            <el-option
+              v-for="item in productList"
+              :key="item.value"
+              :label="item.label"
+              :value="item.value">
+            </el-option>
+          </el-select>
+        </div>
+        <div class="createBtn">
+          <el-button
+            size="medium"
+            @click="createNew">发布更新</el-button>
+        </div>
       </header>
       <el-table
         :data="tableData"
@@ -52,9 +65,9 @@
     </div>
     <el-dialog :title="isCheck ? '查看信息' : '发布更新'" v-model="dialogFormVisible" size="small">
       <el-form :model="selectTable" :rules="rules">
-        <el-form-item label="产品名称" label-width="120px">
-          <el-select v-model="selectTable.productName" placeholder="请选择产品名称" :disabled="isCheck">
-            <el-option label="传而习家长版android端" value="0"></el-option>
+        <el-form-item label="产品名称" label-width="120px" prop="productName">
+          <el-select v-model="selectTable.productName" placeholder="请选择产品名称" :disabled="isCheck" @change="checkAppType" >
+            <el-option :label="item.label" :value="item.value" v-for="item in typeList" :key="item.value"></el-option>
           </el-select>
         </el-form-item>
         <el-form-item label="版本名称" label-width="120px" prop="versionString">
@@ -99,10 +112,15 @@
     name: 'appManage',
     data () {
       return {
+        searchProductName: '',
+        searchProductType: '',
         fileList: [],
         dialogFormVisible: false,
         selectTable: {},
         rules: {
+          productName: [
+            { required: true, message: '请选择产品类型', trigger: 'blur' }
+          ],
           versionString: [
             { required: true, message: '请输入版本名称', trigger: 'blur' }
           ],
@@ -119,7 +137,28 @@
         limit: 20,
         count: 0,
         getDataTimer: null,
-        isCheck: false
+        isCheck: false,
+        typeList: [
+          {
+            label: '家长端(手机)',
+            value: 0
+          }, {
+            label: '学生平板端',
+            value: 1
+          },
+          {
+            label: '学生手机端',
+            value: 2
+          },
+          {
+            label: '教师端',
+            value: 3
+          },
+          {
+            label: '教师平板端',
+            value: 4
+          }
+        ]
       };
     },
     beforeRouteLeave (to, from, next) {
@@ -134,7 +173,15 @@
     },
     computed: {
       submitDisable () {
-        return !(this.fileList.length && this.selectTable.versionString && this.selectTable.versionCode && this.selectTable.message);
+        return !((typeof this.selectTable.type === 'number' && this.selectTable.type > -1) && this.fileList.length && this.selectTable.versionString && this.selectTable.versionCode && this.selectTable.message);
+      },
+      productList () {
+        let result = [...this.typeList];
+        result.unshift({
+          label: '全部产品',
+          value: ''
+        });
+        return result;
       }
     },
     watch: {
@@ -143,6 +190,34 @@
       }
     },
     methods: {
+      getTypeName (type) {
+        let name;
+        switch (type) {
+          case 0:
+            name = '家长端(手机)';
+            break;
+          case 1:
+            name = '学生平板端';
+            break;
+          case 2:
+            name = '学生手机端';
+            break;
+          case 3:
+            name = '教师端';
+            break;
+          case 4:
+            name = '教师平板端';
+            break;
+        }
+        return name;
+      },
+      changeSearchType (e) {
+        this.searchProductType = e;
+        this.limitGetData();
+      },
+      checkAppType (e) {
+        this.$set(this.selectTable, 'type', e);
+      },
       beforeUpload () {
         return false;
       },
@@ -159,8 +234,8 @@
           file: file.raw,
           version: this.selectTable.versionString
         };
-        let {message, versionCode, forcedUpgradeStatus} = this.selectTable;
-        let result = {...params, ...{message, versionCode, forcedUpgradeStatus}};
+        let {message, versionCode, forcedUpgradeStatus, type} = this.selectTable;
+        let result = {...params, ...{message, versionCode, forcedUpgradeStatus, type}};
 
         let formData = new FormData();
         let keys = Object.keys(result);
@@ -202,14 +277,15 @@
       getData () {
         getAndroidList({
           skip: this.skip,
-          limit: this.limit
+          limit: this.limit,
+          type: this.searchProductType
         }).then((res) => {
           let data = res.data;
           if (data.code == 0) {
             this.count = data.total;
             this.tableData = data.data.map((item) => {
-              // APP类型(0:学生家长端 1:教师端)
-              item.appType == 0 && (item.productName = '传而习家长版android端');
+              // app类型(0: 家长端(手机) 1: 学生平板端 2: 学生手机端 3:教师端 4:教师平板端)
+              item.productName = this.getTypeName(item.appType);
               item.updateTime = format(new Date(item.releaseTime), 'YYYY-MM-DD');
               return item;
             });
@@ -241,6 +317,17 @@
 <style scoped lang="less">
   @import '../account/css/list';
   .search{
-    justify-content: flex-end;
+    .search_type{
+      flex: 1;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+    }
+    .createBtn{
+      flex: 1;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+    }
   }
 </style>
