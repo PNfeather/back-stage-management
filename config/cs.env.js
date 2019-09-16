@@ -1,6 +1,6 @@
 'use strict'
 const devEnv = require('./dev.env')
-module.exports = {
+module.exports = { // 已放弃使用
   NODE_ENV: '"production"',
   MOCK: 'false',
   BASE_URL: '"https://devapi.ecaiedu.com/api"', // 后端接口地址
