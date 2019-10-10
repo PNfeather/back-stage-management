@@ -21,15 +21,6 @@
         请使用浏览器打开
       </p>
     </div>
-    <el-dialog
-      :visible.sync="dialogVisible"
-      center>
-      <span>即将跳转App Store</span>
-      <span slot="footer" class="dialog-footer">
-        <el-button @click="dialogVisible = false">取 消</el-button>
-        <el-button type="primary" @click="goAppStore">允 许</el-button>
-      </span>
-    </el-dialog>
   </div>
 </template>
 
@@ -42,8 +33,7 @@
         info: {},
         logoImg: require('@IMG/ic_launcher.png'),
         leadArrows: require('@IMG/leadArrows.png'),
-        shadeToggle: false,
-        dialogVisible: false
+        shadeToggle: false
       };
     },
     created () {
@@ -65,7 +55,7 @@
           return (this.shadeToggle = true);
         }
         if (isIos) {
-          this.dialogVisible = true;
+          this.goAppStore();
         }
         getAppVersion(0).then(res => {
           let data = res.data;
@@ -122,7 +112,7 @@
           myFrame.style.display = 'none';
           document.body.appendChild(myFrame);
         } else {
-          this.dialogVisible = true;
+          this.goAppStore();
         }
       },
       goAppStore () {
