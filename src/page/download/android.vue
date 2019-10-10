@@ -15,15 +15,21 @@
       <div class="btn" @click="download">下载安装({{info.size}})</div>
       <div class="shadow"></div>
     </div>
-    <div class="tips">
-      适用于Android系统
-    </div>
     <div class="shade" v-show="shadeToggle">
       <img class="leadArrows" :src="leadArrows" alt="">
       <p class="leadText">
         请使用浏览器打开
       </p>
     </div>
+    <el-dialog
+      :visible.sync="dialogVisible"
+      center>
+      <span>即将跳转App Store</span>
+      <span slot="footer" class="dialog-footer">
+        <el-button @click="dialogVisible = false">取 消</el-button>
+        <el-button type="primary" @click="goAppStore">允 许</el-button>
+      </span>
+    </el-dialog>
   </div>
 </template>
 
@@ -36,7 +42,8 @@
         info: {},
         logoImg: require('@IMG/ic_launcher.png'),
         leadArrows: require('@IMG/leadArrows.png'),
-        shadeToggle: false
+        shadeToggle: false,
+        dialogVisible: false
       };
     },
     created () {
@@ -51,9 +58,14 @@
     },
     methods: {
       pageInit () {
-        let ua = window.navigator.userAgent.toLowerCase();
-        if (ua.match(/MicroMessenger/i) == 'micromessenger') {
-          this.shadeToggle = true;
+        const isIos = this.isIos();
+        const isWeixin = this.isWeixin();
+        console.log(isIos);
+        if (!isIos && isWeixin) { // 安卓端在微信直接弹遮罩
+          return (this.shadeToggle = true);
+        }
+        if (isIos) {
+          this.dialogVisible = true;
         }
         getAppVersion(0).then(res => {
           let data = res.data;
@@ -65,6 +77,25 @@
             this.$message.error(data.message);
           }
         });
+      },
+      isWeixin () { // 是否微信浏览器
+        const ua = window.navigator.userAgent.toLowerCase();
+        if (ua.match(/MicroMessenger/i) == 'micromessenger') {
+          return true;
+        } else {
+          return false;
+        }
+      },
+      isIos () { // 是否ios系统
+        const u = navigator.userAgent;
+        const isAndroid = u.indexOf('Android') > -1 || u.indexOf('Linux') > -1; // g
+        const isIOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); // ios终端
+        if (isAndroid) {
+          return false;
+        }
+        if (isIOS) {
+          return true;
+        }
       },
       setRem () {
         let whdef = 20 / 375;// 表示1450的设计图,使用10PX的默认值
@@ -84,10 +115,18 @@
         }
       },
       download () {
-        let myFrame = document.createElement('iframe');
-        myFrame.src = this.$CJIMGURL + this.info.url;
-        myFrame.style.display = 'none';
-        document.body.appendChild(myFrame);
+        const isIos = this.isIos();
+        if (!isIos) {
+          let myFrame = document.createElement('iframe');
+          myFrame.src = this.$CJIMGURL + this.info.url;
+          myFrame.style.display = 'none';
+          document.body.appendChild(myFrame);
+        } else {
+          this.dialogVisible = true;
+        }
+      },
+      goAppStore () {
+        window.location.href = 'https://apps.apple.com/cn/app/%E4%BC%A0%E8%80%8C%E4%B9%A0/id1477921230';
       }
     },
     components: {}

@@ -9,5 +9,6 @@ module.exports = merge(prodEnv, {
   BASE_URL: '"https://devapi.ecaiedu.com/api"',
   // BASE_URL: '"http://10.0.2.88:8080/api"',
   XZDKF_ENTRANCE: '"https://www.ecaiedu.com/service/#/login"', // 客服入口
-  CJIMGURL: '"https://cjfc-dev.oss-cn-shenzhen.aliyuncs.com/"'
+  CJIMGURL: '"https://cjfc-dev.oss-cn-shenzhen.aliyuncs.com/"',
+  CONFIG_NAME: '"csdev"'
 })
