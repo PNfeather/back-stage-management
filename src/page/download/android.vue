@@ -26,6 +26,7 @@
 
 <script type='text/babel'>
   import {getAppVersion} from '@/api/file';
+  import WEB from '@/tools/navigatorDetection';
   export default {
     name: 'android',
     data () {
@@ -48,9 +49,8 @@
     },
     methods: {
       pageInit () {
-        const isIos = this.isIos();
-        const isWeixin = this.isWeixin();
-        console.log(isIos);
+        const isIos = WEB.isIos;
+        const isWeixin = WEB.isWeixin;
         if (!isIos && isWeixin) { // 安卓端在微信直接弹遮罩
           return (this.shadeToggle = true);
         }
@@ -67,25 +67,6 @@
             this.$message.error(data.message);
           }
         });
-      },
-      isWeixin () { // 是否微信浏览器
-        const ua = window.navigator.userAgent.toLowerCase();
-        if (ua.match(/MicroMessenger/i) == 'micromessenger') {
-          return true;
-        } else {
-          return false;
-        }
-      },
-      isIos () { // 是否ios系统
-        const u = navigator.userAgent;
-        const isAndroid = u.indexOf('Android') > -1 || u.indexOf('Linux') > -1; // g
-        const isIOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); // ios终端
-        if (isAndroid) {
-          return false;
-        }
-        if (isIOS) {
-          return true;
-        }
       },
       setRem () {
         let whdef = 20 / 375;// 表示1450的设计图,使用10PX的默认值
@@ -105,7 +86,7 @@
         }
       },
       download () {
-        const isIos = this.isIos();
+        const isIos = WEB.isIos;
         if (!isIos) {
           let myFrame = document.createElement('iframe');
           myFrame.src = this.$CJIMGURL + this.info.url;

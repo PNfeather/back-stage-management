@@ -32,6 +32,7 @@
 
 <script type='text/babel'>
   import {getAppVersion} from '@/api/file';
+  import WEB from '@/tools/navigatorDetection';
   export default {
     name: 'download',
     data () {
@@ -80,17 +81,20 @@
         document.getElementsByTagName('html')[0].style.fontSize = rem + 'px';
       },
       download () {
-        let u = navigator.userAgent;
-        let ua = u.toLowerCase();
-        let isWX = ua.indexOf('micromessenger') > -1;
-        let isQQ = (ua.match(/QQ/i) == 'qq') && !(u.indexOf('MQQBrowser') > -1);
-        if (isWX || isQQ) {
-          this.shadeToggle = true;
+        const isIos = WEB.isIos;
+        const isWeixin = WEB.isWeixin;
+        const isQQ = WEB.isQQ;
+        if (isIos) {
+          window.location.href = 'https://apps.apple.com/cn/app/%E4%BC%A0%E8%80%8C%E4%B9%A0/id1477921230';
         } else {
-          let myFrame = document.createElement('iframe');
-          myFrame.src = this.$CJIMGURL + this.downloadUrl;
-          myFrame.style.display = 'none';
-          document.body.appendChild(myFrame);
+          if (isWeixin || isQQ) {
+            this.shadeToggle = true;
+          } else {
+            let myFrame = document.createElement('iframe');
+            myFrame.src = this.$CJIMGURL + this.downloadUrl;
+            myFrame.style.display = 'none';
+            document.body.appendChild(myFrame);
+          }
         }
       }
     },
