@@ -52,7 +52,7 @@
         const isIos = WEB.isIos;
         const isWeixin = WEB.isWeixin;
         if (!isIos && isWeixin) { // 安卓端在微信直接弹遮罩
-          return (this.shadeToggle = true);
+          this.shadeToggle = true;
         }
         if (isIos) {
           this.goAppStore();
