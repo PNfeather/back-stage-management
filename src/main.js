@@ -10,6 +10,7 @@ import HeadTop from '@C/headTop';
 import 'element-ui/lib/theme-default/index.css';
 import VueLazyload from 'vue-lazyload';
 import VueClipboard from 'vue-clipboard2';
+import Vconsole from 'vconsole';
 require('es6-promise').polyfill();
 
 Vue.use(VueLazyload, {
@@ -21,6 +22,8 @@ Vue.use(VueLazyload, {
 });
 
 (process.env.BASE_URL == '/api') && process.env.MOCK && require('@/mock');
+
+process.env.VCONSOLE && (new Vconsole);
 
 Vue.prototype.$CJIMGURL = process.env.CJIMGURL;
 Vue.prototype.$OSSIMGADJUST = '?x-oss-process=image/auto-orient,1'; // oss图片自动旋正

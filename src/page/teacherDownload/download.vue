@@ -45,7 +45,7 @@
       };
     },
     created () {
-      this.specialUrlDeal();
+      // this.specialUrlDeal();
       this.pageInit();
     },
     mounted () {

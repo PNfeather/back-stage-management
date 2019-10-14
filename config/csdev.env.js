@@ -3,6 +3,7 @@ const devEnv = require('./dev.env')
 module.exports = {
   NODE_ENV: '"production"',
   MOCK: 'false',
+  VCONSOLE: 'true',
   BASE_URL: '"https://devapi.ecaiedu.com/api"', // 后端接口地址
   // BASE_URL: '"http://10.0.2.252:8080/api"',
   XZDKF_ENTRANCE: '"https://dev.ecaiedu.com/service/#/login"', // 客服入口
