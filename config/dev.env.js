@@ -5,6 +5,7 @@ const prodEnv = require('./prod.env')
 module.exports = merge(prodEnv, {
   NODE_ENV: '"development"',
   MOCK: 'true',
+  VCONSOLE: 'true',
   // BASE_URL: '"/api"'
   BASE_URL: '"https://devapi.ecaiedu.com/api"',
   // BASE_URL: '"http://10.0.2.88:8080/api"',
