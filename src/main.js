@@ -24,6 +24,7 @@ Vue.use(VueLazyload, {
 (process.env.BASE_URL == '/api') && process.env.MOCK && require('@/mock');
 
 if (process.env.VCONSOLE) {
+  /* eslint-disable no-new */
   const vConsole = new Vconsole();
   Vue.use(vConsole);
 }
