@@ -23,7 +23,10 @@ Vue.use(VueLazyload, {
 
 (process.env.BASE_URL == '/api') && process.env.MOCK && require('@/mock');
 
-process.env.VCONSOLE && (new Vconsole());
+if (process.env.VCONSOLE) {
+  const vConsole = new Vconsole();
+  Vue.use(vConsole);
+}
 
 Vue.prototype.$CJIMGURL = process.env.CJIMGURL;
 Vue.prototype.$OSSIMGADJUST = '?x-oss-process=image/auto-orient,1'; // oss图片自动旋正
