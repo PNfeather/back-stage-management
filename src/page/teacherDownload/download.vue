@@ -45,7 +45,6 @@
       };
     },
     created () {
-      // this.specialUrlDeal();
       this.pageInit();
     },
     mounted () {
@@ -58,13 +57,6 @@
     computed: {},
     watch: {},
     methods: {
-      specialUrlDeal () { // 特殊路由处理，老版本安装手机分享链接打开白屏问题，分享出去的链接打开自动添加了一个?，特殊方法去掉
-        const pos = location.href.indexOf('/?#/');
-        if (pos > -1) {
-          const newUrl = location.href.replace('/?#/', '/#/');
-          location.replace(newUrl);
-        }
-      },
       pageInit () {
         getAppVersion(0).then(res => {
           let data = res.data;
